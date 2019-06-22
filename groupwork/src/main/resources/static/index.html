@@ -41,13 +41,12 @@
             userid:userid,
             password:password
         }).then(response =>{
-            if(response.data === 1) window.location.href='0.html';
+            if(response.data === 0) window.location.href='0.html';
             else if(response.data === 1)    window.location.href='1.html';
             else if(response.data === 2)    window.location.href='2.html';
             else if(response.data === 3)    window.location.href='3.html';
             else if(response.data === 4)    window.location.href='4.html';
             else    window.location.href='5.html';
-
     })
     }
 </script>

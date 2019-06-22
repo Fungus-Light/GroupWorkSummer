@@ -2,10 +2,11 @@ package com.minqing.demo.service;
 
 import com.minqing.demo.entity.User;
 import com.minqing.demo.entity.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -25,4 +26,23 @@ public class UserService {
         else if(user.getTitle() == 1)   return 4;
         else    return 5;
     }
+
+    public void addUser(String userid,String password,int title){
+        User user = new User();
+        user.setUserid(userid);
+        user.setPassword(password);
+        user.setStatus(0);
+        user.setTitle(title);
+        userRepository.save(user);
+
+    }
+
+    public void deleteUser(String userid){
+        userRepository.deleteById(userid);
+    }
+
+
+
+
+
 }
