@@ -27,7 +27,9 @@ public class UserService {
         if(temp == 0)    return 3;
         //返回值为4进入管理员页面
         else if(temp == 1)   return 4;
+        //返回值为5进入教师页面
         else if(temp == 2)   return 5;
+        //返回值为6进入学生页面
         else    return 6;
     }
 

@@ -21,5 +21,5 @@ public class ManagerService {
     public void deleteManager(String userid){
         managerRepository.deleteById(userid);
     }
-    
+
 }
