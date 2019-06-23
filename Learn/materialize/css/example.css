@@ -128,3 +128,16 @@ input#submit:hover {
     border-top:1px dotted #666543;
     border-bottom:1px dotted #666543;
 }
+
+.column1of2 {
+    float: left;
+    width: 620px;
+    margin: 10px;}
+.column2of2 {
+    float: left;
+    width: 300px;
+    margin: 10px;}
+#temp{
+    width:100%;
+   
+}
