@@ -1,5 +1,6 @@
 package com.minqing.demo.controller;
 
+import com.minqing.demo.service.ManagerService;
 import com.minqing.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,8 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private ManagerService managerService;
 
     @RequestMapping("/login")
     public int login(@RequestBody Map<String,String> map, HttpServletResponse response){
@@ -24,5 +27,15 @@ public class UserController {
             response.addCookie(new Cookie("userid",userid));
         }
         return number;
+    }
+
+    @RequestMapping("/addManager")
+    public void addManager(@RequestBody Map<String,String> map){
+        String userid = map.get("userid");
+        String password = map.get("password");
+        String name = map.get("name");
+        String tel = map.get("tel");
+        userService.addUser(userid,password,1);
+        managerService.addManager(userid,name,tel);
     }
 }

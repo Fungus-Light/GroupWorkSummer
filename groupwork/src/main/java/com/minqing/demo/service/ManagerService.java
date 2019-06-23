@@ -22,4 +22,5 @@ public class ManagerService {
         managerRepository.deleteById(userid);
     }
 
+
 }

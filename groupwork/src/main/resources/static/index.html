@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="assets/css/amazeui.datatables.min.css" />
     <link rel="stylesheet" href="assets/css/app.css">
     <script src="assets/js/jquery.min.js"></script>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body data-type="index">
@@ -650,11 +650,11 @@
             <div class="am-modal-hd">添加管理员
                 <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
             </div>
-            <form action="" class="am-form">
+            <form action="/addManager" class="am-form" >
                 <fieldset>
                   <div class="am-form-group">
-                    <label for="admin-name">用户名：</label>
-                    <input type="text" id="admin-name" minlength="3"
+                    <label for="admin-id">用户名：</label>
+                    <input type="text" id="admin-id" minlength="3"
                            placeholder="输入用户名（至少 3 个字符）" required/>
                   </div>
               
@@ -664,17 +664,17 @@
                   </div>
 
                   <div class="am-form-group">
-                    <label for="admin-contact">联系方式：</label>
-                    <input type="text" id="admin-contact" minlength="3"
-                           placeholder="输入联系方式（电话）" required/>
+                    <label for="admin-name">真实姓名：</label>
+                    <input type="text" id="admin-name" minlength="3"
+                           placeholder="输入真实姓名" required/>
                   </div>
 
                   <div class="am-form-group">
-                    <label for="admin-ex">备注：</label>
-                    <textarea id="admin-ex" minlength="10" maxlength="100"></textarea>
+                    <label for="admin-contact">联系电话：</label>
+                    <textarea id="admin-contact" minlength="8" placeholder="输入联系电话"></textarea>
                   </div>
               
-                  <button class="am-btn am-btn-secondary" type="submit" id="add-admin-submit">提交</button>
+                  <button class="am-btn am-btn-secondary" type="submit" id="add-admin-submit" onclick="addManager()">提交</button>
                 </fieldset>
               </form>
 
@@ -686,6 +686,22 @@
     <script src="assets/js/amazeui.datatables.min.js"></script>
     <script src="assets/js/dataTables.responsive.min.js"></script>
     <script src="assets/js/app.js"></script>
+    <script>
+        function addManager() {
+            var userid = document.getElementById("admin-id").value;
+            var password = document.getElementById("admin-pass").value;
+            var name = document.getElementById("admin-name").value;
+            var tel = document.getElementById("admin-contact").value;
+            axios.post('/addManager',{
+                userid:userid,
+                password:password,
+                name:name,
+                tel:tel
+            }).then(response =>{
+                location.reload();
+        })
+        }
+    </script>
 
 </body>
 
