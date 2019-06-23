@@ -1,7 +1,14 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
 }
-
+body>h1{
+    position:fixed;
+    top:10px;
+    left:10px;
+    width:250px;
+    background-color: hsl(247, 32%, 89%);
+    z-index: 2;
+}
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: hsl(247, 32%, 89%);
@@ -109,4 +116,15 @@ input#submit:hover {
     background: -moz-linear-gradient(top, #a8cfce, #beeae9);
     background: -o-linear-gradient(top, #a8cfce, #beeae9);
     background: -ms-linear-gradient(top, #a8cfce, #beeae9);
+}
+
+#search{
+    float:right;
+    width:300px;
+    font-size:100%;
+    font-style:italic;
+    margin:0px 0px 10px 10px;
+    padding:10px;
+    border-top:1px dotted #666543;
+    border-bottom:1px dotted #666543;
 }
