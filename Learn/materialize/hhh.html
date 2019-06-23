@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!--This a html for learning-->
+<html>
+
+<head>
+    <title>My First web Page &yen</title>
+    <meta name="description" content="An essay on installation" />
+    <meta name="keyword" content="installation art opinion" />
+    <meta name="robots" content="nofollow" />
+    <meta http-equiv="author" content="greenday12138" />
+    <meta http-equiv="pragma" content="no_cache" />
+    <meta http-equiv="expires" content="Fri, 01 Apr 2020 23:59:59 GMT" />
+    <link href="css/example.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+    <iframe width="300" height="150" src="https://www.baidu.com" seamless="seamless">
+    </iframe>
+    <hr />
+
+
+    <h1 id="top">Film making termms</h1>
+    <div id="list">
+        <ul>
+            <li>Mouse</li>
+            <li>Parser
+                <ol>
+                    <li>作者：匿名用户
+                        链接：https://www.zhihu.com/question/19834302/answer/102333863
+                        来源：知乎
+                        著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+                        
+                        综合类 | 地址
+                        --- | --- 
+                        前端知识体系--前端知识体系
+                        前端知识结构--GitHub - JacksonTian/fks: 前端技能汇总 Frontend Knowledge Structure
+                        免费的编程中文书籍索引--GitHub - justjavac/free-programming-books-zh_CN: 免费的计算机编程类中文书籍，欢迎投稿
+                        智能社 - 精通JavaScript开发--精通JavaScript开发(视频教学)
+                        重新介绍 JavaScript（JS 教程）--重新介绍 JavaScript（JS 教程）(文字教学)
+                        麻省理工学院公开课：计算机科学及编程导论--麻省理工学院公开课：计算机科学及编程导论
+                        JavaScript中的this陷阱的最全收集--没有之一--JavaScript中的this陷阱的最全收集--没有之一
+                        JS函数式编程指南--第 1 章: 我们在做什么？
+                        JavaScript Promise迷你书（中文版）--http://liubin.github.io/promises-book
+                        腾讯移动Web前端知识库--GitHub - AlloyTeam/Mars: 腾讯移动Web前端知识库
+                        大前端工具集 - 聂微东--GitHub - nieweidong/fetool: 大前端的瑞士军刀，只记录有用的
+                        Web Front-end Stack v2.2--https://raw.githubusercontent.com/unruledboy/WebFrontEndStack/master/Web%20Front%20End%20Stack.png</li>
+                    <li>temp</li>
+                </ol>
+            </li>
+        </ul>
+    </div>
+    <!--End of list-->
+    <div>
+            <vedio width="300" height="300" controls preload>
+                <scource src="temp.mp4" type="vedio/mp4"></scource>
+                "Your browser does not support html5"
+            </vedio>
+        </div>
+    <a href="https://www.baidu.com" target="_blank">BAIDU</a><br />
+    <a href="temp.html">TEST</a><br />
+    <a href="http:/www.htmlandcssbook.com/#bottom" target="_blank">REFERENCES</a>
+    <hr />
+    <form action="https://www.baidu.com">
+        <p>Search</p>
+        <input type="search" placeholder="Enter keyword" name="search" />
+        <input id="submit" type="submit" value="Search" />
+    </form>
+    <hr />
+    <figure>
+        <img src="images/lena.jpg" alt="A photo for lena" title="LENA" />
+        <figcaption>
+            The famous of digital image processing.
+        </figcaption>
+    </figure>
+    <hr />
+    <fieldset>
+        <legend>Personal Info</legend>
+        <form action="http://www.baidu.com" target="_blank" method="GET">
+            <label>Username:
+                <input type="text" name="username" size="15" maxlength="18" required="required" />
+            </label><br />
+            <label>
+                Password:
+                <input type="password" name="password" requierd="required" maxlength="15" />
+            </label><br />
+            <label>
+                Information:
+                <textarea name="info" cols="20" row="20">
+                                Enter your Information.
+                            </textarea>
+            </label><br />
+            <label>
+                Please select your favorite genre:
+                <br />
+                <input type="radio" name="genre" value="rock" checked="checked" />
+                <label for="rock">Rock</label>
+                <input type="radio" name="genre" value="pop" />
+                <label for="pop">Pop</label>
+                <input type="radio" name="genre" value="jazz" />
+                <label for="jazz">Jazz</label>
+            </label><br />
+            <label>
+                Birthday:
+                <input type="date" name="birth" />
+            </label><br />
+            <label>
+                Email:
+                <input type="email" name="email" />
+            </label><br />
+            <label>
+                Personal Website:
+                <input type="url" name="personalWeb" />
+            </label><br />
+            <input id="submit" type="submit" value="submit" />
+        </form>
+    </fieldset>
+    <hr />
+    <form action="https://github.com">
+        <p>
+            Plase choose your favorite service:
+            <input type="checkbox" name="service" value="Itunes" checked="checked" /> Itunes
+            <input type="checkbox" name="service" value="Android" checked="checked" /> Android
+            <input type="checkbox" name="service" value="IOS" checked="checked" /> IOS
+        </p>
+    </form>
+    <hr />
+
+    <hr />
+    <form action="https://www.baidu.com" method="POST">
+        <p>
+            Upload your song in MP3 format:
+            <input type="file" name="user_song" /><br />
+            <button id="submit">
+                <img src="iconfont/MaterialIcons-Regular.svg" alt="add" width="3" height="10" />
+                Add
+            </button>
+        </p>
+        <hr />
+        <p>
+            What device do you listen to music?
+            <select name="device">
+                <option value="null"></option>
+                <option value="ipod">IPOD</option>
+                <option value="phone">PHONE</option>
+            </select>
+        </p>
+        <hr />
+        <p>
+            Do you play following instruments?
+            <span>(Press ctrl to choose multiple instruments)</span>
+            <select  id="choice" name="instruments" size="3" multiple="multiple">
+                <option value="bass">Bass</option>
+                <option value="piano" selected="selected">Piano</option>
+                <option value="guitar" selected="selected">Guitar</option>
+            </select>
+        </p>
+    </form>
+    <hr />
+    <ol>
+        <li>Life</li>
+        <li>Nature</li>
+        <li>Love</li>
+        <li>Time and Eternity</li>
+    </ol>
+    <hr />
+    <table>
+        <thead>
+            TEMP
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="col">EMPTY</th>
+                <th scope="col">EMG</th>
+            </tr>
+            <tr>
+                <td colspan="1" rowspan="1">final</td>
+                <td>28</td>
+            </tr>
+            <tr>
+                <td>ff</td>
+                <td></td>
+            </tr>
+        </tbody>
+        <tfoot>
+
+        </tfoot>
+    </table>
+    <br /><a href="#top">Return to top</a>
+</body>
+
+</html>
