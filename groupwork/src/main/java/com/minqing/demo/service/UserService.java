@@ -22,6 +22,7 @@ public class UserService {
         if(user.getStatus() == 0)   return 1;
         //密码错误的情况返回2
         if(!user.getPassword().equals(password))    return 2;
+<<<<<<< HEAD
         int temp = user.getTitle();
         //返回值为3进入超管页面
         if(temp == 0)    return 3;
@@ -29,6 +30,11 @@ public class UserService {
         else if(temp == 1)   return 4;
         else if(temp == 2)   return 5;
         else    return 6;
+=======
+        if(user.getTitle() == 0)    return 3;
+        else if(user.getTitle() == 1)   return 4;
+        else    return 5;
+>>>>>>> parent of ba2a660... change position
     }
 
     public void addUser(String userid,String password,int title){
@@ -38,9 +44,21 @@ public class UserService {
         user.setStatus(0);
         user.setTitle(title);
         userRepository.save(user);
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of ba2a660... change position
     }
 
     public void deleteUser(String userid){
         userRepository.deleteById(userid);
     }
+<<<<<<< HEAD
+=======
+
+
+
+
+
+>>>>>>> parent of ba2a660... change position
 }

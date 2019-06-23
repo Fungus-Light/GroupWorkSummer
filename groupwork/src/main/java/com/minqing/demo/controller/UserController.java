@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Cookie;
+<<<<<<< HEAD
 import javax.servlet.http.HttpServletRequest;
+=======
+>>>>>>> parent of ba2a660... change position
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
@@ -17,7 +20,11 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/login")
+<<<<<<< HEAD
     public int login(@RequestBody Map<String,String> map, HttpServletResponse response, HttpServletRequest request) throws Exception{
+=======
+    public int login(@RequestBody Map<String,String> map, HttpServletResponse response){
+>>>>>>> parent of ba2a660... change position
         String userid = map.get("userid");
         String password = map.get("password");
         int number = userService.login(userid,password);
