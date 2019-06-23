@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/login")
-    public int login(@RequestBody Map<String,String> map, HttpServletResponse response){
+    public int login(@RequestBody Map<String,String> map, HttpServletResponse response, HttpServletRequest request) throws Exception{
         String userid = map.get("userid");
         String password = map.get("password");
         int number = userService.login(userid,password);

@@ -40,10 +40,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-
-
-
-
-
-
+    public void deleteUser(String userid){
+        userRepository.deleteById(userid);
+    }
 }
