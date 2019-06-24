@@ -1,3 +1,4 @@
+
 function addManager() {
     var userid = $("#admin-id").value;
     var password = $("#admin-pass").value;
@@ -9,6 +10,6 @@ function addManager() {
         name:name,
         tel:tel
     }).then(response =>{
-        location.reload();
+       location.reload();
 })
 }
