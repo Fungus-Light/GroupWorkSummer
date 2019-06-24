@@ -1,3 +1,4 @@
+
 var Admin_List_Render = document.getElementById("Admin_List_Render");
 var testAddadmin=document.getElementById("testAddadmin");
 testAddadmin.addEventListener('click',function(){
@@ -5,7 +6,10 @@ testAddadmin.addEventListener('click',function(){
 })
 
 window.onload=function(){
-    RefreshAdiminlist(adminarray);
+    axios.post('/showManager').then(response=>{
+        console.log(response.data);
+        RefreshAdiminlist(adminarray);
+    });
 }
 
 function ClearRenderer(renderer) {
@@ -19,7 +23,7 @@ function AttachChildren(father, child) {
 function RefreshAdiminlist(adminarray){
     ClearRenderer(Admin_List_Render);
     for(var i=0;i<adminarray.length;i++){
-        AttachChildren(Admin_List_Render,MakeUpAdmin());
+        AttachChildren(Admin_List_Render,MakeUpAdmin(adminarray[i].name,adminarray[i].userid,adminarray[i].tel));
     }
 }
 
