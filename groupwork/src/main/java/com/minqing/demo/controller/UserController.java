@@ -77,10 +77,9 @@ public class UserController {
     }
 
     @RequestMapping("/deleteManager")
-    public void deleteManager(String userid){
+    public void deleteManager(@RequestBody Map<String,String> map){
+        String userid = map.get("userid")
         managerService.deleteManager(userid);
         userService.deleteUser(userid);
     }
-
-
 }
