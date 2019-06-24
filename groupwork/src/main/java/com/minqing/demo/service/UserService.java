@@ -50,9 +50,5 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void updateUser(String userid,String password){
-        User user = userRepository.findById(userid).get();
-        user.setPassword(password);
-        userRepository.save(user);
-    }
+
 }

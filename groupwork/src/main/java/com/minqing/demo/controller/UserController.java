@@ -72,8 +72,8 @@ public class UserController {
         String password = map.get("password");
         String name = map.get("name");
         String tel = map.get("tel");
-        userService.updateUser(userid,password);
-        managerService.updateManager(userid,name,tel);
+        userService.addUser(userid,password,1);
+        managerService.addManager(userid,name,tel);
     }
 
     @RequestMapping("/deleteManager")
