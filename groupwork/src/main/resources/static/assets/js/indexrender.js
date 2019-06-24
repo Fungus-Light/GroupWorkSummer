@@ -95,7 +95,8 @@ function MakeUpAdmin(_name,_id,_contact) {
     deleteBtn.setAttribute('data-am-modal',"{target: '#del-admin', closeViaDimmer: 0, width: 400, height: 225}");
     deleteBtn.setAttribute("data-contentr",_id);
     deleteBtn.addEventListener('click',function(){
-        document.getElementById("del-admin-id").placeholder=deleteBtn.getAttribute("data-contentr");
+        document.getElementById("del_admin_id").placeholder=deleteBtn.getAttribute("data-contentr");
+        document.getElementById("del_admin_id").value=deleteBtn.getAttribute("data-contentr");
     });
     var editIcon=MakeUpElement('i','',"am-icon-pencil");
     var deleteIcon=MakeUpElement('i','',"am-icon-trash");
