@@ -1,5 +1,6 @@
 package com.minqing.demo.controller;
 
+import com.minqing.demo.entity.Manager;
 import com.minqing.demo.service.ManagerService;
 import com.minqing.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -39,4 +43,22 @@ public class UserController {
         userService.addUser(userid,password,1);
         managerService.addManager(userid,name,tel);
     }
+
+    @RequestMapping("/showManager")
+    public List showManager(){
+        List<Manager> list = managerService.findManagers();
+        int length = list.size();
+        List<Map<String,String>> newlist = new ArrayList<>(length);
+        for(int i=0;i<length;i++){
+            Map<String,String> map = new HashMap<>();
+            map.put("userid",list.get(i).getUserid());
+            map.put("name",list.get(i).getName());
+            map.put("tel",list.get(i).getTel());
+            newlist.add(map);
+        }
+        return newlist;
+    }
+
+    @RequestMapping("/editManager")
+    public void 
 }
