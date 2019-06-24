@@ -92,6 +92,11 @@ function MakeUpAdmin(_name,_id,_contact) {
     });
     var deleteBtn=MakeUpElement('a',"删除  ","tpl-table-black-operation-del");
     deleteBtn.setAttribute('href',"javascript:;");
+    deleteBtn.setAttribute('data-am-modal',"{target: '#del-admin', closeViaDimmer: 0, width: 400, height: 225}");
+    deleteBtn.setAttribute("data-contentr",_id);
+    deleteBtn.addEventListener('click',function(){
+        document.getElementById("del-admin-id").placeholder=deleteBtn.getAttribute("data-contentr");
+    });
     var editIcon=MakeUpElement('i','',"am-icon-pencil");
     var deleteIcon=MakeUpElement('i','',"am-icon-trash");
     editBtn.appendChild(editIcon);
