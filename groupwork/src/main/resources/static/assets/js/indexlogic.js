@@ -1,3 +1,5 @@
+//$("#add-admin-submit").click(addManager);
+document.getElementById("add-admin-submit").addEventListener('click',addManager);
 
 function addManager() {
     var userid = $("#admin-id").value;
