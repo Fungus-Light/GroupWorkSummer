@@ -86,7 +86,7 @@ function MakeUpAdmin(_name,_pass,_id,_contact) {
     editBtn.setAttribute('data-am-modal',"{target: '#edit-admin',closeViaDimmer: 0, width: 600, height: 500}");
     editBtn.addEventListener('click',function(){
         //console.log("edit");
-        CleanAdminEdit();
+        //CleanAdminEdit();
         var _data=JSON.parse(this.getAttribute("content_data"));
         //console.log(_data);
         SetEditAdmin(_data.name,_data.pass,_data.id,_data.tel);

@@ -27,10 +27,7 @@ function addManager() {
         name:name,
         tel:tel
     }).then(response =>{
-        axios.post('/showManager').then(response=>{
-        //console.log(response.data);
-    RefreshAdiminlist(response.data);
-});
+window.reload();
 })
 }
 
@@ -45,10 +42,7 @@ function editManager() {
         name:name,
         tel:tel
     }).then(response =>{
-        axios.post('/showManager').then(response=>{
-        //console.log(response.data);
-    RefreshAdiminlist(response.data);
-});
+    window.reload();
 })
 }
 
@@ -60,7 +54,7 @@ function deleteManager() {
     }).then(response =>{
         axios.post('/showManager').then(response=>{
         //console.log(response.data);
-    RefreshAdiminlist(response.data);
+        RefreshAdiminlist(response.data);
 });
 })
 }
