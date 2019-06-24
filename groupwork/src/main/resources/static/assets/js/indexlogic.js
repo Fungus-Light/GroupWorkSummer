@@ -27,6 +27,6 @@ function addManager() {
         name:name,
         tel:tel
     }).then(response =>{
-        window.location.href = 'index.html';
+        window.reload();
 })
 }

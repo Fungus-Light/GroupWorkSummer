@@ -37,7 +37,7 @@ public class UserService {
         User user = new User();
         user.setUserid(userid);
         user.setPassword(password);
-        user.setStatus(0);
+        user.setStatus(1);
         user.setTitle(title);
         userRepository.save(user);
     }
