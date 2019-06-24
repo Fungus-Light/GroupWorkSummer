@@ -5,6 +5,8 @@ import com.minqing.demo.entity.ManagerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ManagerService {
     @Autowired
@@ -20,6 +22,10 @@ public class ManagerService {
 
     public void deleteManager(String userid){
         managerRepository.deleteById(userid);
+    }
+
+    public List<Manager> findManagers(){
+        return managerRepository.findAll();
     }
 
 

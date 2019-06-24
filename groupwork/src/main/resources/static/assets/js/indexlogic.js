@@ -12,6 +12,6 @@ function addManager() {
         name:name,
         tel:tel
     }).then(response =>{
-        location.reload();
+       location.reload();
 })
 }
