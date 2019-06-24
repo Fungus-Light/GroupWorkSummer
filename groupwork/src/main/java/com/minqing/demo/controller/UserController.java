@@ -60,5 +60,19 @@ public class UserController {
     }
 
     @RequestMapping("/editManager")
-    public void 
+    public void editManager(@RequestBody Map<String,String> map){
+        String userid = map.get("userid");
+        String password = map.get("password");
+        String name = map.get("name");
+        String tel = map.get("tel");
+
+    }
+
+    @RequestMapping("/deleteManager")
+    public void deleteManager(String userid){
+        managerService.deleteManager(userid);
+        userService.deleteUser(userid);
+    }
+
+
 }

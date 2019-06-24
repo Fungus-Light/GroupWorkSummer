@@ -28,5 +28,10 @@ public class ManagerService {
         return managerRepository.findAll();
     }
 
-
+    public void updateManager(String userid,String name,String tel){
+        Manager manager = managerRepository.findById(userid).get();
+        manager.setName(name);
+        manager.setTel(tel);
+        managerRepository.save(manager);
+    }
 }

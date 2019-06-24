@@ -45,4 +45,8 @@ public class UserService {
     public void deleteUser(String userid){
         userRepository.deleteById(userid);
     }
+
+    public void refuseUser(String userid){
+        userRepository.findById(userid).get().setStatus(0);
+    }
 }
