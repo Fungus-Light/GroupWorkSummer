@@ -27,7 +27,7 @@ function addManager() {
         name:name,
         tel:tel
     }).then(response =>{
-        window.reload();
+        window.reload(true);
 })
 }
 
@@ -42,7 +42,8 @@ function editManager() {
         name:name,
         tel:tel
     }).then(response =>{
-        window.reload();
+        window.reload(true);
+        //window.reload();
 })
 }
 
@@ -52,7 +53,8 @@ function deleteManager() {
     axios.post('/deleteManager',{
         userid:userid
     }).then(response =>{
-        window.reload();
+        window.reload(true);
+        window.reload(true);
 })
 }
 

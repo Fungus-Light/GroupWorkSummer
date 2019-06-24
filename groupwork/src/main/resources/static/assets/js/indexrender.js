@@ -12,6 +12,7 @@ window.onload=function(){
     });
 }
 
+
 function ClearRenderer(renderer) {
     renderer.innerText = "";
 }
