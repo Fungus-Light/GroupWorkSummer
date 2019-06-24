@@ -97,7 +97,7 @@ input {
     display: inline;
     margin-bottom: 0.1;
 }
-#submit {
+.submit {
     color: #444444;
     text-shadow: 0 0.01 0.01 #ffffff;
     border-bottom: 0.02 solid #b2b2b2;
@@ -108,7 +108,7 @@ input {
     background: -ms-linear-gradient(top, #beeae9, #a8cfce);
     background-position: -175px 0px;
 }
-#submit:hover {
+.submit:hover {
     display: inline-block;
     color: #9e2828;
     border: 0.01 solid #e44e4e;
@@ -120,7 +120,7 @@ input {
     background: -ms-linear-gradient(top, #ca2e6f, #da2488);
     background-position: -175px -40px;
 }
-#submit:active{
+.submit:active{
     color: #8530d4;
     border: 0.01 solid #8332c5;
     border-top: 0.02 solid #480e79;

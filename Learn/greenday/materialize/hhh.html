@@ -16,7 +16,7 @@
 <body>
     <h1 id="top">Film making termms</h1>
     <hr />
-    <iframe width="300" height="150" src="https://www.baidu.com" seamless="seamless">
+    <iframe width="300" height="150" src="https://www.htmlandcssbook.com" seamless="seamless">
     </iframe>
     <hr />
     <div id="list">
@@ -31,20 +31,15 @@
         </ul>
     </div>
     <!--End of list-->
-    <div>
-        <vedio width="300" height="300" controls preload>
-            <scource src="temp.mp4" type="vedio/mp4"></scource>
-            "Your browser does not support html5"
-        </vedio>
-    </div>
-    <a href="https://www.baidu.com" target="_blank">BAIDU</a><br />
+    <vedio src="../temp.mp4" preload=auto controls>Your browser does not support html5</vedio><br />
+    <a href="https://www.htmlandcssbook.com" target="_blank">BAIDU</a><br />
     <a href="temp.html">TEST</a><br />
     <a href="http:/www.htmlandcssbook.com/#bottom" target="_blank">REFERENCES</a>
     <hr />
-    <form id="search" action="https://www.baidu.com">
+    <form id="search" action="https://www.htmlandcssbook.com">
         <p>Search</p>
         <input type="search" placeholder="Enter keyword" name="search" />
-        <input id="submit" type="submit" value="Search" />
+        <input class="submit" type="submit" value="Search" />
     </form>
     <hr />
     <figure>
@@ -66,7 +61,7 @@
     <hr />
     <fieldset>
         <legend>Personal Info</legend>
-        <form action="http://www.baidu.com" target="_blank" method="GET">
+        <form action="http://www.github.com" target="_blank" method="GET">
             <label>Username:
                 <input type="text" name="username" size="15" maxlength="18" required="required" />
             </label><br />
@@ -102,7 +97,7 @@
                 Personal Website:
                 <input type="url" name="personalWeb" />
             </label><br />
-            <input id="submit" type="submit" value="submit" />
+            <input class="submit" type="submit" value="submit" />
         </form>
     </fieldset>
     <hr />
@@ -117,13 +112,14 @@
     <hr />
 
     <hr />
-    <form action="https://www.baidu.com" method="POST">
+    <form>
         <p>
-            Upload your song in MP3 format:
+            <label id="show_file">
+                Upload your song in MP3 format:</label>
             <input type="file" name="user_song" /><br />
-            <button id="submit">
-                <img src="iconfont/MaterialIcons-Regular.svg" alt="add" width="3" height="10" />
-                Add
+            <button class="submit" id="submit_1">
+                <img id="addImage" src="iconfont/MaterialIcons-Regular.svg" alt="add" width="3" height="10" />
+                Add 
             </button>
         </p>
         <hr />
@@ -179,7 +175,7 @@
     <h1>The Evolution of the Bicycle</h1>
     <div class="column2">
         <div class="column1of2">
-            <h3>The First Bicycle</h3>
+            <h3>The First Bicycle</h3>                                                                                                        
             <a href="https://www.github.com" target="_blank">
                 <p>In 1817 Baron von Drais invented a walking machine that would help him get around the royal gardens
                     faster:
@@ -231,6 +227,7 @@
     </div>
 
     <br /><a href="#top">Return to top</a>
+    <script src="js/example.js"></script>
 </body>
 
 </html>
