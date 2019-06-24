@@ -47,6 +47,14 @@ public class UserService {
     }
 
     public void refuseUser(String userid){
-        userRepository.findById(userid).get().setStatus(0);
+        User user = userRepository.findById(userid).get();
+        user.setStatus(0);
+        userRepository.save(user);
+    }
+
+    public void updateUser(String userid,String password){
+        User user = userRepository.findById(userid).get();
+        user.setPassword(password);
+        userRepository.save(user);
     }
 }

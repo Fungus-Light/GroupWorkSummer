@@ -34,6 +34,13 @@ public class UserController {
         return number;
     }
 
+    @RequestMapping("/refuseUser")
+    public void refuseUser(@RequestBody Map<String,String> map){
+        String userid = map.get("userid");
+        userService.refuseUser(userid);
+    }
+
+
     @PostMapping("/addManager")
     public void addManager(@RequestBody Map<String,String> map){
         String userid = map.get("userid");
@@ -65,7 +72,8 @@ public class UserController {
         String password = map.get("password");
         String name = map.get("name");
         String tel = map.get("tel");
-
+        userService.updateUser(userid,password);
+        managerService.updateManager(userid,name,tel);
     }
 
     @RequestMapping("/deleteManager")
