@@ -3,6 +3,7 @@ package com.minqing.demo.controller;
 import com.minqing.demo.service.ManagerService;
 import com.minqing.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,7 +30,7 @@ public class UserController {
         return number;
     }
 
-    @RequestMapping("/addManager")
+    @PostMapping("/addManager")
     public void addManager(@RequestBody Map<String,String> map){
         String userid = map.get("userid");
         String password = map.get("password");
