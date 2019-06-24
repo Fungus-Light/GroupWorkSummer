@@ -28,5 +28,4 @@ public class ManagerService {
         return managerRepository.findAll();
     }
 
-    public void updateManger(String )
 }
