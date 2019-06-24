@@ -33,13 +33,13 @@ public class UserController {
         }
         return number;
     }
-
+/*
     @RequestMapping("/refuseUser")
     public void refuseUser(@RequestBody Map<String,String> map){
         String userid = map.get("userid");
-        userService.refuseUser(userid);
+        userService.deleteUser(userid);
     }
-
+*/
 
     @PostMapping("/addManager")
     public void addManager(@RequestBody Map<String,String> map){
@@ -78,7 +78,7 @@ public class UserController {
 
     @RequestMapping("/deleteManager")
     public void deleteManager(@RequestBody Map<String,String> map){
-        String userid = map.get("userid")
+        String userid = map.get("userid");
         managerService.deleteManager(userid);
         userService.deleteUser(userid);
     }

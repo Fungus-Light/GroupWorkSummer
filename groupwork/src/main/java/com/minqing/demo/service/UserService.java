@@ -42,11 +42,9 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void deleteUser(String userid){
-        userRepository.deleteById(userid);
-    }
 
-    public void refuseUser(String userid){
+
+    public void deleteUser(String userid){
         User user = userRepository.findById(userid).get();
         user.setStatus(0);
         userRepository.save(user);
