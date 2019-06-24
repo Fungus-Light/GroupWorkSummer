@@ -27,6 +27,8 @@ function RefreshAdiminlist(adminarray){
     }
 }
 
+
+
 /**
 
 <tr class="gradeX">
@@ -54,8 +56,23 @@ function MakeUpElement(_tag,_text,_class){
     return temp;
 }
 
+function CleanAdminEdit(){
+    document.getElementById("e-admin-id").value="";
+    document.getElementById("e-admin-pass").value="";
+    document.getElementById("e-admin-name").value="";
+    document.getElementById("e-admin-contact").value="";
+}
+
+function SetEditAdmin(name,id,tel){
+    document.getElementById("e-admin-id").value=id;
+    document.getElementById("e-admin-pass").value="";
+    document.getElementById("e-admin-name").value=name;
+    document.getElementById("e-admin-contact").value=tel;
+}
+
 function MakeUpAdmin(_name,_id,_contact) {
     var temp=MakeUpElement("tr","","gradeX");
+    
     var name=MakeUpElement('td',_name,"");
     var id=MakeUpElement('td',_id,"");
     var contact=MakeUpElement('td',_contact,"");
@@ -63,6 +80,16 @@ function MakeUpAdmin(_name,_id,_contact) {
     var btnFather=MakeUpElement('div',"","tpl-table-black-operation");
     var editBtn=MakeUpElement("a","编辑  ","");
     editBtn.setAttribute('href',"javascript:;");
+    editBtn.setAttribute("content_data",JSON.stringify({name:_name,id:_id,tel:_contact}));
+    //data-am-modal="{target: '#add-admin',closeViaDimmer: 0, width: 600, height: 500}"
+    editBtn.setAttribute('data-am-modal',"{target: '#edit-admin',closeViaDimmer: 0, width: 600, height: 500}");
+    editBtn.addEventListener('click',function(){
+        console.log("edit");
+        CleanAdminEdit();
+        var _data=JSON.parse(this.getAttribute("content_data"));
+        console.log(_data);
+        SetEditAdmin(_data.name,_data.id,_data.tel);
+    });
     var deleteBtn=MakeUpElement('a',"删除  ","tpl-table-black-operation-del");
     deleteBtn.setAttribute('href',"javascript:;");
     var editIcon=MakeUpElement('i','',"am-icon-pencil");
