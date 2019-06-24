@@ -4,12 +4,23 @@ testAddadmin.addEventListener('click',function(){
     AttachChildren(Admin_List_Render,MakeUpAdmin("111","222","123456"));
 })
 
+window.onload=function(){
+    RefreshAdiminlist(adminarray);
+}
+
 function ClearRenderer(renderer) {
     renderer.innerText = "";
 }
 
 function AttachChildren(father, child) {
     father.appendChild(child);
+}
+
+function RefreshAdiminlist(adminarray){
+    ClearRenderer(Admin_List_Render);
+    for(var i=0;i<adminarray.length;i++){
+        AttachChildren(Admin_List_Render,MakeUpAdmin());
+    }
 }
 
 /**
