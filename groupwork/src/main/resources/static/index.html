@@ -207,13 +207,15 @@
             <!-- 菜单 -->
             <ul class="sidebar-nav">
                 <li class="sidebar-nav-heading">功能区 </li>
-                <li class="sidebar-nav-link nvl">
+
+
+                <li class="sidebar-nav-link nvl" call="first">
                     <a href="index.html" class="active">
                         <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
                     </a>
                 </li>
 
-                <li  class="sidebar-nav-link nvl">
+                <li  class="sidebar-nav-link nvl" call="admin">
                     <a href="javascript:;">
                         <i class="am-icon-key sidebar-nav-link-logo"></i> 管理员授权
                     </a>
@@ -226,13 +228,13 @@
                         <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                     </a>
                     <ul class="sidebar-nav sidebar-nav-sub">
-                        <li class="sidebar-nav-link nvl">
+                        <li class="sidebar-nav-link nvl" call="teach">
                             <a href="javascript:;" >
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 教师信息管理
                             </a>
                         </li>
 
-                        <li class="sidebar-nav-link nvl">
+                        <li class="sidebar-nav-link nvl" call="stud">
                             <a href="javascript:;">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 学生信息管理
                             </a>
@@ -312,7 +314,7 @@
 
         <div class="tpl-content-wrapper">
             <!-- 首页内容 -->
-            <div class="row-content am-cf" style="display: none;">
+            <div class="row-content am-cf rbd" style="" callid="first">
                 <div class="row  am-cf">
                     <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                         <div class="widget am-cf">
@@ -348,7 +350,7 @@
                 </div>
             </div>
             <!--管理员授权-->
-            <div class="row-content am-cf" style=" ">
+            <div class="row-content am-cf rbd" style="display: none;" callid="admin">
                 <div class="row">
                     <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                         <div class="widget am-cf">
@@ -422,7 +424,7 @@
                 </div>
             </div>
             <!--教师信息管理-->
-            <div class="row-content am-cf" style="">
+            <div class="row-content am-cf rbd" style="display: none;" callid="teach">
                 <div class="row">
                     <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                         <div class="widget am-cf">
@@ -507,7 +509,7 @@
             </div>
 
             <!--学生信息管理-->
-            <div class="row-content am-cf" style="">
+            <div class="row-content am-cf rbd" style="display: none;" callid="stud">
                 <div class="row">
                     <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                         <div class="widget am-cf">
