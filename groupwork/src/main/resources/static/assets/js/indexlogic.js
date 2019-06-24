@@ -27,7 +27,10 @@ function addManager() {
         name:name,
         tel:tel
     }).then(response =>{
-        window.reload(true);
+        axios.post('/showManager').then(response=>{
+        //console.log(response.data);
+    RefreshAdiminlist(response.data);
+});
 })
 }
 
@@ -42,8 +45,10 @@ function editManager() {
         name:name,
         tel:tel
     }).then(response =>{
-        window.reload(true);
-        //window.reload();
+        axios.post('/showManager').then(response=>{
+        //console.log(response.data);
+    RefreshAdiminlist(response.data);
+});
 })
 }
 
@@ -53,8 +58,10 @@ function deleteManager() {
     axios.post('/deleteManager',{
         userid:userid
     }).then(response =>{
-        window.reload(true);
-        window.reload(true);
+        axios.post('/showManager').then(response=>{
+        //console.log(response.data);
+    RefreshAdiminlist(response.data);
+});
 })
 }
 
@@ -63,8 +70,8 @@ $(".nvl").click(function(){
     $(".rbd").hide();
     $(this).children('a').attr('class',"active");
     var key= $(this).attr("call");
-    console.log(key);
-    console.log($(".rdb[callid='"+key+"']"));
+    //console.log(key);
+    //console.log($(".rdb[callid='"+key+"']"));
     
     $("div[callid='"+key+"']").show();
 })

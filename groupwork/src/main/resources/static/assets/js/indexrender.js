@@ -7,7 +7,7 @@ testAddadmin.addEventListener('click',function(){
 
 window.onload=function(){
     axios.post('/showManager').then(response=>{
-        console.log(response.data);
+        //console.log(response.data);
         RefreshAdiminlist(response.data);
     });
 }
@@ -85,10 +85,10 @@ function MakeUpAdmin(_name,_pass,_id,_contact) {
     //data-am-modal="{target: '#add-admin',closeViaDimmer: 0, width: 600, height: 500}"
     editBtn.setAttribute('data-am-modal',"{target: '#edit-admin',closeViaDimmer: 0, width: 600, height: 500}");
     editBtn.addEventListener('click',function(){
-        console.log("edit");
+        //console.log("edit");
         CleanAdminEdit();
         var _data=JSON.parse(this.getAttribute("content_data"));
-        console.log(_data);
+        //console.log(_data);
         SetEditAdmin(_data.name,_data.pass,_data.id,_data.tel);
     });
     var deleteBtn=MakeUpElement('a',"删除  ","tpl-table-black-operation-del");
