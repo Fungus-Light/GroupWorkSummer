@@ -213,21 +213,21 @@
                     </a>
                 </li>
 
-                <li class="sidebar-nav-link">
-                    <a href="javascript:;" class="active">
+                <li  class="sidebar-nav-link">
+                    <a href="javascript:;" class="">
                         <i class="am-icon-key sidebar-nav-link-logo"></i> 管理员授权
                     </a>
                 </li>
 
 
-                <li class="sidebar-nav-link">
+                <li  class="sidebar-nav-link">
                     <a href="javascript:;" class="sidebar-nav-sub-title">
                         <i class="am-icon-users sidebar-nav-link-logo"></i> 用户信息管理
                         <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                     </a>
                     <ul class="sidebar-nav sidebar-nav-sub">
                         <li class="sidebar-nav-link">
-                            <a href="javascript:;">
+                            <a href="javascript:;" class="active">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 教师信息管理
                             </a>
                         </li>
@@ -243,7 +243,7 @@
                 </li>
 
 
-                <li class="sidebar-nav-link">
+                <li  class="sidebar-nav-link">
                     <a href="javascript:;">
                         <i class="am-icon-calendar sidebar-nav-link-logo"></i> 毕业设计阶段管理
 
@@ -399,53 +399,6 @@
                                             </tr>
                                         </thead>
                                         <tbody id="Admin_List_Render">
-                                            <tr class="gradeX">
-                                                <td>管理员A</td>
-                                                <td>A-00001</td>
-                                                <td>1234567890</td>
-                                                <td>
-                                                    <div class="tpl-table-black-operation">
-                                                        <a href="javascript:;">
-                                                            <i class="am-icon-pencil"></i> 编辑
-                                                        </a>
-                                                        <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                            <i class="am-icon-trash"></i> 删除
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <tr class="gradeX">
-                                                <td>管理员A</td>
-                                                <td>A-00001</td>
-                                                <td>1234567890</td>
-                                                <td>
-                                                    <div class="tpl-table-black-operation">
-                                                        <a href="javascript:;">
-                                                            <i class="am-icon-pencil"></i> 编辑
-                                                        </a>
-                                                        <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                            <i class="am-icon-trash"></i> 删除
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <tr class="gradeX">
-                                                <td>管理员A</td>
-                                                <td>A-00001</td>
-                                                <td>1234567890</td>
-                                                <td>
-                                                    <div class="tpl-table-black-operation">
-                                                        <a href="javascript:;">
-                                                            <i class="am-icon-pencil"></i> 编辑
-                                                        </a>
-                                                        <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                            <i class="am-icon-trash"></i> 删除
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
 
                                             <!-- more data -->
                                         </tbody>
@@ -712,7 +665,7 @@
                         <textarea id="e-admin-contact" minlength="8" maxlength="11" placeholder="输入联系电话"></textarea>
                     </div>
 
-                    <button class="am-btn am-btn-secondary" type="">提交</button>
+                    <button class="am-btn am-btn-secondary" type="" onclick="editManager()">提交</button>
                 </fieldset>
             </form>
 
@@ -733,7 +686,7 @@
                         <input disabled type="text" id="del-admin-id" minlength="3" maxlength="20" placeholder="输入用户名（至少 3 个字符）"
                             required />
                     </div>
-                    <button data-am-modal-close class="am-btn am-btn-danger" type="" >继续</button>
+                    <button data-am-modal-close class="am-btn am-btn-danger" type="" onclick="deleteManager()">继续</button>
                 </fieldset>
             </form>
         </div>
