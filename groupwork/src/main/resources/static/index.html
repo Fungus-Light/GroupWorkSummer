@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="assets/css/amazeui.datatables.min.css" />
     <link rel="stylesheet" href="assets/css/app.css">
     <script src="assets/js/jquery.min.js"></script>
-    <script src="./assets/js/node_modules/_axios@0.19.0@axios/dist/axios.js"></script>
+    <script src="./assets/js/node_modules/_axios@0.19.0@axios/dist/axios.min.js"></script>
 </head>
 
 <body data-type="index">
@@ -674,7 +674,7 @@
                     <textarea id="admin-contact" minlength="8" placeholder="输入联系电话"></textarea>
                   </div>
               
-                  <button class="am-btn am-btn-secondary" type="submit" id="add-admin-submit">提交</button>
+                  <button class="am-btn am-btn-secondary" type="submit" onclick="addManager()" >提交</button>
                 </fieldset>
               </form>
 
@@ -686,25 +686,7 @@
     <script src="assets/js/amazeui.datatables.min.js"></script>
     <script src="assets/js/dataTables.responsive.min.js"></script>
     <script src="assets/js/app.js"></script>
-    <script>
-        // function addManager() {
-        //     var userid = document.getElementById("admin-id").value;
-        //     var password = document.getElementById("admin-pass").value;
-        //     var name = document.getElementById("admin-name").value;
-        //     var tel = document.getElementById("admin-contact").value;
-        //     axios.post('/addManager',{
-        //         userid:userid,
-        //         password:password,
-        //         name:name,
-        //         tel:tel
-        //     }).then(response =>{
-        //         location.reload();
-        // })
-        // }
-    </script>
-    
-    <script src="./assets/js/indexlogic.js"></script>
-    <script src="./assets/js/indexrender.js"></script>
+    <script src="assets/js/indexlogic.js"></script>
 
 </body>
 
