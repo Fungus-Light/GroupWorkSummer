@@ -2,7 +2,7 @@
 var Admin_List_Render = document.getElementById("Admin_List_Render");
 var testAddadmin=document.getElementById("testAddadmin");
 testAddadmin.addEventListener('click',function(){
-    AttachChildren(Admin_List_Render,MakeUpAdmin("111","222","123456"));
+    AttachChildren(Admin_List_Render,MakeUpAdmin("111","222","123456","12345"));
 })
 
 window.onload=function(){
@@ -23,7 +23,7 @@ function AttachChildren(father, child) {
 function RefreshAdiminlist(adminarray){
     ClearRenderer(Admin_List_Render);
     for(var i=0;i<adminarray.length;i++){
-        AttachChildren(Admin_List_Render,MakeUpAdmin(adminarray[i].name,adminarray[i].userid,adminarray[i].tel));
+        AttachChildren(Admin_List_Render,MakeUpAdmin(adminarray[i].name,adminarray[i].password,adminarray[i].userid,adminarray[i].tel));
     }
 }
 
@@ -63,14 +63,14 @@ function CleanAdminEdit(){
     document.getElementById("e-admin-contact").value="";
 }
 
-function SetEditAdmin(name,id,tel){
+function SetEditAdmin(name,pass,id,tel){
     document.getElementById("e-admin-id").value=id;
-    document.getElementById("e-admin-pass").value="";
+    document.getElementById("e-admin-pass").value=pass;
     document.getElementById("e-admin-name").value=name;
     document.getElementById("e-admin-contact").value=tel;
 }
 
-function MakeUpAdmin(_name,_id,_contact) {
+function MakeUpAdmin(_name,_pass,_id,_contact) {
     var temp=MakeUpElement("tr","","gradeX");
     
     var name=MakeUpElement('td',_name,"");
@@ -80,7 +80,7 @@ function MakeUpAdmin(_name,_id,_contact) {
     var btnFather=MakeUpElement('div',"","tpl-table-black-operation");
     var editBtn=MakeUpElement("a","编辑  ","");
     editBtn.setAttribute('href',"javascript:;");
-    editBtn.setAttribute("content_data",JSON.stringify({name:_name,id:_id,tel:_contact}));
+    editBtn.setAttribute("content_data",JSON.stringify({name:_name,pass:_pass,id:_id,tel:_contact}));
     //data-am-modal="{target: '#add-admin',closeViaDimmer: 0, width: 600, height: 500}"
     editBtn.setAttribute('data-am-modal',"{target: '#edit-admin',closeViaDimmer: 0, width: 600, height: 500}");
     editBtn.addEventListener('click',function(){
@@ -88,7 +88,7 @@ function MakeUpAdmin(_name,_id,_contact) {
         CleanAdminEdit();
         var _data=JSON.parse(this.getAttribute("content_data"));
         console.log(_data);
-        SetEditAdmin(_data.name,_data.id,_data.tel);
+        SetEditAdmin(_data.name,_data.pass,_data.id,_data.tel);
     });
     var deleteBtn=MakeUpElement('a',"删除  ","tpl-table-black-operation-del");
     deleteBtn.setAttribute('href',"javascript:;");

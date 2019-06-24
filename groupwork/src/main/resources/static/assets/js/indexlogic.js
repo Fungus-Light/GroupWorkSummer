@@ -58,5 +58,11 @@ function deleteManager() {
 
 $(".nvl").click(function(){
     $(".nvl").children('a').attr("class","");
-    $(this).children('a').attr('class',"active")
+    $(".rbd").hide();
+    $(this).children('a').attr('class',"active");
+    var key= $(this).attr("call");
+    console.log(key);
+    console.log($(".rdb[callid='"+key+"']"));
+    
+    $("div[callid='"+key+"']").show();
 })
