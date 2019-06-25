@@ -2,6 +2,8 @@ package com.minqing.demo.controller;
 
 import com.minqing.demo.entity.Manager;
 import com.minqing.demo.service.ManagerService;
+import com.minqing.demo.service.StudentService;
+import com.minqing.demo.service.TeacherService;
 import com.minqing.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +24,10 @@ public class UserController {
     private UserService userService;
     @Autowired
     private ManagerService managerService;
+    @Autowired
+    private StudentService studentService;
+    @Autowired
+    private TeacherService teacherService;
 
     @RequestMapping("/login")
     public int login(@RequestBody Map<String,String> map, HttpServletResponse response){
@@ -87,6 +93,24 @@ public class UserController {
     public void addStudent(@RequestBody Map<String,String> map){
         String userid = map.get("userid");
         String password = map.get("password");
-        String
+        String name = map.get("name");
+        String tel = map.get("tel");
+        String academic = map.get("academic");
+        userService.addUser(userid,password,3);
+        studentService.addStudent(userid,name,tel,academic);
     }
+
+    @RequestMapping("/editStudent")
+    public void editStudent(@RequestBody Map<String,String> map){
+        String userid = map.get("userid");
+        String password = map.get("password");
+        String name = map.get("name");
+        String tel = map.get("tel");
+        String academic = map.get("academic");
+        userService.addUser(userid,password,3);
+        studentService.addStudent(userid,name,tel,academic);
+    }
+
+    @RequestMapping("/showStudent")
+    public List
 }

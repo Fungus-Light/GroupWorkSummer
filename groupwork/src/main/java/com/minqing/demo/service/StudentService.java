@@ -29,4 +29,7 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
+    public Student findStudent(String userid){
+        return studentRepository.findById(userid).get();
+    }
 }
