@@ -1,9 +1,11 @@
 package com.minqing.demo.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Period {
+    @Id
     private int segid;
 
     public int getSegid() {
