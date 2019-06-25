@@ -6,6 +6,8 @@ import com.minqing.demo.entity.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TopicService {
     @Autowired
@@ -20,8 +22,18 @@ public class TopicService {
         topicRepository.save(topic1);
     }
 
-    public void deleteTopic(){
+    public void decideTopic(int topicid,int state){
+        Topic topic = topicRepository.findById(topicid).get();
+        topic.setState(state);
+        topicRepository.save(topic);
+    }
 
+    public List<Topic> findTopicByTeacher(String userid){
+        return topicRepository.findByUserid(userid);
+    }
+
+    public List<Topic> findByState0(int state){
+        return topicRepository.findByState(0);
     }
 
 }
