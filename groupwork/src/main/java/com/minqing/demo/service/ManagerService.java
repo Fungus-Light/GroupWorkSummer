@@ -28,4 +28,7 @@ public class ManagerService {
         return managerRepository.findAll();
     }
 
+    public Manager findManager(String userid){
+        return managerRepository.findById(userid).get();
+    }
 }
