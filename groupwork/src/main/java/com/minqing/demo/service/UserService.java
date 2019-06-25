@@ -42,7 +42,13 @@ public class UserService {
         userRepository.save(user);
     }
 
+
+
     public void deleteUser(String userid){
-        userRepository.deleteById(userid);
+        User user = userRepository.findById(userid).get();
+        user.setStatus(0);
+        userRepository.save(user);
     }
+
+
 }

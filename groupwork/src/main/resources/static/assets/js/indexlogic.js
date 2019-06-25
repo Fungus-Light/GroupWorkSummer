@@ -40,7 +40,10 @@ function deleteManager() {
     axios.post('/deleteManager',{
         userid:userid
     }).then(response =>{
-        window.reload();
+        axios.post('/showManager').then(response=>{
+        //console.log(response.data);
+        RefreshAdiminlist(response.data);
+});
 })
 }
 
