@@ -129,6 +129,7 @@ public class UserController {
             map.put("userid",list.get(i).getUserid());
             map.put("name",list.get(i).getName());
             map.put("tel",list.get(i).getTel());
+            map.put("academic",list.get(i).getAcademic());
             newlist.add(map);
         }
         return newlist;
@@ -137,7 +138,7 @@ public class UserController {
     @RequestMapping("/deleteStudent")
     public void deleteStudent(@RequestBody Map<String,String> map){
         String userid = map.get("userid");
-        managerService.deleteManager(userid);
+        studentService.deleteStudent(userid);
         userService.deleteUser(userid);
     }
 
@@ -160,7 +161,7 @@ public class UserController {
     @RequestMapping("/deleteTeacher")
     public void deleteTeacher(@RequestBody Map<String,String> map){
         String userid = map.get("userid");
-        studentService.deleteStudent(userid);
+        teacherService.deleteTeacher(userid);
         userService.deleteUser(userid);
     }
 
