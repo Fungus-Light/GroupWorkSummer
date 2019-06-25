@@ -1,6 +1,8 @@
 package com.minqing.demo.controller;
 
 import com.minqing.demo.entity.Manager;
+import com.minqing.demo.entity.Student;
+import com.minqing.demo.entity.Teacher;
 import com.minqing.demo.service.ManagerService;
 import com.minqing.demo.service.StudentService;
 import com.minqing.demo.service.TeacherService;
@@ -47,6 +49,8 @@ public class UserController {
     }
 */
 
+
+    //管理员的增删改查
     @PostMapping("/addManager")
     public void addManager(@RequestBody Map<String,String> map){
         String userid = map.get("userid");
@@ -89,6 +93,10 @@ public class UserController {
         userService.deleteUser(userid);
     }
 
+
+
+
+    //学生的增删改查
     @RequestMapping("/addStudent")
     public void addStudent(@RequestBody Map<String,String> map){
         String userid = map.get("userid");
@@ -112,5 +120,73 @@ public class UserController {
     }
 
     @RequestMapping("/showStudent")
-    public List
+    public List showStudent(){
+        List<Student> list = studentService.findStudents();
+        int length = list.size();
+        List<Map<String,String>> newlist = new ArrayList<>(length);
+        for(int i=0;i<length;i++){
+            Map<String,String> map = new HashMap<>();
+            map.put("userid",list.get(i).getUserid());
+            map.put("name",list.get(i).getName());
+            map.put("tel",list.get(i).getTel());
+            newlist.add(map);
+        }
+        return newlist;
+    }
+
+    @RequestMapping("/deleteStudent")
+    public void deleteStudent(@RequestBody Map<String,String> map){
+        String userid = map.get("userid");
+        managerService.deleteManager(userid);
+        userService.deleteUser(userid);
+    }
+
+
+
+
+
+    //教师的增删改查
+    @RequestMapping("addTeacher")
+    public void addTeacher(@RequestBody Map<String,String> map){
+        String userid = map.get("userid");
+        String password = map.get("password");
+        String name = map.get("name");
+        String tel = map.get("tel");
+        String academic = map.get("academic");
+        userService.addUser(userid,password,2);
+        teacherService.addTeacher(userid,name,tel,academic);
+    }
+
+    @RequestMapping("deleteTeacher")
+    public void deleteTeacher(@RequestBody Map<String,String> map){
+        String userid = map.get("userid");
+        studentService.deleteStudent(userid);
+        userService.deleteUser(userid);
+    }
+
+    @RequestMapping("showTeacher")
+    public List showTeacher(){
+        List<Teacher> list = teacherService.findAllTeacher();
+        int length = list.size();
+        List<Map<String,String>> newlist = new ArrayList<>(length);
+        for(int i=0;i<length;i++){
+            Map<String,String> map = new HashMap<>();
+            map.put("userid",list.get(i).getUserid());
+            map.put("name",list.get(i).getName());
+            map.put("tel",list.get(i).getTel());
+            newlist.add(map);
+        }
+        return newlist;
+    }
+
+    @RequestMapping("editTeacher")
+    public void editTeacher(@RequestBody Map<String,String> map){
+        String userid = map.get("userid");
+        String password = map.get("password");
+        String name = map.get("name");
+        String tel = map.get("tel");
+        String academic = map.get("academic");
+        userService.addUser(userid,password,2);
+        teacherService.addTeacher(userid,name,tel,academic);
+    }
 }
