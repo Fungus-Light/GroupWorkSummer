@@ -146,7 +146,7 @@ public class UserController {
 
 
     //教师的增删改查
-    @RequestMapping("addTeacher")
+    @RequestMapping("/addTeacher")
     public void addTeacher(@RequestBody Map<String,String> map){
         String userid = map.get("userid");
         String password = map.get("password");
@@ -157,14 +157,14 @@ public class UserController {
         teacherService.addTeacher(userid,name,tel,academic);
     }
 
-    @RequestMapping("deleteTeacher")
+    @RequestMapping("/deleteTeacher")
     public void deleteTeacher(@RequestBody Map<String,String> map){
         String userid = map.get("userid");
         studentService.deleteStudent(userid);
         userService.deleteUser(userid);
     }
 
-    @RequestMapping("showTeacher")
+    @RequestMapping("/showTeacher")
     public List showTeacher(){
         List<Teacher> list = teacherService.findAllTeacher();
         int length = list.size();
@@ -174,12 +174,13 @@ public class UserController {
             map.put("userid",list.get(i).getUserid());
             map.put("name",list.get(i).getName());
             map.put("tel",list.get(i).getTel());
+            map.put("academic",list.get(i).getAcademic());
             newlist.add(map);
         }
         return newlist;
     }
 
-    @RequestMapping("editTeacher")
+    @RequestMapping("/editTeacher")
     public void editTeacher(@RequestBody Map<String,String> map){
         String userid = map.get("userid");
         String password = map.get("password");

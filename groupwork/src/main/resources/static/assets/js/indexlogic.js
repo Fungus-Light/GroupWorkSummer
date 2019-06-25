@@ -4,7 +4,7 @@ function addManager() {
     var password = document.getElementById("admin-pass").value;
     var name = document.getElementById("admin-name").value;
     var tel = document.getElementById("admin-contact").value;
-    if((userid!=null&&password!=null&&name!=null&&tel!=null)&&(userid.toString().length>2&&password.userid>2)){
+    if((userid!=null&&password!=null&&name!=null&&tel!=null)&&(userid.toString().length>2&&password.length>2)){
         axios.post('/addManager',{
             userid:userid,
             password:password,
@@ -21,7 +21,7 @@ function editManager() {
     var password = document.getElementById("e-admin-pass").value;
     var name = document.getElementById("e-admin-name").value;
     var tel = document.getElementById("e-admin-contact").value;
-    if((userid!=null&&password!=null&&name!=null&&tel!=null)&&(userid.toString().length>2&&password.userid>2)){
+    if((userid!=null&&password!=null&&name!=null&&tel!=null)&&(userid.toString().length>2&&password.length>2)){
         axios.post('/editManager',{
             userid:userid,
             password:password,
@@ -54,8 +54,8 @@ function addTeacher() {
     var password = document.getElementById("teach-pass").value;
     var name = document.getElementById("teach-name").value;
     var tel = document.getElementById("teach-contact").value;
-    if((userid!=null&&password!=null&&name!=null&&tel!=null)&&(userid.toString().length>2&&password.userid>2)){
-        axios.post('/addManager',{
+    if((userid!=null&&password!=null&&name!=null&&tel!=null)&&(userid.toString().length>2&&password.length>2)){
+        axios.post('/addTeacher',{
             userid:userid,
             password:password,
             name:name,
