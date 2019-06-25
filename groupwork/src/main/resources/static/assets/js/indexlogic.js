@@ -35,7 +35,7 @@ function editManager() {
 }
 
 function deleteManager() {
-    var userid = document.getElementById("del_Manager_id").value;
+    var userid = document.getElementById("del_admin_id").value;
     console.log(userid.toString());
     axios.post('/deleteManager', {
         userid: userid

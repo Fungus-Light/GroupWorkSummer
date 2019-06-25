@@ -42,7 +42,7 @@ function RefreshTeachlist(teacharray){
 function RefreshStudlist(studarray){
     ClearRenderer(Student_List_Render);
     for(var i=0;i<studarray.length;i++){
-        AttachChildren(Student_List_Render,MakeUpTeach(studarray[i].name,studarray[i].password,studarray[i].userid,studarray[i].tel,studarray[i].academic));
+        AttachChildren(Student_List_Render,MakeUpStud(studarray[i].name,studarray[i].password,studarray[i].userid,studarray[i].tel,studarray[i].academic));
     }
 }
 
