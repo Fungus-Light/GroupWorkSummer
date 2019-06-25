@@ -82,4 +82,11 @@ public class UserController {
         managerService.deleteManager(userid);
         userService.deleteUser(userid);
     }
+
+    @RequestMapping("/addStudent")
+    public void addStudent(@RequestBody Map<String,String> map){
+        String userid = map.get("userid");
+        String password = map.get("password");
+        String
+    }
 }

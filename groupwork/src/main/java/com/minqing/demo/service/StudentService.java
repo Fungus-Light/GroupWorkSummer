@@ -5,6 +5,8 @@ import com.minqing.demo.entity.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StudentService {
     @Autowired
@@ -23,12 +25,8 @@ public class StudentService {
         studentRepository.deleteById(userid);
     }
 
-    public void updateStudent(String userid,String name,String tel,String academic){
-        Student student = studentRepository.findById(userid).get();
-        student.setName(name);
-        student.setTel(tel);
-        student.setAcademic(academic);
-        studentRepository.save(student);
+    public List<Student> findStudents(){
+        return studentRepository.findAll();
     }
 
 }
