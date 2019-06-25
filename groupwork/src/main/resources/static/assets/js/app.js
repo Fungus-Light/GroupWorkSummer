@@ -36,16 +36,8 @@ $('.tpl-skiner-content-bar').find('span').on('click', function() {
 
 })
 
-
-
-
 // 侧边菜单开关
-
-
 function autoLeftNav() {
-
-
-
     $('.tpl-header-switch-button').on('click', function() {
         if ($('.left-sidebar').is('.active')) {
             if ($(window).width() > 1024) {
@@ -68,10 +60,21 @@ function autoLeftNav() {
     }
 }
 
-
 // 侧边菜单
 $('.sidebar-nav-sub-title').on('click', function() {
     $(this).siblings('.sidebar-nav-sub').slideToggle(80)
         .end()
         .find('.sidebar-nav-sub-ico').toggleClass('sidebar-nav-sub-ico-rotate');
+})
+
+//index left nav select style
+$(".nvl").click(function(){
+    $(".nvl").children('a').attr("class","");
+    $(".rbd").hide();
+    $(this).children('a').attr('class',"active");
+    var key= $(this).attr("call");
+    console.log(key);
+    console.log($(".rdb[callid='"+key+"']"));
+    
+    $("div[callid='"+key+"']").show();
 })
