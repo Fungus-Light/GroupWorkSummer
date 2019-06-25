@@ -11,6 +11,10 @@ window.onload=function(){
     axios.post('/showTeacher').then(response=>{
         RefreshTeachlist(response.data);
     });
+
+    axios.post('/showStudent').then(response=>{
+        RefreshStudlist(response.data);
+    });
 }
 
 function ClearRenderer(renderer) {
@@ -35,7 +39,12 @@ function RefreshTeachlist(teacharray){
     }
 }
 
-
+function RefreshStudlist(studarray){
+    ClearRenderer(Student_List_Render);
+    for(var i=0;i<studarray.length;i++){
+        AttachChildren(Student_List_Render,MakeUpTeach(studarray[i].name,studarray[i].password,studarray[i].userid,studarray[i].tel,studarray[i].academic));
+    }
+}
 
 /**
 
@@ -76,6 +85,22 @@ function SetEditAdmin(name,pass,id,tel){
     document.getElementById("e-admin-pass").value=pass;
     document.getElementById("e-admin-name").value=name;
     document.getElementById("e-admin-contact").value=tel;
+}
+
+function SetEditTeach(name,pass,id,tel,school){
+    document.getElementById("e-teach-id").value=id;
+    document.getElementById("e-teach-pass").value=pass;
+    document.getElementById("e-teach-name").value=name;
+    document.getElementById("e-teach-contact").value=tel;
+    document.getElementById("e-teach-school").value=school;
+}
+
+function SetEditStud(name,pass,id,tel,school){
+    document.getElementById("e-stud-id").value=id;
+    document.getElementById("e-stud-pass").value=pass;
+    document.getElementById("e-stud-name").value=name;
+    document.getElementById("e-stud-contact").value=tel;
+    document.getElementById("e-stud-school").value=school;
 }
 
 function MakeUpAdmin(_name,_pass,_id,_contact) {
@@ -135,21 +160,21 @@ function MakeUpTeach(_name,_pass,_id,_contact,_school) {
     editBtn.setAttribute('href',"javascript:;");
     editBtn.setAttribute("content_data",JSON.stringify({name:_name,pass:_pass,id:_id,tel:_contact,school:_school}));
     //data-am-modal="{target: '#add-admin',closeViaDimmer: 0, width: 600, height: 500}"
-    editBtn.setAttribute('data-am-modal',"{target: '#edit-admin',closeViaDimmer: 0, width: 600, height: 500}");
+    editBtn.setAttribute('data-am-modal',"{target: '#edit-teach',closeViaDimmer: 0, width: 600, height: 600}");
     editBtn.addEventListener('click',function(){
         console.log("edit");
-        CleanAdminEdit();
+        //CleanAdminEdit();
         var _data=JSON.parse(this.getAttribute("content_data"));
         console.log(_data);
-        SetEditAdmin(_data.name,_data.pass,_data.id,_data.tel,_data.school);
+        SetEditTeach(_data.name,_data.pass,_data.id,_data.tel,_data.school);
     });
     var deleteBtn=MakeUpElement('a',"删除  ","tpl-table-black-operation-del");
     deleteBtn.setAttribute('href',"javascript:;");
-    deleteBtn.setAttribute('data-am-modal',"{target: '#del-admin', closeViaDimmer: 0, width: 400, height: 225}");
+    deleteBtn.setAttribute('data-am-modal',"{target: '#del-teach', closeViaDimmer: 0, width: 400, height: 225}");
     deleteBtn.setAttribute("data-contentr",_id);
     deleteBtn.addEventListener('click',function(){
-        document.getElementById("del_admin_id").placeholder=deleteBtn.getAttribute("data-contentr");
-        document.getElementById("del_admin_id").value=deleteBtn.getAttribute("data-contentr");
+        document.getElementById("del_teach_id").placeholder=deleteBtn.getAttribute("data-contentr");
+        document.getElementById("del_teach_id").value=deleteBtn.getAttribute("data-contentr");
     });
     var editIcon=MakeUpElement('i','',"am-icon-pencil");
     var deleteIcon=MakeUpElement('i','',"am-icon-trash");
@@ -181,21 +206,21 @@ function MakeUpStud(_name,_pass,_id,_contact,_school) {
     editBtn.setAttribute('href',"javascript:;");
     editBtn.setAttribute("content_data",JSON.stringify({name:_name,pass:_pass,id:_id,tel:_contact,school:_school}));
     //data-am-modal="{target: '#add-admin',closeViaDimmer: 0, width: 600, height: 500}"
-    editBtn.setAttribute('data-am-modal',"{target: '#edit-admin',closeViaDimmer: 0, width: 600, height: 500}");
+    editBtn.setAttribute('data-am-modal',"{target: '#edit-stud',closeViaDimmer: 0, width: 600, height: 600}");
     editBtn.addEventListener('click',function(){
-        console.log("edit");
-        CleanAdminEdit();
+        console.log("edit stud");
+        
         var _data=JSON.parse(this.getAttribute("content_data"));
         console.log(_data);
-        SetEditAdmin(_data.name,_data.pass,_data.id,_data.tel,_data.school);
+        SetEditStud(_data.name,_data.pass,_data.id,_data.tel,_data.school);
     });
     var deleteBtn=MakeUpElement('a',"删除  ","tpl-table-black-operation-del");
     deleteBtn.setAttribute('href',"javascript:;");
-    deleteBtn.setAttribute('data-am-modal',"{target: '#del-admin', closeViaDimmer: 0, width: 400, height: 225}");
+    deleteBtn.setAttribute('data-am-modal',"{target: '#del-stud', closeViaDimmer: 0, width: 400, height: 225}");
     deleteBtn.setAttribute("data-contentr",_id);
     deleteBtn.addEventListener('click',function(){
-        document.getElementById("del_admin_id").placeholder=deleteBtn.getAttribute("data-contentr");
-        document.getElementById("del_admin_id").value=deleteBtn.getAttribute("data-contentr");
+        document.getElementById("del_stud_id").placeholder=deleteBtn.getAttribute("data-contentr");
+        document.getElementById("del_stud_id").value=deleteBtn.getAttribute("data-contentr");
     });
     var editIcon=MakeUpElement('i','',"am-icon-pencil");
     var deleteIcon=MakeUpElement('i','',"am-icon-trash");
