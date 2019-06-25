@@ -47,22 +47,3 @@ function deleteManager() {
 })
 }
 
-//teacher
-function addTeacher() {
-    var userid = document.getElementById("teach-id").value;
-    var userAcd=document.getElementById("teach-school").value;
-    var password = document.getElementById("teach-pass").value;
-    var name = document.getElementById("teach-name").value;
-    var tel = document.getElementById("teach-contact").value;
-    if((userid!=null&&password!=null&&name!=null&&tel!=null)&&(userid.toString().length>2&&password.userid>2)){
-        axios.post('/addManager',{
-            userid:userid,
-            password:password,
-            name:name,
-            tel:tel,
-            academic:userAcd
-        }).then(response =>{
-            window.reload();
-    })
-    }
-}
