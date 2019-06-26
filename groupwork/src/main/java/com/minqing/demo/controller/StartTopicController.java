@@ -18,16 +18,21 @@ public class StartTopicController {
     private ManagerService managerService;
     @Autowired
     private TopicService topicService;
-    public void setSegment(@RequestBody Map<String,Integer> m)
-    {
-        managerService.SetSegment((int)m.get("segid"),(int)m.get("status"));
+
+    public void setSegment(@RequestBody Map<String, Integer> m) {
+        managerService.SetSegment((int) m.get("segid"), (int) m.get("status"));
     }
-    public List<Topic> showTopic(){return topicService.findAllTopic();}
 
-    public List<Topic> showUnexamedTopic(){return topicService.findUnexamedTopic();}
+    public List<Topic> showTopic() {
+        return topicService.findAllTopic();
+    }
 
-    public void examTopic(@RequestBody Map<String,Integer> m)
-    {
+    public List<Topic> showUnexamedTopic() {
+        return topicService.findUnexamedTopic();
+    }
+
+    public void examTopic(@RequestBody Map<String, Integer> m) {
         topicService.passTopic(m.get("topicid"));
     }
+}
 }
