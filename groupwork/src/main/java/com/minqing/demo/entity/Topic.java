@@ -6,7 +6,7 @@ import javax.persistence.Id;
 @Entity
 public class Topic {
     @Id
-    private int topicid;
+    private Integer topicid;
     private String topic;
     private String userid;
     private int state;

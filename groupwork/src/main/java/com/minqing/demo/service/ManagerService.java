@@ -1,7 +1,6 @@
 package com.minqing.demo.service;
 
-import com.minqing.demo.entity.Manager;
-import com.minqing.demo.entity.ManagerRepository;
+import com.minqing.demo.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +10,10 @@ import java.util.List;
 public class ManagerService {
     @Autowired
     private ManagerRepository managerRepository;
+    @Autowired
+    private PeriodRepository periodRepository;
+    @Autowired
+    private TopicRepository topicRepository;
 
     public void addManager(String userid,String name,String tel){
         Manager manager = new Manager();
@@ -30,5 +33,14 @@ public class ManagerService {
 
     public Manager findManager(String userid){
         return managerRepository.findById(userid).get();
+    }
+
+
+    public void SetSegment(int segid,int status)
+    {
+        Period peritod=new Period();
+        peritod.setSegid(segid);
+        peritod.setStatus(status);
+        periodRepository.save(peritod);
     }
 }

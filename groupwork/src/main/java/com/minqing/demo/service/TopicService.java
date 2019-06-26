@@ -1,6 +1,5 @@
 package com.minqing.demo.service;
 
-
 import com.minqing.demo.entity.Topic;
 import com.minqing.demo.entity.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
