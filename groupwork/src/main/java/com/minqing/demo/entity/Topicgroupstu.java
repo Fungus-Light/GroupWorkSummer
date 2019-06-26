@@ -4,26 +4,19 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class topicgroup {
+public class Topicgroupstu {
+
+    private String groupid;
     @Id
-    private Integer groupid;
-    private String teacherid;
     private String studentid;
 
-    public Integer getGroupid() {
+
+    public String getGroupid() {
         return groupid;
     }
 
-    public void setGroupid(Integer groupid) {
+    public void setGroupid(String groupid) {
         this.groupid = groupid;
-    }
-
-    public String getTeacherid() {
-        return teacherid;
-    }
-
-    public void setTeacherid(String teacherid) {
-        this.teacherid = teacherid;
     }
 
     public String getStudentid() {
