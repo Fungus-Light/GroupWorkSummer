@@ -1,6 +1,6 @@
 package com.minqing.demo.controller;
 
-import com.minqing.demo.entity.Topicgroup;
+
 import com.minqing.demo.service.TopicService;
 import com.minqing.demo.service.TopicgroupService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,29 +19,7 @@ public class StartTitleController {
     @Autowired
     private TopicgroupService topicgroupService;
 
-    @RequestMapping("/addTopicGroup")
-    public void addTopicgroupo(@RequestBody List<List<Map<String,String>>> list)
-    {
-        List<String> teacherlist=new ArrayList<>();
-        List<String> studentlist=new ArrayList<>();
-        for(List<Map<String,String>> m: list)
-        {
-            for(Map<String,String>s:m)
-            {
-                if(s.get("teacherid")==null)
-                     teacherlist.add(s.get("studentid"));
-                else
-                    studentlist.add(s.get("teacherid"));
-            }
-        }
-        for(String t:teacherlist)
-        {
-            for(String s:studentlist)
-            {
-                topicgroupService.saveGroup(t,s);
-            }
-        }
-    }
+
     @RequestMapping("/addTopic")
     public void addTopic(@RequestBody Map<String,String> map){
         String topic = map.get("topic");

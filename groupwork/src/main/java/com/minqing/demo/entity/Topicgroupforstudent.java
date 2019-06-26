@@ -4,10 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Topicgroup {
-    @Id
+public class Topicgroupforstudent {
+
     private Integer groupid;
-    private String teacherid;
+    @Id
     private String studentid;
 
     public Integer getGroupid() {
@@ -18,13 +18,7 @@ public class Topicgroup {
         this.groupid = groupid;
     }
 
-    public String getTeacherid() {
-        return teacherid;
-    }
 
-    public void setTeacherid(String teacherid) {
-        this.teacherid = teacherid;
-    }
 
     public String getStudentid() {
         return studentid;
