@@ -8,7 +8,7 @@ public class Student{
     @Id
     private String userid;
     private String name;
-    private int tel;
+    private String tel;
     private String academic;
 
     public String getUserid() {
@@ -27,11 +27,11 @@ public class Student{
         this.name = name;
     }
 
-    public int getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(int tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 

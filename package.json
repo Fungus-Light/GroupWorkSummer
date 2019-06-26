@@ -1,0 +1,32 @@
+{
+  "name": "groupworksummer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "_axios@0.19.0@axios": "^0.19.0",
+    "_debug@3.1.0@debug": "^3.1.0",
+    "_follow-redirects@1.5.10@follow-redirects": "^1.5.10",
+    "_is-buffer@2.0.3@is-buffer": "^2.0.3",
+    "_ms@2.0.0@ms": "^2.0.0",
+    "axios": "^0.19.0",
+    "debug": "^3.1.0",
+    "follow-redirects": "^1.5.10",
+    "is-buffer": "^2.0.3",
+    "ms": "^2.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fungus-Light/GroupWorkSummer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fungus-Light/GroupWorkSummer/issues"
+  },
+  "homepage": "https://github.com/Fungus-Light/GroupWorkSummer#readme"
+}

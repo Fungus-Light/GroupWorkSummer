@@ -22,27 +22,33 @@ public class UserService {
         if(user.getStatus() == 0)   return 1;
         //密码错误的情况返回2
         if(!user.getPassword().equals(password))    return 2;
-        if(user.getTitle() == 0)    return 3;
-        else if(user.getTitle() == 1)   return 4;
-        else    return 5;
+        int temp = user.getTitle();
+        //返回值为3进入超管页面
+        if(temp == 0)    return 3;
+        //返回值为4进入管理员页面
+        else if(temp == 1)   return 4;
+        //返回值为5进入教师页面
+        else if(temp == 2)   return 5;
+        //返回值为6进入学生页面
+        else    return 6;
     }
 
     public void addUser(String userid,String password,int title){
         User user = new User();
         user.setUserid(userid);
         user.setPassword(password);
-        user.setStatus(0);
+        user.setStatus(1);
         user.setTitle(title);
         userRepository.save(user);
-
     }
+
+
 
     public void deleteUser(String userid){
-        userRepository.deleteById(userid);
+        User user = userRepository.findById(userid).get();
+        user.setStatus(0);
+        userRepository.save(user);
     }
-
-
-
 
 
 }
