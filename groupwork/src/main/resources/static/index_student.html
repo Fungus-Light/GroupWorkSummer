@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>欢迎使用-论文管理系统（管理员）</title>
-    <meta name="description" content="这是管理员页面">
+    <title>欢迎使用-论文管理系统（学生）</title>
+    <meta name="description" content="这是学生页面">
     <meta name="keywords" content="adminboard">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
@@ -50,7 +50,7 @@
                     <ul>
                         <!-- 欢迎语 -->
                         <li class="am-text-sm tpl-header-navbar-welcome">
-                            <a href="javascript:;">欢迎你, <span>超级管理员</span> </a>
+                            <a href="javascript:;">欢迎你, <span>同学</span> </a>
                         </li>
 
                         <!-- 新邮件 -->
@@ -193,11 +193,11 @@
             <div class="tpl-sidebar-user-panel">
                 <div class="tpl-user-panel-slide-toggleable">
                     <div class="tpl-user-panel-profile-picture">
-                        <img src="assets/img/user01.png" alt="">
+                        <img src="assets/img/user07.png" alt="">
                     </div>
                     <span class="user-panel-logged-in-text">
                         <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
-                        管理员-A
+                        学生-A
                     </span>
                     <a href="javascript:;" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span>
                         账号设置</a>
@@ -215,9 +215,9 @@
                     </a>
                 </li>
 
-                <li class="sidebar-nav-link nvl" call="admin">
+                <li class="sidebar-nav-link nvl" call="title">
                     <a href="javascript:;">
-                        <i class="am-icon-key sidebar-nav-link-logo"></i> 管理员授权
+                        <i class="am-icon-tasks sidebar-nav-link-logo"></i> 选题管理
                     </a>
                 </li>
 
@@ -259,21 +259,11 @@
                         <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                     </a>
                     <ul class="sidebar-nav sidebar-nav-sub">
-
-
-                        <li class="sidebar-nav-link nvl">
-                            <a href="javascript:;">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 题目审核
-                            </a>
-                        </li>
-
                         <li class="sidebar-nav-link nvl">
                             <a href="javascript:;">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 开题答辩分组
                             </a>
                         </li>
-
-
 
                         <li class="sidebar-nav-link nvl">
                             <a href="javascript:;">
@@ -281,6 +271,11 @@
                             </a>
                         </li>
 
+                        <li class="sidebar-nav-link nvl">
+                            <a href="javascript:;">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 题目审核
+                            </a>
+                        </li>
 
                         <li class="sidebar-nav-link nvl">
                             <a href="javascript:;">
@@ -625,7 +620,7 @@
                                                         <a href="javascript:;">
                                                             <i class="am-icon-pencil"></i> 切换到这个阶段
                                                         </a>
-
+                                                        
                                                     </div>
                                                 </td>
                                             </tr>
@@ -640,7 +635,7 @@
                                                         <a href="javascript:;">
                                                             <i class="am-icon-pencil"></i> 切换到这个阶段
                                                         </a>
-
+                                                        
                                                     </div>
                                                 </td>
                                             </tr>
@@ -648,7 +643,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-
+                                
                             </div>
                         </div>
                     </div>
@@ -825,8 +820,7 @@
 
                     <div class="am-form-group">
                         <label for="e-teach-name">真实姓名：</label>
-                        <input type="text" id="e-teach-name" minlength="2" maxlength="5" placeholder="输入真实姓名"
-                            required />
+                        <input type="text" id="e-teach-name" minlength="2" maxlength="5" placeholder="输入真实姓名" required />
                     </div>
 
                     <div class="am-form-group">

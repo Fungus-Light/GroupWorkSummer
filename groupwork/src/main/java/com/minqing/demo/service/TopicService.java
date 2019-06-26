@@ -10,15 +10,29 @@ import java.util.List;
 @Service
 public class TopicService {
     @Autowired
-    TopicRepository topicRepository;
-    public List<Topic> findAllTopic(){return topicRepository.findAll();}
+    private TopicRepository topicRepository;
 
-    public List<Topic> findUnexamedTopic(){
+    public void addTopic(String topic,String userid,String description){
+        Topic topic1 = new Topic();
+        topic1.setTopic(topic);
+        topic1.setUserid(userid);
+        topic1.setState(0);
+        topic1.setDescription(description);
+        topicRepository.save(topic1);
+    }
+
+    public void decideTopic(int topicid,int state){
+        Topic topic = topicRepository.findById(topicid).get();
+        topic.setState(state);
+        topicRepository.save(topic);
+    }
+
+    public List<Topic> findTopicByTeacher(String userid){
+        return topicRepository.findByUserid(userid);
+    }
+
+    public List<Topic> findByState0(int state){
         return topicRepository.findByState(0);
     }
-    public void passTopic(Integer id){
-    Topic tp=topicRepository.findById(id).get();
-    tp.setState(1);
-    topicRepository.save(tp);
-    }
+
 }
