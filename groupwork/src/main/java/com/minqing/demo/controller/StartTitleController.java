@@ -57,7 +57,7 @@ public class StartTitleController {
 
     @RequestMapping("/showAllTopic")
     public List<Map<String,Object>> showAllTopic(){
-        List<Topic> list = topicService.findByState0();
+        List<Topic> list = topicService.findAllTopic();
         int length = list.size();
         List<Map<String,Object>> newlist = new ArrayList<>();
         for(int i=0;i<length;i++){
@@ -71,6 +71,4 @@ public class StartTitleController {
         }
         return newlist;
     }
-
-
 }

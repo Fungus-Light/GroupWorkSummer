@@ -31,11 +31,7 @@ public class TopicService {
         return topicRepository.findByUserid(userid);
     }
 
-    public List<Topic> findByState0(){
-        return topicRepository.findByState(0);
-    }
-
-    public List<Topic> findCompletedTopic(){
-        return topicRepository.findByState(1);
+    public List<Topic> findAllTopic(){
+        return topicRepository.findAll();
     }
 }

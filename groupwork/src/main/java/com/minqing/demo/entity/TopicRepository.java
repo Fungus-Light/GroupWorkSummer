@@ -10,5 +10,4 @@ import java.util.List;
 @Transactional
 public interface TopicRepository extends JpaRepository<Topic,Integer> {
     List<Topic> findByUserid(String userid);
-    List<Topic> findByState(int state);
 }
