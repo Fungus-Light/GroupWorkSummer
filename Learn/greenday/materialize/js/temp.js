@@ -3,7 +3,7 @@ var temp={
     hdhh:'40',
     te:'60 '
 }
-var d=new Date();
-var x=function(a,b){return a*b;};
-var x=(x,y)=>{return x*y;};
-console.log(x(5,6));
+var x=myFunction();
+function myFunction(){
+    return this;
+}
