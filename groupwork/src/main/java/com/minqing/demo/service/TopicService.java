@@ -32,7 +32,7 @@ public class TopicService {
         return topicRepository.findByUserid(userid);
     }
 
-    public List<Topic> findByState0(int state){
+    public List<Topic> findByState0(){
         return topicRepository.findByState(0);
     }
 
