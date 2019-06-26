@@ -210,44 +210,29 @@
 
 
                 <li class="sidebar-nav-link nvl" call="first">
-                    <a href="index.html" class="active">
+                    <a href="index_teacher.html" class="active">
                         <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
                     </a>
                 </li>
 
-                <li class="sidebar-nav-link nvl" call="title">
+                <li class="sidebar-nav-link nvl" call="publish">
                     <a href="javascript:;">
                         <i class="am-icon-tasks sidebar-nav-link-logo"></i> 出题管理
                     </a>
                 </li>
 
 
-                <li class="sidebar-nav-link">
-                    <a href="javascript:;" class="sidebar-nav-sub-title">
-                        <i class="am-icon-users sidebar-nav-link-logo"></i> 用户信息管理
-                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                <li class="sidebar-nav-link nvl" call="personal-info">
+                    <a href="javascript:;" >
+                        <i class="am-icon-users sidebar-nav-link-logo"></i> 个人信息管理
+                        <!--<span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>-->
                     </a>
-                    <ul class="sidebar-nav sidebar-nav-sub">
-                        <li class="sidebar-nav-link nvl" call="teach">
-                            <a href="javascript:;">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 教师信息管理
-                            </a>
-                        </li>
-
-                        <li class="sidebar-nav-link nvl" call="stud">
-                            <a href="javascript:;">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 学生信息管理
-                            </a>
-                        </li>
-
-
-                    </ul>
                 </li>
 
 
                 <li class="sidebar-nav-link nvl" call="state">
                     <a href="javascript:;">
-                        <i class="am-icon-calendar sidebar-nav-link-logo"></i> 毕业设计阶段管理
+                        <i class="am-icon-calendar sidebar-nav-link-logo"></i> 选题结果查看
 
                     </a>
                 </li>
@@ -349,96 +334,152 @@
                     </div>
                 </div>
             </div>
-            <!--管理员授权-->
-            <div class="row-content am-cf rbd" style="display: none;" callid="admin">
+
+            <!--教师个人信息管理-->
+            <div class="row content am-cf rgb" style="display:none" callid="personal-info">
                 <div class="row">
                     <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                         <div class="widget am-cf">
                             <div class="widget-head am-cf">
-                                <div class="widget-title  am-cf">管理员授权（权限较高，谨慎操作）</div>
+                                <div class="widget-title am-fl">个人信息</div>
+                                <div class="widget-function am-fr">
+                                    <a href="javascript:;" class="am-icon-cog"></a>
+                                </div>
                             </div>
-                            <div class="widget-body  am-fr">
-
-                                <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+                            <div class="widget-body am-fr">
+                                <form class="am-form tpl-form-line-form">
                                     <div class="am-form-group">
-                                        <div class="am-btn-toolbar">
-                                            <div class="am-btn-group am-btn-group-xs">
-                                                <button type="button" class="am-btn am-btn-default am-btn-success"
-                                                    data-am-modal="{target: '#add-admin',closeViaDimmer: 0, width: 600, height: 500}"><span
-                                                        class="am-icon-plus"></span> 新增管理员</button>
-                                                <!-- <button id="testAddadmin" type="button"
-                                                    class="am-btn am-btn-default am-btn-success">
-                                                    <span class="am-icon-plus"></span> 新增管理员(伪)</button> -->
-                                                <!-- <button type="button" class="am-btn am-btn-default am-btn-danger"><span
-                                                        class="am-icon-trash-o"></span> 删除</button> -->
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">用户名 <span
+                                                class="tpl-form-line-small-title">NickName</span></label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" id="user-name" minlength="3"
+                                                maxlength="20" placeholder="请输入姓名" required>
+                                            <small>请输入昵称5-20字左右。</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="am-form-group">
+                                        <label for="e-teach-pass" class="am-u-sm-3 am-form-label">密码 <span
+                                                class="tpl-form-line-small-title">Password</span></label>
+                                        <div class="am-u-sm-9">
+                                            <input type="password" class="tpl-form-input" minlength="3" maxlength="20"
+                                                placeholder="输入密码">
+                                            <small>请输入密码3-20字左右。</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="am-form-group">
+                                        <label for="user-email" class="am-u-sm-3 am-form-label">员工号<span
+                                                class="tpl-form-line-small-title">ID</span></label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="am-form-field tpl-form-no-bg" placeholder="员工号">
+                                            <small>员工号为必填</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="am-form-group">
+                                        <label for="user-phone" class="am-u-sm-3 am-form-label">学院 <span
+                                                class="tpl-form-line-small-title">College</span></label>
+                                        <div class="am-u-sm-9">
+                                            <select data-am-selected="{searchBox: 1}" style="display: none;">
+                                                <option value="CS">计算机学院</option>
+                                                <option value="MATH">数学学院</option>
+                                                <option value="ForeignLan">外国语学院</option>
+                                                <option value="Software">软件学院</option>
+                                                <option value="Physics">物理学院</option>
+                                                <option value="Food">轻纺与食品学院</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="am-form-group">
+                                        <label class="am-u-sm-3 am-form-label">联系电话 <span
+                                                class="tpl-form-line-small-title">Phone Number</span></label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" placeholder="输入联系电话">
+                                        </div>
+                                    </div>
+
+                                    <div class="am-form-group">
+                                        <label for="user-weibo" class="am-u-sm-3 am-form-label">个人照片 <span
+                                                class="tpl-form-line-small-title">Images</span></label>
+                                        <div class="am-u-sm-9">
+                                            <div class="am-form-group am-form-file">
+                                                <div class="tpl-form-file-img">
+                                                    <img src="assets/img/a5.png" alt="">
+                                                </div>
+                                                <button type="button" class="am-btn am-btn-danger am-btn-sm">
+                                                    <i class="am-icon-cloud-upload"></i> 添加图片</button>
+                                                <input id="doc-form-file" type="file" multiple="">
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="am-form-group">
+                                        <label for="user-weibo" class="am-u-sm-3 am-form-label">真实姓名 <span
+                                                class="tpl-form-line-small-title">真实姓名</span></label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" id="user-weibo" placeholder="请输入真实姓名">
+                                            <div>
+
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
-                                    <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
-                                        <input type="text" class="am-form-field " placeholder="快速搜索...">
-                                        <span class="am-input-group-btn">
-                                            <button
-                                                class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search"
-                                                type="button"></button>
-                                        </span>
+                                    <div class="am-form-group">
+                                        <label for="user-intro" class="am-u-sm-3 am-form-label">隐藏文章</label>
+                                        <div class="am-u-sm-9">
+                                            <div class="tpl-switch">
+                                                <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn"
+                                                    checked="">
+                                                <div class="tpl-switch-btn-view">
+                                                    <div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="am-u-sm-12">
-                                    <table width="100%"
-                                        class="am-table am-table-compact am-table-striped tpl-table-black "
-                                        id="example-r">
-                                        <thead>
-                                            <tr>
-                                                <th>管理员姓名</th>
-                                                <th>管理员ID</th>
-                                                <th>联系方式</th>
-                                                <th>操作</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="Admin_List_Render">
-
-                                            <!-- more data -->
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="am-u-lg-12 am-cf">
-
-                                    <div class="am-fr">
-                                        <ul class="am-pagination tpl-pagination">
-                                            <li class="am-disabled"><a href="#">«</a></li>
-                                            <li class="am-active"><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">»</a></li>
-                                        </ul>
+                                    <div class="am-form-group">
+                                        <label for="user-intro" class="am-u-sm-3 am-form-label">备注</label>
+                                        <div class="am-u-sm-9">
+                                            <textarea class="" rows="10" id="user-intro" placeholder="请输入"></textarea>
+                                        </div>
                                     </div>
-                                </div>
+
+                                    <div class="am-form-group">
+                                        <div class="am-u-sm-9 am-u-sm-push-3">
+                                            <button type="button"
+                                                class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                                        </div>
+                                    </div>
+
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--教师信息管理-->
-            <div class="row-content am-cf rbd" style="display: none;" callid="teach">
+
+            <!--出题信息管理-->
+            <div class="row-content am-cf rbd" style="display: none;" callid="publish">
                 <div class="row">
                     <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                         <div class="widget am-cf">
                             <div class="widget-head am-cf">
-                                <div class="widget-title  am-cf">教师信息管理（数据无价，谨慎操作）</div>
+                                <div class="widget-title  am-cf">出题管理（数据无价，谨慎操作）</div>
                             </div>
                             <div class="widget-body  am-fr">
-
                                 <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
                                     <div class="am-form-group">
                                         <div class="am-btn-toolbar">
                                             <div class="am-btn-group am-btn-group-xs">
                                                 <button type="button" class="am-btn am-btn-default am-btn-success"
                                                     data-am-modal="{target: '#add-teach',closeViaDimmer: 0, width: 600, height: 600}"><span
-                                                        class="am-icon-plus"></span> 新增教师</button>
+                                                        class="am-icon-plus"></span> 新增选题</button>
                                                 <button type="button" class="am-btn am-btn-default am-btn-success"><span
                                                         class="am-icon-plus"></span> 批量添加</button>
                                                 <button id="add-teach-test" type="button"
@@ -495,13 +536,13 @@
                 </div>
             </div>
 
-            <!--学生信息管理-->
+            <!--教师出题管理-->
             <div class="row-content am-cf rbd" style="display: none;" callid="stud">
                 <div class="row">
                     <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                         <div class="widget am-cf">
                             <div class="widget-head am-cf">
-                                <div class="widget-title  am-cf">学生信息管理（数据无价，谨慎操作）</div>
+                                <div class="widget-title  am-cf">毕业设计题目管理（数据无价，谨慎操作）</div>
                             </div>
                             <div class="widget-body  am-fr">
 
@@ -511,7 +552,7 @@
                                             <div class="am-btn-group am-btn-group-xs">
                                                 <button type="button" class="am-btn am-btn-default am-btn-success"
                                                     data-am-modal="{target: '#add-stud',closeViaDimmer: 0, width: 600, height: 600}"><span
-                                                        class="am-icon-plus"></span> 新增学生</button>
+                                                        class="am-icon-plus"></span> 新增题目</button>
                                                 <button type="button" class="am-btn am-btn-default am-btn-success"><span
                                                         class="am-icon-plus"></span> 批量添加</button>
                                                 <button id="add-stud-test" type="button"
@@ -539,19 +580,22 @@
                                         id="example-r">
                                         <thead>
                                             <tr>
-                                                <th>学生姓名</th>
-                                                <th>学生ID</th>
-                                                <th>所在学院</th>
-                                                <th>联系方式</th>
+                                                <th>题目名</th>
+                                                <th>题目ID</th>
+                                                <th>学院</th>
+                                                <th>题目简述</th>
                                                 <th>操作</th>
                                             </tr>
                                         </thead>
                                         <tbody id="Student_List_Render">
                                             <tr class="gradeX">
-                                                <td>学生A</td>
+                                                <td>综合网上购物商城</td>
                                                 <td>A-00001</td>
                                                 <td>计算机学院</td>
-                                                <td>1234567890</td>
+                                                <td>B2B - Business-to-Business （商家对商家）例如：阿里巴巴
+                                                    C2C - Consumer-to-Customer （个人对个人） 例如：淘宝、ebay
+                                                    B2C - Business-to-Customer （商家对个人） 例如：京东
+                                                    O2O - Online-To-Offline (在线离线/线上到线下) 例如：京东到家、饿了么</td>
                                                 <td>
                                                     <div class="tpl-table-black-operation">
                                                         <a href="javascript:;">
@@ -592,7 +636,7 @@
                     <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                         <div class="widget am-cf">
                             <div class="widget-head am-cf">
-                                <div class="widget-title  am-cf">毕业设计阶段管理（毕业设计阶段切换会影响老师和学生工作，请谨慎操作）</div>
+                                <div class="widget-title  am-cf">学生选题</div>
                             </div>
                             <div class="widget-body  am-fr">
 
@@ -602,40 +646,31 @@
                                         id="example-r">
                                         <thead>
                                             <tr>
-                                                <th>阶段名称</th>
+                                                <th>学生姓名</th>
+                                                <th>学生代码</th>
+                                                <th>选题名称</th>
+                                                <th>选题代码</th>
                                                 <th>当前状态</th>
                                                 <th>开始日期</th>
-                                                <th>结束日期</th>
+                                                <th>验收日期</th>
                                                 <th>操作</th>
                                             </tr>
                                         </thead>
                                         <tbody id="State_List_Render">
                                             <tr class="gradeX">
-                                                <td>开题阶段</td>
-                                                <td>已结束</td>
+                                                <td>Uncle wang</id>
+                                                <td>2015424275589</id>
+                                                <td>大型购物商城</td>
+                                                <td>th-1001</td>
+                                                <td>开题答辩阶段</td>
                                                 <td>2019-1-1</td>
                                                 <td>2019-2-5</td>
                                                 <td>
                                                     <div class="tpl-table-black-operation">
                                                         <a href="javascript:;">
-                                                            <i class="am-icon-pencil"></i> 切换到这个阶段
+                                                            <i class="am-icon-pencil"></i> 阶段详情
                                                         </a>
-                                                        
-                                                    </div>
-                                                </td>
-                                            </tr>
 
-                                            <tr class="gradeX">
-                                                <td>开题审核阶段</td>
-                                                <td>进行中</td>
-                                                <td>2019-2-10</td>
-                                                <td>2019-3-5</td>
-                                                <td>
-                                                    <div class="tpl-table-black-operation">
-                                                        <a href="javascript:;">
-                                                            <i class="am-icon-pencil"></i> 切换到这个阶段
-                                                        </a>
-                                                        
                                                     </div>
                                                 </td>
                                             </tr>
@@ -643,7 +678,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -658,309 +693,7 @@
     </div>
 
     <!--弹出页面-->
-
-    <!--添加管理员-->
-    <div class="am-modal am-modal-no-btn" tabindex="-1" id="add-admin">
-        <div class="am-modal-dialog">
-            <div class="am-modal-hd">添加管理员
-                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
-            </div>
-            <form class="am-form">
-                <fieldset>
-                    <div class="am-form-group">
-                        <label for="admin-id">用户名：</label>
-                        <input type="text" id="admin-id" minlength="3" maxlength="20" placeholder="输入用户名（至少 3 个字符）"
-                            required />
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="admin-pass">密码：</label>
-                        <input type="password" id="admin-pass" minlength="3" maxlength="20" placeholder="输入密码" />
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="admin-name">真实姓名：</label>
-                        <input type="text" id="admin-name" minlength="2" maxlength="5" placeholder="输入真实姓名" required />
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="admin-contact">联系电话：</label>
-                        <textarea id="admin-contact" minlength="8" maxlength="11" placeholder="输入联系电话"></textarea>
-                    </div>
-
-                    <button class="am-btn am-btn-secondary" type="" onclick="addManager()">提交</button>
-                </fieldset>
-            </form>
-
-        </div>
-    </div>
-    <!--编辑管理员-->
-    <div class="am-modal am-modal-no-btn" tabindex="-1" id="edit-admin">
-        <div class="am-modal-dialog">
-            <div class="am-modal-hd">编辑管理员信息
-                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
-            </div>
-            <form class="am-form">
-                <fieldset>
-                    <div class="am-form-group">
-                        <label for="e-admin-id">用户名：</label>
-                        <input disabled type="text" id="e-admin-id" minlength="3" maxlength="20"
-                            placeholder="输入用户名（至少 3 个字符）" required />
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="e-admin-pass">密码：</label>
-                        <input type="password" id="e-admin-pass" minlength="3" maxlength="20" placeholder="输入密码" />
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="e-admin-name">真实姓名：</label>
-                        <input type="text" id="e-admin-name" minlength="2" maxlength="5" placeholder="输入真实姓名"
-                            required />
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="e-admin-contact">联系电话：</label>
-                        <textarea id="e-admin-contact" minlength="8" maxlength="11" placeholder="输入联系电话"></textarea>
-                    </div>
-
-                    <button class="am-btn am-btn-secondary" type="" onclick="editManager()">提交</button>
-                </fieldset>
-            </form>
-
-        </div>
-    </div>
-    <!--删除管理员-->
-    <div class="am-modal am-modal-no-btn" tabindex="-1" id="del-admin">
-        <div class="am-modal-dialog">
-            <div class="am-modal-hd">注意！！！！
-                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
-            </div>
-            <div class="am-modal-bd">
-                确定要删除这个管理员吗？
-            </div>
-            <form class="am-form">
-                <fieldset>
-                    <div class="am-form-group">
-                        <input disabled type="text" id="del_admin_id" minlength="3" maxlength="20"
-                            placeholder="输入用户名（至少 3 个字符）" required />
-                    </div>
-                    <button data-am-modal-close class="am-btn am-btn-danger" type=""
-                        onclick="deleteManager()">继续</button>
-                </fieldset>
-            </form>
-        </div>
-    </div>
     <!--------------------------------------------------------------------------------->
-    <!--添加老师-->
-    <div class="am-modal am-modal-no-btn" tabindex="-1" id="add-teach">
-        <div class="am-modal-dialog">
-            <div class="am-modal-hd">添加教师
-                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
-            </div>
-            <form class="am-form">
-                <fieldset>
-                    <div class="am-form-group">
-                        <label for="teach-id">用户名：</label>
-                        <input type="text" id="teach-id" minlength="3" maxlength="20" placeholder="输入用户名（至少 3 个字符）"
-                            required />
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="teach-school">所在学院：</label>
-                        <input type="text" id="teach-school" minlength="3" maxlength="20" placeholder="输入学院名称"
-                            required />
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="teach-pass">密码：</label>
-                        <input type="password" id="teach-pass" minlength="3" maxlength="20" placeholder="输入密码" />
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="teach-name">真实姓名：</label>
-                        <input type="text" id="teach-name" minlength="2" maxlength="5" placeholder="输入真实姓名" required />
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="teach-contact">联系电话：</label>
-                        <textarea id="teach-contact" minlength="8" maxlength="11" placeholder="输入联系电话"></textarea>
-                    </div>
-
-                    <button class="am-btn am-btn-secondary" type="" onclick="addTeacher()">提交</button>
-                </fieldset>
-            </form>
-
-        </div>
-    </div>
-    <!--编辑老师-->
-    <div class="am-modal am-modal-no-btn" tabindex="-1" id="edit-teach">
-        <div class="am-modal-dialog">
-            <div class="am-modal-hd">编辑教师
-                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
-            </div>
-            <form class="am-form">
-                <fieldset>
-                    <div class="am-form-group">
-                        <label for="e-teach-id">用户名：</label>
-                        <input type="text" id="e-teach-id" minlength="3" maxlength="20" placeholder="输入用户名（至少 3 个字符）"
-                            required />
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="e-teach-school">所在学院：</label>
-                        <input type="text" id="e-teach-school" minlength="3" maxlength="20" placeholder="输入学院名称"
-                            required />
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="e-teach-pass">密码：</label>
-                        <input type="password" id="e-teach-pass" minlength="3" maxlength="20" placeholder="输入密码" />
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="e-teach-name">真实姓名：</label>
-                        <input type="text" id="e-teach-name" minlength="2" maxlength="5" placeholder="输入真实姓名" required />
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="e-teach-contact">联系电话：</label>
-                        <textarea id="e-teach-contact" minlength="8" maxlength="11" placeholder="输入联系电话"></textarea>
-                    </div>
-
-                    <button class="am-btn am-btn-secondary" type="" onclick="editTeacher()">提交</button>
-                </fieldset>
-            </form>
-
-        </div>
-    </div>
-    <!--删除老师-->
-    <div class="am-modal am-modal-no-btn" tabindex="-1" id="del-teach">
-        <div class="am-modal-dialog">
-            <div class="am-modal-hd">注意！！！！
-                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
-            </div>
-            <div class="am-modal-bd">
-                确定要删除这个教师吗？
-            </div>
-            <form class="am-form">
-                <fieldset>
-                    <div class="am-form-group">
-                        <input disabled type="text" id="del_teach_id" minlength="3" maxlength="20"
-                            placeholder="输入用户名（至少 3 个字符）" required />
-                    </div>
-                    <button data-am-modal-close class="am-btn am-btn-danger" type=""
-                        onclick="deleteTeacher()">继续</button>
-                </fieldset>
-            </form>
-        </div>
-    </div>
-    <!--------------------------------------------------------------------------------->
-
-    <!--添加学生-->
-    <div class="am-modal am-modal-no-btn" tabindex="-1" id="add-stud">
-        <div class="am-modal-dialog">
-            <div class="am-modal-hd">添加学生
-                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
-            </div>
-            <form class="am-form">
-                <fieldset>
-                    <div class="am-form-group">
-                        <label for="stud-id">用户名：</label>
-                        <input type="text" id="stud-id" minlength="3" maxlength="20" placeholder="输入用户名（至少 3 个字符）"
-                            required />
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="stud-school">所在学院：</label>
-                        <input type="text" id="stud-school" minlength="3" maxlength="20" placeholder="输入学院名称"
-                            required />
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="stud-pass">密码：</label>
-                        <input type="password" id="stud-pass" minlength="3" maxlength="20" placeholder="输入密码" />
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="stud-name">真实姓名：</label>
-                        <input type="text" id="stud-name" minlength="2" maxlength="5" placeholder="输入真实姓名" required />
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="stud-contact">联系电话：</label>
-                        <textarea id="stud-contact" minlength="8" maxlength="11" placeholder="输入联系电话"></textarea>
-                    </div>
-
-                    <button class="am-btn am-btn-secondary" type="" onclick="addStudent()">提交</button>
-                </fieldset>
-            </form>
-
-        </div>
-    </div>
-
-    <!--编辑学生-->
-    <div class="am-modal am-modal-no-btn" tabindex="-1" id="edit-stud">
-        <div class="am-modal-dialog">
-            <div class="am-modal-hd">编辑学生
-                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
-            </div>
-            <form class="am-form">
-                <fieldset>
-                    <div class="am-form-group">
-                        <label for="e-stud-id">用户名：</label>
-                        <input type="text" id="e-stud-id" minlength="3" maxlength="20" placeholder="输入用户名（至少 3 个字符）"
-                            required />
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="e-stud-school">所在学院：</label>
-                        <input type="text" id="e-stud-school" minlength="3" maxlength="20" placeholder="输入学院名称"
-                            required />
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="e-stud-pass">密码：</label>
-                        <input type="password" id="e-stud-pass" minlength="3" maxlength="20" placeholder="输入密码" />
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="e-stud-name">真实姓名：</label>
-                        <input type="text" id="e-stud-name" minlength="2" maxlength="5" placeholder="输入真实姓名" required />
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="e-stud-contact">联系电话：</label>
-                        <textarea id="e-stud-contact" minlength="8" maxlength="11" placeholder="输入联系电话"></textarea>
-                    </div>
-
-                    <button class="am-btn am-btn-secondary" type="" onclick="editStudent()">提交</button>
-                </fieldset>
-            </form>
-
-        </div>
-    </div>
-    <!--删除学生-->
-    <div class="am-modal am-modal-no-btn" tabindex="-1" id="del-stud">
-        <div class="am-modal-dialog">
-            <div class="am-modal-hd">注意！！！！
-                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
-            </div>
-            <div class="am-modal-bd">
-                确定要删除这个学生吗？
-            </div>
-            <form class="am-form">
-                <fieldset>
-                    <div class="am-form-group">
-                        <input disabled type="text" id="del_stud_id" minlength="3" maxlength="20"
-                            placeholder="输入用户名（至少 3 个字符）" required />
-                    </div>
-                    <button data-am-modal-close class="am-btn am-btn-danger" type=""
-                        onclick="deleteStudent()">继续</button>
-                </fieldset>
-            </form>
-        </div>
-    </div>
 
     <!--------------------------------------------------------------------------------->
     <script src="assets/js/amazeui.min.js"></script>

@@ -4,5 +4,6 @@ var temp={
     te:'60 '
 }
 var d=new Date();
-window.alert((d.getMonth()).toDateString());
-window.alert(Math.floor(Math.random()*10));
+var x=function(a,b){return a*b;};
+var x=(x,y)=>{return x*y;};
+console.log(x(5,6));
