@@ -19,10 +19,12 @@ public class MessageService {
     }
 
     public List<Message> findMessageByUser(String userid){
-        return messageRepository.findByUseridOrderByTime(userid);
+        return messageRepository.findByUserid(userid);
     }
 
-    public List<Message> findAllMessage(){
-
+    public List<Message> findAllMessages(){
+        return messageRepository.findAll();
     }
+
+
 }

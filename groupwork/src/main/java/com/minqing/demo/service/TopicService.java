@@ -35,4 +35,7 @@ public class TopicService {
         return topicRepository.findByState(0);
     }
 
+    public List<Topic> findCompletedTopic(){
+        return topicRepository.findByState(1);
+    }
 }

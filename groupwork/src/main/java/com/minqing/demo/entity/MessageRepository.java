@@ -10,7 +10,5 @@ import java.util.List;
 @RepositoryRestResource
 @Transactional
 public interface MessageRepository extends JpaRepository<Message,Integer> {
-    List<Message> findByUseridOrderByTime(String userid);
-//    @Query("select * from message order by time")
-//    public List<>
+    List<Message> findByUserid(String userid);
 }
