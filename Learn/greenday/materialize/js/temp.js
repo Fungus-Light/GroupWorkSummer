@@ -5,4 +5,4 @@ var temp={
 }
 var d=new Date();
 window.alert((d.getMonth()).toDateString());
-//window.alert(leng);
+window.alert(Math.floor(Math.random()*10));
