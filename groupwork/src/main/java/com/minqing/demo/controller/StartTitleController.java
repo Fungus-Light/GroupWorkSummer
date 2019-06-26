@@ -16,8 +16,7 @@ import java.util.Map;
 public class StartTitleController {
     @Autowired
     private TopicService topicService;
-    @Autowired
-    private TopicgroupService topicgroupService;
+
 
 
     @RequestMapping("/addTopic")
@@ -39,34 +38,5 @@ public class StartTitleController {
         int topicid = map.get("topicid");
         topicService.decideTopic(topicid,2);
     }
-    @RequestMapping("/divideGroup")
-    public void divideGroup(@RequestBody List<List<Map<String,String>>> l)
-    {
-        List<String> teacherid=new ArrayList<>();
-        List<String> studentid=new ArrayList<>();
-        String groupid=new String();
-        for(List<Map<String,String>> li:l)
-        {
-            for(Map<String,String> m:li)
-            {
-                if(m.get("groupid")==null) {
-                    if (m.get("teacherid") == null) {
-                        studentid.add(m.get("studentid"));
-                    }
-                    else
-                        teacherid.add(m.get("studentid"));
-                }
-                else groupid=m.get("groupid");
 
-            }
-        }
-        for(String s:studentid) {
-            topicgroupService.addStudent(s, groupid);
-        }
-        for(String s:teacherid)
-        {
-            topicgroupService.addTeacher(s,groupid);
-        }
-
-    }
 }
