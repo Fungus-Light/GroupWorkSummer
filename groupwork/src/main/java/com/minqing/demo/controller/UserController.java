@@ -1,5 +1,6 @@
 package com.minqing.demo.controller;
 
+
 import com.minqing.demo.entity.Manager;
 import com.minqing.demo.entity.Student;
 import com.minqing.demo.entity.Teacher;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,8 +38,8 @@ public class UserController {
         String userid = map.get("userid");
         String password = map.get("password");
         int number = userService.login(userid,password);
-        if(number >= 3){
-            response.addCookie(new Cookie("userid",userid));
+        if(number >=3){
+            //
         }
         return number;
     }
