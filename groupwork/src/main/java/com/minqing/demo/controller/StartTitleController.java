@@ -22,7 +22,7 @@ public class StartTitleController {
 
 
     @RequestMapping("/addTopic")
-    public void addTopic(@RequestBody Map<String,String> map, HttpServletRequest request){
+    public String addTopic(@RequestBody Map<String,String> map, HttpServletRequest request){
         String topic = map.get("topic");
         Cookie[] cookies = request.getCookies();
         String userid = "";
@@ -31,9 +31,10 @@ public class StartTitleController {
                 userid = cookie.getValue();
             }
         }
-        //String userid = map.get("userid");
-        String description = map.get("description");
-        topicService.addTopic(topic,userid,description);
+        return userid;
+//        //String userid = map.get("userid");
+//        String description = map.get("description");
+//        topicService.addTopic(topic,userid,description);
     }
 
     @RequestMapping("/acceptTopic")
@@ -49,8 +50,14 @@ public class StartTitleController {
     }
 
     @RequestMapping("/showTeacherTopic")
-    public List<Map<String,Object>> showTeacherTopic(@RequestBody Map<String,String> map){
-        String userid = map.get("userid");
+    public List<Map<String,Object>> showTeacherTopic(HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        String userid = "";
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("userid")){
+                userid = cookie.getValue();
+            }
+        }
         List<Topic> list = topicService.findTopicByTeacher(userid);
         int length = list.size();
         List<Map<String,Object>> newlist = new ArrayList<>();
