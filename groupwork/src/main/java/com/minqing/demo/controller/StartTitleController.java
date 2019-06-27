@@ -1,6 +1,6 @@
 package com.minqing.demo.controller;
 
-
+import com.minqing.demo.entity.Topic;
 import com.minqing.demo.service.TopicService;
 import com.minqing.demo.service.TopicgroupService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,4 +39,38 @@ public class StartTitleController {
         topicService.decideTopic(topicid,2);
     }
 
+    @RequestMapping("/showTeacherTopic")
+    public List<Map<String,Object>> showTeacherTopic(@RequestBody Map<String,String> map){
+        String userid = map.get("userid");
+        List<Topic> list = topicService.findTopicByTeacher(userid);
+        int length = list.size();
+        List<Map<String,Object>> newlist = new ArrayList<>();
+        for(int i=0;i<length;i++){
+            Map<String,Object> map1 = new HashMap<>();
+            map1.put("topicid",list.get(i).getTopicid());
+            map1.put("topic",list.get(i).getTopic());
+            map1.put("userid",list.get(i).getUserid());
+            map1.put("state",list.get(i).getState());
+            map1.put("description",list.get(i).getDescription());
+            newlist.add(map1);
+        }
+        return newlist;
+    }
+
+    @RequestMapping("/showAllTopic")
+    public List<Map<String,Object>> showAllTopic(){
+        List<Topic> list = topicService.findAllTopic();
+        int length = list.size();
+        List<Map<String,Object>> newlist = new ArrayList<>();
+        for(int i=0;i<length;i++){
+            Map<String,Object> map = new HashMap<>();
+            map.put("topicid",list.get(i).getTopicid());
+            map.put("topic",list.get(i).getTopic());
+            map.put("userid",list.get(i).getUserid());
+            map.put("state",list.get(i).getState());
+            map.put("description",list.get(i).getDescription());
+            newlist.add(map);
+        }
+        return newlist;
+    }
 }
