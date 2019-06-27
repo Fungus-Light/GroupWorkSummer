@@ -1,0 +1,14 @@
+<html>
+    <body>
+        <script src="assets/js/node_modules/_axios@0.19.0@axios/dist/axios.min.js"></script>
+        <script>
+            axios.post('/showTeacherTopic')
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.error(err); 
+            })
+        </script>
+    </body>
+</html>
