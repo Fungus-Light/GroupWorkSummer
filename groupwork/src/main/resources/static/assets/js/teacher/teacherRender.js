@@ -31,11 +31,17 @@ window.onload=function(){
         RefreshTopic(response.data);
     });
 
-    presetInfo();
+    axios.post('/showTeacher').then(response=>{
+        presetInfo(response.data);
+    });
+    
 }
 
-function presetInfo(){
-    
+function presetInfo(data){
+    $("#user-name").val(data.name);
+    $("#user_id").val(data.userid);
+    $("#user_school").val(data.academic);
+    $("#user_phone").val(data.tel);
 }
 
 function SetEditTopic(_title) {
