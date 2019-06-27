@@ -30,6 +30,12 @@ window.onload=function(){
         //console.log(response.data);
         RefreshTopic(response.data);
     });
+
+    presetInfo();
+}
+
+function presetInfo(){
+    
 }
 
 function SetEditTopic(_title) {
