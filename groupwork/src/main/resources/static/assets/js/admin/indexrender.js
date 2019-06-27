@@ -1,3 +1,8 @@
+/**
+ *  这个是管理员页面控制渲染的脚本
+ * 
+ */
+
 var Admin_List_Render = document.getElementById("Admin_List_Render");
 var Teacher_List_Render=document.getElementById("Teacher_List_Render");
 var Student_List_Render=document.getElementById("Student_List_Render");
@@ -15,14 +20,6 @@ window.onload=function(){
     axios.post('/showStudent').then(response=>{
         RefreshStudlist(response.data);
     });
-}
-
-function ClearRenderer(renderer) {
-    renderer.innerText = "";
-}
-
-function AttachChildren(father, child) {
-    father.appendChild(child);
 }
 
 function RefreshAdiminlist(adminarray){
@@ -65,13 +62,6 @@ function RefreshStudlist(studarray){
 </tr>
 
  */
-
-function MakeUpElement(_tag,_text,_class){
-    var temp=document.createElement(_tag);
-    temp.innerText=_text;
-    temp.setAttribute("class",_class);
-    return temp;
-}
 
 function CleanAdminEdit(){
     document.getElementById("e-admin-id").value="";
