@@ -26,6 +26,11 @@ public class StartTitleController {
         String topic = map.get("topic");
         Cookie[] cookies = request.getCookies();
         String userid = "";
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("userid")){
+                userid = cookie.getValue();
+            }
+        }
         //String userid = map.get("userid");
         String description = map.get("description");
         topicService.addTopic(topic,userid,description);

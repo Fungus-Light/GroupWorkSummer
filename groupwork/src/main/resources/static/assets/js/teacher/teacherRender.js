@@ -26,10 +26,27 @@
 var Topic_List_Render = $("#Topic_List_Render").get(0);
 
 window.onload=function(){
+    axios.post('/checkCookie').then(response=>{
+        if(response.data === 0){
+        window.location.href='login.html';
+    }
+
     axios.post('/showTeacherTopic').then(response=>{
         //console.log(response.data);
         RefreshTopic(response.data);
     });
+
+    axios.post('/showTeacher').then(response=>{
+        presetInfo(response.data);
+    });
+    
+}
+
+function presetInfo(data){
+    $("#user-name").val(data.name);
+    $("#user_id").val(data.userid);
+    $("#user_school").val(data.academic);
+    $("#user_phone").val(data.tel);
 }
 
 function SetEditTopic(_title) {

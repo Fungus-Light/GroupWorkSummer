@@ -1,4 +1,3 @@
-
 function addTopic(){
     var title=$("#mission-name").val().toString();
     var content=$("#mission-brief").val().toString();
@@ -25,4 +24,21 @@ function editTopic(){
             window.reload();
         })
     }
+}
+//--------------------------
+
+
+function updataInfo(){
+    var phone=$("#user_phone").val().toString();
+    var pass=$("#user_password").val().toString();
+
+    if (phone != null && pass != null) {
+        axios.post('/editTeacher', {
+            tel: phone,
+            password:pass
+        }).then(response => {
+            window.reload();
+        })
+    }
+
 }
