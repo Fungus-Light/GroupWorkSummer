@@ -22,7 +22,7 @@ public class StartTitleController {
 
 
     @RequestMapping("/addTopic")
-    public String addTopic(@RequestBody Map<String,String> map, HttpServletRequest request){
+    public void addTopic(@RequestBody Map<String,String> map, HttpServletRequest request){
         String topic = map.get("topic");
         Cookie[] cookies = request.getCookies();
         String userid = "";
@@ -31,10 +31,9 @@ public class StartTitleController {
                 userid = cookie.getValue();
             }
         }
-        return userid;
 //        //String userid = map.get("userid");
-//        String description = map.get("description");
-//        topicService.addTopic(topic,userid,description);
+        String description = map.get("description");
+        topicService.addTopic(topic,userid,description);
     }
 
     @RequestMapping("/acceptTopic")

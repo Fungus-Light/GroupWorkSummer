@@ -8,9 +8,9 @@ function addTopic(){
         axios.post('/addTopic', {
             topic: title,
             description:content
-        }).then(response => {
-            // window.reload();
-            console.log(response.data)
+        }).then(response=>{
+            window.reload();
+            // console.log(response.data)
         })
     }
 }

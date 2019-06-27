@@ -109,6 +109,6 @@ function RefreshTopic(topicarray) {
                 status = "被拒绝";
                 break;
         }
-        AttachChildren(Topic_List_Render, MakeUpTopic(topicarray[i].title, topicarray[i].topicid,status));
+        AttachChildren(Topic_List_Render, MakeUpTopic(topicarray[i].topic, topicarray[i].topicid,status));
     }
 }
