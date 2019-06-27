@@ -345,9 +345,9 @@
                             <div class="widget-body am-fr">
                                 <form class="am-form tpl-form-line-form">
                                     <div class="am-form-group">
-                                        <label for="user-name" class="am-u-sm-3 am-form-label">用户名</label>
+                                        <label for="user_id" class="am-u-sm-3 am-form-label">用户ID</label>
                                         <div class="am-u-sm-9">
-                                            <input disabled type="text" class="tpl-form-input" id="user-name" minlength="3"
+                                            <input disabled type="text" class="tpl-form-input" id="user_id" minlength="3"
                                                 maxlength="20" required>
                                         </div>
                                     </div>
@@ -359,13 +359,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="am-form-group">
-                                        <label for="user_id" class="am-u-sm-3 am-form-label">员工号</label>
-                                        <div class="am-u-sm-9">
-                                            <input disabled id="user_id" type="text" class="am-form-field tpl-form-no-bg" minlength="3" maxlength="20">
-                                            
-                                        </div>
-                                    </div>
+                                    
 
                                     <div class="am-form-group">
                                         <label for="user_school" class="am-u-sm-3 am-form-label">学院 </label>
@@ -423,7 +417,7 @@
                                     <div class="am-form-group">
                                         <div class="am-u-sm-9 am-u-sm-push-3">
                                             <button type="button"
-                                                class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                                                class="am-btn am-btn-primary tpl-btn-bg-color-success "onclick="updataInfo()">提交</button>
                                         </div>
                                     </div>
 
@@ -661,7 +655,7 @@
     <script src="assets/js/app.js"></script>
     <script src="assets/js/RenderCommon.js"></script>
     <script src="assets/js/teacher/teacherRender.js"></script>
-
+    <script src="assets/js/teacher/teacherLogic.js"></script>
 
     <script src="assets/js/teacher/test_teacher.js"></script>
 </body>

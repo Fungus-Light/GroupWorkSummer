@@ -50,5 +50,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-
+    public User findById(String userid){
+        return userRepository.findById(userid).get();
+    }
 }

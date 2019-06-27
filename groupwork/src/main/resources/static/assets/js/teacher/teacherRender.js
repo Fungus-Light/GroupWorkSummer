@@ -28,15 +28,16 @@ var Topic_List_Render = $("#Topic_List_Render").get(0);
 window.onload=function(){
     axios.post('/checkCookie').then(response=>{
         if(response.data === 0){
-        window.location.href='login.html';
+        window.location.href = 'login.html';
     }
+    });
 
     axios.post('/showTeacherTopic').then(response=>{
-        //console.log(response.data);
+        // console.log(response.data);
         RefreshTopic(response.data);
     });
 
-    axios.post('/showTeacher').then(response=>{
+    axios.post('/showSingleTeacher').then(response=>{
         presetInfo(response.data);
     });
     
@@ -44,6 +45,7 @@ window.onload=function(){
 
 function presetInfo(data){
     $("#user-name").val(data.name);
+    $("#user_password").val(data.password);
     $("#user_id").val(data.userid);
     $("#user_school").val(data.academic);
     $("#user_phone").val(data.tel);
@@ -108,6 +110,6 @@ function RefreshTopic(topicarray) {
                 status = "被拒绝";
                 break;
         }
-        AttachChildren(Topic_List_Render, MakeUpTopic(topicarray[i].title, topicarray[i].topicid,status));
+        AttachChildren(Topic_List_Render, MakeUpTopic(topicarray[i].topic, topicarray[i].topicid,status));
     }
 }

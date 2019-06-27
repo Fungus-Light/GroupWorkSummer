@@ -1,13 +1,16 @@
 function addTopic(){
+
+    console.log("------------")
     var title=$("#mission-name").val().toString();
     var content=$("#mission-brief").val().toString();
-
+    console.log(title);
     if (title != null && content != null) {
         axios.post('/addTopic', {
-            title: title,
+            topic: title,
             description:content
-        }).then(response => {
+        }).then(response=>{
             window.reload();
+            // console.log(response.data)
         })
     }
 }
@@ -18,10 +21,10 @@ function editTopic(){
 
     if (title != null && content != null) {
         axios.post('/addTopic', {
-            title: title,
+            topic: title,
             description:content
         }).then(response => {
-            window.reload();
+            //window.reload();
         })
     }
 }
@@ -29,13 +32,19 @@ function editTopic(){
 
 
 function updataInfo(){
-    var phone=$("#user_phone").val().toString();
-    var pass=$("#user_password").val().toString();
+    var name= $("#user-name").val();
+    var password= $("#user_password").val();
+    var userid= $("#user_id").val();
+    var academic= $("#user_school").val();
+    var tel= $("#user_phone").val();
 
-    if (phone != null && pass != null) {
+    if (userid != null && password != null) {
         axios.post('/editTeacher', {
-            tel: phone,
-            password:pass
+            userid:userid,
+            name:name,
+            academic:academic,
+            tel:tel,
+            password:password
         }).then(response => {
             window.reload();
         })
