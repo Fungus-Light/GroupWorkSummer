@@ -45,6 +45,7 @@ window.onload=function(){
 
 function presetInfo(data){
     $("#user-name").val(data.name);
+    $("#user_password").val(data.password);
     $("#user_id").val(data.userid);
     $("#user_school").val(data.academic);
     $("#user_phone").val(data.tel);
