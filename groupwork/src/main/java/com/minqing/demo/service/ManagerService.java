@@ -36,11 +36,5 @@ public class ManagerService {
     }
 
 
-    public void SetSegment(int segid,int status)
-    {
-        Period peritod=new Period();
-        peritod.setSegid(segid);
-        peritod.setStatus(status);
-        periodRepository.save(peritod);
-    }
+
 }

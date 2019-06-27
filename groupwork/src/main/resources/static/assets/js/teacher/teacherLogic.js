@@ -44,9 +44,9 @@ function updataInfo(){
             name:name,
             academic:academic,
             tel:tel,
-            password:pass
+            password:password
         }).then(response => {
-            //window.reload();
+            window.reload();
         })
     }
 
