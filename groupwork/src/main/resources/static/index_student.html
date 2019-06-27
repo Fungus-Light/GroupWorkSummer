@@ -215,10 +215,23 @@
                     </a>
                 </li>
 
-                <li class="sidebar-nav-link nvl" call="mission-info">
-                    <a href="javascript:;">
-                        <i class="am-icon-tasks sidebar-nav-link-logo"></i> 项目信息
+                <li class="sidebar-nav-link">
+                    <a href="javascript:;" class="sidebar-nav-sub-title">
+                        <i class="am-icon-tasks sidebar-nav-link-logo"></i> 项目管理
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                     </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link nvl" call="mission-select">
+                            <a href="javascript:;">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 项目选题
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-link nvl" call=mission-info>
+                            <a href="javascript:;">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 项目信息
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
 
@@ -326,13 +339,14 @@
                         </div>
                     </div>
                 </div>
-                <!--项目信息-->
-                <div class="row-content am-cf rbd" style="display: none;" callid="mission-info">
+
+                <!--项目选题-->
+                <div class="row-content am-cf rbd" style="display: none;" callid="mission-select">
                     <div class="row">
                         <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                             <div class="widget am-cf">
                                 <div class="widget-head am-cf">
-                                    <div class="widget-title  am-cf">项目信息</div>
+                                    <div class="widget-title  am-cf">项目选题</div>
                                 </div>
 
                                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
@@ -344,6 +358,113 @@
                                                 type="button"></button>
                                         </span>
                                     </div>
+                                </div>
+
+                                <div class="am-u-sm-12">
+                                    <table width="100%"
+                                        class="am-table am-table-compact am-table-striped tpl-table-black "
+                                        id="example-r">
+                                        <thead>
+                                            <tr>
+                                                <th>项目名</th>
+                                                <th>项目ID</th>
+                                                <th>学院</th>
+                                                <th>指导教师</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="Mission_List_Render">
+                                            <tr>
+                                                <td>大型购物商城</td>
+                                                <td>Tp1100</td>
+                                                <td>计算机学院</td>
+                                                <td>章一迷</td>
+                                                <td>
+                                                    <div class="am-btn-group am-btn-group-xs">
+                                                        <button type="button"
+                                                            class="am-btn am-btn-default am-btn-secondary"
+                                                            data-am-modal="{target: '#add-teach',closeViaDimmer: 0, width: 300, height: 300}"><span
+                                                                class="am-icon-anchor"></span> 详情</button>
+                                                        <button id="add-teach-test" type="button"
+                                                            class="am-btn am-btn-default am-btn-success"><span
+                                                                class="am-icon-plus"></span> 新增</button>
+
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                            <!-- more data -->
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="am-u-lg-12 am-cf">
+
+                                    <div class="am-fr">
+                                        <ul class="am-pagination tpl-pagination">
+                                            <li class="am-disabled"><a href="#">«</a></li>
+                                            <li class="am-active"><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li><a href="#">»</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                            <div class="widget am-cf">
+                                <div class="widget-head am-cf">
+                                    <div class="widget-title  am-cf">选题结果</div>
+                                </div>
+                                <div class="am-u-sm-12">
+                                    <table width="100%"
+                                        class="am-table am-table-compact am-table-striped tpl-table-black "
+                                        id="example-r">
+                                        <thead>
+                                            <tr>
+                                                <th>项目名</th>
+                                                <th>项目ID</th>
+                                                <th>学院</th>
+                                                <th>指导教师</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="Choose_Mission_Render">
+                                            <tr>
+                                                <td>大型购物商城</td>
+                                                <td>Tp1100</td>
+                                                <td>计算机学院</td>
+                                                <td>章一迷</td>
+                                                <td>
+                                                    <div class="am-btn-group am-btn-group-xs">
+                                                        <button type="button"
+                                                            class="am-btn am-btn-default am-btn-secondary"
+                                                            data-am-modal="{target: '#add-teach',closeViaDimmer: 0, width: 300, height: 300}"><span
+                                                                class="am-icon-anchor"></span> 详情</button>
+                                                        <button id="add-teach-test" type="button"
+                                                            class="am-btn am-btn-default am-btn-danger"><span
+                                                                class="am-icon-trash"></span> 删除</button>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <!-- more data -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--项目信息-->
+                <div class="row-content am-cf rbd" style="display: none;" callid="mission-info">
+                    <div class="row">
+                        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                            <div class="widget am-cf">
+                                <div class="widget-head am-cf">
+                                    <div class="widget-title  am-cf">项目信息</div>
                                 </div>
 
                                 <!--项目信息列表没想好怎么做，模版自带的那几个界面都不太适合表示这种信息，
@@ -365,18 +486,6 @@
                                             <!-- more data -->
                                         </tbody>
                                     </table>
-                                </div>
-                                <div class="am-u-lg-12 am-cf">
-
-                                    <div class="am-fr">
-                                        <ul class="am-pagination tpl-pagination">
-                                            <li class="am-disabled"><a href="#">«</a></li>
-                                            <li class="am-active"><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">»</a></li>
-                                        </ul>
-                                    </div>
                                 </div>
                             </div>
                         </div>
