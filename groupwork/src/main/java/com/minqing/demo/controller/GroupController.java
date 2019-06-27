@@ -15,8 +15,7 @@ class Group
 {
     public List<String> teacherid;
     public List<String> studentid;
-    public
-    String groupid;
+    public String groupid;
 }
 @RestController
 public class GroupController {
