@@ -33,13 +33,13 @@ window.onload=function(){
     });
 
     axios.post('/showTeacherTopic').then(response=>{
-        console.log(response.data);
+        // console.log(response.data);
         RefreshTopic(response.data);
     });
 
-    // axios.post('/showTeacher').then(response=>{
-    //     presetInfo(response.data);
-    // });
+    axios.post('/showSingleTeacher').then(response=>{
+        presetInfo(response.data);
+    });
     
 }
 
