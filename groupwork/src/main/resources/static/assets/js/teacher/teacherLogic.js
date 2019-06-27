@@ -26,9 +26,7 @@ function editTopic(){
     }
 }
 //--------------------------
-function presetInfo(){
-    
-}
+
 
 function updataInfo(){
     var phone=$("#user_phone").val().toString();

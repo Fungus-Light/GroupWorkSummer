@@ -35,6 +35,18 @@ window.onload=function(){
         //console.log(response.data);
         RefreshTopic(response.data);
     });
+
+    axios.post('/showTeacher').then(response=>{
+        presetInfo(response.data);
+    });
+    
+}
+
+function presetInfo(data){
+    $("#user-name").val(data.name);
+    $("#user_id").val(data.userid);
+    $("#user_school").val(data.academic);
+    $("#user_phone").val(data.tel);
 }
 
 function SetEditTopic(_title) {
