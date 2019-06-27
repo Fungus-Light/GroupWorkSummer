@@ -3,6 +3,12 @@ var Teacher_List_Render=document.getElementById("Teacher_List_Render");
 var Student_List_Render=document.getElementById("Student_List_Render");
 
 window.onload=function(){
+    axios.post('/checkCookie').then(response=>{
+        if(response.data === 0){
+        window.location.href='login.html';
+    }
+
+    });
     axios.post('/showManager').then(response=>{
         //console.log(response.data);
         RefreshAdiminlist(response.data);
