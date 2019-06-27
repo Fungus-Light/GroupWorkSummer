@@ -33,7 +33,7 @@ window.onload=function(){
     });
 
     axios.post('/showTeacherTopic').then(response=>{
-        //console.log(response.data);
+        console.log(response.data);
         RefreshTopic(response.data);
     });
 
