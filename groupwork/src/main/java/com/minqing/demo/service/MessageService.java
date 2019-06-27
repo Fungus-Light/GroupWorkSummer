@@ -25,7 +25,7 @@ public class MessageService {
         SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
         message.setTime(dateFormat.format(date));
 
-        message.setState(1);
+        message.setState(1);//标记为未读
         messageRepository.save(message);
     }
 
@@ -39,9 +39,7 @@ public class MessageService {
 
     public void haveReadMessage(int messageid){
         Message message = messageRepository.findById(messageid).get();
-        message.setState(2);
+        message.setState(2);//标记为已读
         messageRepository.save(message);
     }
-
-
 }
