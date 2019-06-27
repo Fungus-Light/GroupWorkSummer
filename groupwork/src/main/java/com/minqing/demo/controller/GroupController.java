@@ -4,12 +4,20 @@ import com.minqing.demo.service.TopicgroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+class Group
+{
+    public List<String> teacherid;
+    public List<String> studentid;
+    public
+    String groupid;
+}
 @RestController
 public class GroupController {
     @Autowired
@@ -42,6 +50,22 @@ public class GroupController {
         {
             topicgroupService.addTeacher(s,groupid);
         }
+
+    }
+    @RequestMapping("/showGroup")
+    @ResponseBody
+    public Group[] showGroup(){
+         List<String> groupids=topicgroupService.findAllgroupId();
+         int length=groupids.size();
+         Group []g=new Group[length];
+         for(int i=0;i<length;i++)
+         {
+             g[i].groupid=groupids.get(i);
+            g[i].studentid=topicgroupService.findStudentIdbyGroup(g[i].groupid);
+            g[i].teacherid=topicgroupService.findTeachbyGroup(g[i].groupid);
+         }
+
+         return g;
 
     }
 }

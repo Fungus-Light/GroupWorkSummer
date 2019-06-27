@@ -11,5 +11,5 @@ public class MessageController {
     private MessageService messageService;
 
     @RequestMapping("/addMessage")
-    public void addMessage()
+    public void addMessage(){}
 }
