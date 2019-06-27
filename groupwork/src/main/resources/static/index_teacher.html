@@ -661,7 +661,7 @@
                         <textarea rows="5" cols="40" id="e-mission-brief" placeholder="请输入该选题简述："></textarea>
                     </div>
 
-                    <button class="am-btn am-btn-secondary" type="" onclick="editStudent()">提交</button>
+                    <button class="am-btn am-btn-secondary" type="" onclick="editTopic()">提交</button>
                 </fieldset>
             </form>
 
@@ -674,18 +674,12 @@
                 <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
             </div>
             <div class="am-modal-bd">
-                确定要删除这个选题吗？
+                你无法直接删除你的题目
             </div>
-            <form class="am-form">
-                <fieldset>
-                    <div class="am-form-group">
-                        <input disabled type="text" id="del_topic_id" minlength="3" maxlength="20"
-                            placeholder="输入选题ID（至少 3 个字符）" required />
-                    </div>
-                    <button data-am-modal-close class="am-btn am-btn-danger" type=""
-                        onclick="deleteMission()">继续</button>
-                </fieldset>
-            </form>
+            <div class="am-modal-bd">
+                请联系你的管理员进行操作
+            </div>
+            
         </div>
     </div>
     <!--------------------------------------------------------------------------------->
