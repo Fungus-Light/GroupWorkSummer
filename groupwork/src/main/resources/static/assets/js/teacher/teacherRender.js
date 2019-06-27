@@ -26,6 +26,11 @@
 var Topic_List_Render = $("#Topic_List_Render").get(0);
 
 window.onload=function(){
+    axios.post('/checkCookie').then(response=>{
+        if(response.data === 0){
+        window.location.href='login.html';
+    }
+
     axios.post('/showTeacherTopic').then(response=>{
         //console.log(response.data);
         RefreshTopic(response.data);
