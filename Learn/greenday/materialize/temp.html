@@ -13,7 +13,21 @@
     What time is it?
   </button> 
   
-  <script src="js/temp.js"></script>
+  <script>
+  var x=myFunction();
+  function myFunction(){
+    return this;
+  }
+ 
+  var myObject={
+    firstName:"Bill",
+    secondName:"Chater",
+    fullName:function (){
+      return this.firstName+""+this.secondName;
+    }
+  }
+  document.getElementById("demo").innerHTML=new myObject.fullName().firstName;
+  </script>
 </body>
 
 </html>
