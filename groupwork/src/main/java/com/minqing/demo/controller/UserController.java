@@ -144,7 +144,25 @@ public class UserController {
         userService.deleteUser(userid);
     }
 
-
+    @RequestMapping("/showSingleStudent")
+    public Map showSingleStudent(HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        String userid = "";
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("userid")){
+                userid = cookie.getValue();
+            }
+        }
+        Student student = studentService.findStudent(userid);
+        User user = userService.findById(userid);
+        Map<String,String> map = new HashMap<>();
+        map.put("userid",userid);
+        map.put("password",user.getPassword());
+        map.put("name",student.getName());
+        map.put("tel",student.getTel());
+        map.put("academic",student.getAcademic());
+        return map;
+    }
 
 
 
