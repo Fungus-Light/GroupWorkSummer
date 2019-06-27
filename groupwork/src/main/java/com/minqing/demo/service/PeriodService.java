@@ -15,4 +15,8 @@ public class PeriodService {
         p.setSegid(segid);
         periodRepository.save(p);
     }
+    public Period findById(Integer id)
+    {
+        return periodRepository.findById(id).get();
+    }
 }
