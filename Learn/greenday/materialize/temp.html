@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Javascript</title>
+  <style type="text/css">
+
+  </style>
+</head>
+
+<body>
+  <button id="demo" onclick="displayDate()">
+    What time is it?
+  </button> 
+  
+  <script>
+  var x=myFunction();
+  function myFunction(){
+    return this;
+  }
+ 
+  var myObject={
+    firstName:"Bill",
+    secondName:"Chater",
+    fullName:function (){
+      return this.firstName+""+this.secondName;
+    }
+  }
+  document.getElementById("demo").innerHTML=new myObject.fullName().firstName;
+  </script>
+</body>
+
+</html>
