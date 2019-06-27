@@ -304,7 +304,7 @@
         <div class="tpl-content-wrapper">
             <div>
                 <!-- 首页内容 -->
-                <div class="row-content am-cf rbd" style="display: none" callid="first">
+                <div class="row-content am-cf rbd" callid="first">
                     <div class="row  am-cf">
                         <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                             <div class="widget am-cf">
@@ -506,39 +506,28 @@
                             <div class="widget-body am-fr">
                                 <form class="am-form tpl-form-line-form">
                                     <div class="am-form-group">
-                                        <label for="user-name" class="am-u-sm-3 am-form-label">用户名 <span
-                                                class="tpl-form-line-small-title">NickName</span></label>
+                                        <label for="user-id" class="am-u-sm-3 am-form-label">用户ID</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" class="tpl-form-input" id="user-name" minlength="3"
+                                            <input type="text" class="tpl-form-input" id="user-id" minlength="3"
                                                 maxlength="20" required>
-                                            <small>请输入昵称5-20字左右。</small>
+                                            
                                         </div>
                                     </div>
 
                                     <div class="am-form-group">
-                                        <label for="e-teach-pass" class="am-u-sm-3 am-form-label">密码 <span
-                                                class="tpl-form-line-small-title">Password</span></label>
+                                        <label for="user-password" class="am-u-sm-3 am-form-label">密码 </label>
                                         <div class="am-u-sm-9">
-                                            <input type="password" class="tpl-form-input" minlength="3" maxlength="20"
+                                            <input id="user-password" type="password" class="tpl-form-input" minlength="3" maxlength="20"
                                                 required>
-                                            <small>请输入密码3-20字左右。</small>
+                                            
                                         </div>
                                     </div>
 
-                                    <div class="am-form-group">
-                                        <label for="user-email" class="am-u-sm-3 am-form-label">学号<span
-                                                class="tpl-form-line-small-title">ID</span></label>
-                                        <div class="am-u-sm-9">
-                                            <input type="text" class="am-form-field tpl-form-no-bg" required>
-                                            <small>学号为必填</small>
-                                        </div>
-                                    </div>
 
                                     <div class="am-form-group">
-                                        <label for="user-phone" class="am-u-sm-3 am-form-label">学院 <span
-                                                class="tpl-form-line-small-title">College</span></label>
+                                        <label for="user-school" class="am-u-sm-3 am-form-label">学院</label>
                                         <div class="am-u-sm-9">
-                                            <select data-am-selected="{searchBox: 1}" style="display: none;">
+                                            <select id="user-school" disabled data-am-selected="{searchBox: 1}" style="display: none;">
                                                 <option value="CS">计算机学院</option>
                                                 <option value="MATH">数学学院</option>
                                                 <option value="ForeignLan">外国语学院</option>
@@ -551,16 +540,14 @@
                                     </div>
 
                                     <div class="am-form-group">
-                                        <label class="am-u-sm-3 am-form-label">联系电话 <span
-                                                class="tpl-form-line-small-title">Phone Number</span></label>
+                                        <label class="am-u-sm-3 am-form-label">联系电话 </label>
                                         <div class="am-u-sm-9">
-                                            <input type="text">
+                                            <input id="user-tel" type="text">
                                         </div>
                                     </div>
 
                                     <div class="am-form-group">
-                                        <label for="user-weibo" class="am-u-sm-3 am-form-label">个人照片 <span
-                                                class="tpl-form-line-small-title">Images</span></label>
+                                        <label for="user-weibo" class="am-u-sm-3 am-form-label">个人照片 </label>
                                         <div class="am-u-sm-9">
                                             <div class="am-form-group am-form-file">
                                                 <div class="tpl-form-file-img">
@@ -575,30 +562,12 @@
                                     </div>
 
                                     <div class="am-form-group">
-                                        <label for="user-weibo" class="am-u-sm-3 am-form-label">真实姓名 <span
-                                                class="tpl-form-line-small-title">RealName</span></label>
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">真实姓名 </label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" id="user-weibo">
-                                            <div>
-
-                                            </div>
+                                            <input type="text" id="user-name">
                                         </div>
                                     </div>
 
-                                    <div class="am-form-group">
-                                        <label for="user-intro" class="am-u-sm-3 am-form-label">隐藏姓名</label>
-                                        <div class="am-u-sm-9">
-                                            <div class="tpl-switch">
-                                                <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn"
-                                                    checked="">
-                                                <div class="tpl-switch-btn-view">
-                                                    <div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
 
                                     <div class="am-form-group">
                                         <label for="user-intro" class="am-u-sm-3 am-form-label">备注</label>
@@ -610,7 +579,7 @@
                                     <div class="am-form-group">
                                         <div class="am-u-sm-9 am-u-sm-push-3">
                                             <button type="button"
-                                                class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                                                class="am-btn am-btn-primary tpl-btn-bg-color-success " onclick="updateStuInfo()">提交</button>
                                         </div>
                                     </div>
 
