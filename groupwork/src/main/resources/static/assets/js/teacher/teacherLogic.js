@@ -1,6 +1,8 @@
 function addTopic(){
     var title=$("#mission-name").val().toString();
     var content=$("#mission-brief").val().toString();
+    console.log(title);
+    
 
     if (title != null && content != null) {
         axios.post('/addTopic', {
