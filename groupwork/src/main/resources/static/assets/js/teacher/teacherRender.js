@@ -27,7 +27,7 @@ var Topic_List_Render = $("#Topic_List_Render").get(0);
 
 window.onload=function(){
     axios.post('/showTeacherTopic').then(response=>{
-        //console.log(response.data);
+        console.log(response.data);
         RefreshTopic(response.data);
     });
 
