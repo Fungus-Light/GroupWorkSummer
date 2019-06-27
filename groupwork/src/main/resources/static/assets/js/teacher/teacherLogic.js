@@ -1,18 +1,18 @@
 function addTopic(){
 
     console.log("------------")
-    // var title=$("#mission-name").val().toString();
-    // var content=$("#mission-brief").val().toString();
-    // console.log(title);
-    // if (title != null && content != null) {
-    //     axios.post('/addTopic', {
-    //         topic: title,
-    //         description:content
-    //     }).then(response => {
-    //         // window.reload();
-    //         console.log(response.data)
-    //     })
-    // }
+    var title=$("#mission-name").val().toString();
+    var content=$("#mission-brief").val().toString();
+    console.log(title);
+    if (title != null && content != null) {
+        axios.post('/addTopic', {
+            topic: title,
+            description:content
+        }).then(response => {
+            // window.reload();
+            console.log(response.data)
+        })
+    }
 }
 
 function editTopic(){
