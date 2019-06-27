@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,12 +19,22 @@ public class StartTitleController {
     @Autowired
     private TopicService topicService;
 
+
+
     @RequestMapping("/addTopic")
-    public void addTopic(@RequestBody Map<String,String> map){
+    public String addTopic(@RequestBody Map<String,String> map, HttpServletRequest request){
         String topic = map.get("topic");
-        String userid = map.get("userid");
-        String description = map.get("description");
-        topicService.addTopic(topic,userid,description);
+        Cookie[] cookies = request.getCookies();
+        String userid = "";
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("userid")){
+                userid = cookie.getValue();
+            }
+        }
+        return userid;
+//        //String userid = map.get("userid");
+//        String description = map.get("description");
+//        topicService.addTopic(topic,userid,description);
     }
 
     @RequestMapping("/acceptTopic")
@@ -38,8 +50,14 @@ public class StartTitleController {
     }
 
     @RequestMapping("/showTeacherTopic")
-    public List<Map<String,Object>> showTeacherTopic(@RequestBody Map<String,String> map){
-        String userid = map.get("userid");
+    public List<Map<String,Object>> showTeacherTopic(HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        String userid = "";
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("userid")){
+                userid = cookie.getValue();
+            }
+        }
         List<Topic> list = topicService.findTopicByTeacher(userid);
         int length = list.size();
         List<Map<String,Object>> newlist = new ArrayList<>();
@@ -57,7 +75,7 @@ public class StartTitleController {
 
     @RequestMapping("/showAllTopic")
     public List<Map<String,Object>> showAllTopic(){
-        List<Topic> list = topicService.findByState0();
+        List<Topic> list = topicService.findAllTopic();
         int length = list.size();
         List<Map<String,Object>> newlist = new ArrayList<>();
         for(int i=0;i<length;i++){
@@ -71,6 +89,4 @@ public class StartTitleController {
         }
         return newlist;
     }
-
-
 }

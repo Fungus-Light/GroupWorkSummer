@@ -1,15 +1,16 @@
 function addTopic(){
+
+    console.log("------------")
     var title=$("#mission-name").val().toString();
     var content=$("#mission-brief").val().toString();
     console.log(title);
-    
-
     if (title != null && content != null) {
         axios.post('/addTopic', {
-            title: title,
+            topic: title,
             description:content
         }).then(response => {
-            window.reload();
+            // window.reload();
+            console.log(response.data)
         })
     }
 }
@@ -20,10 +21,10 @@ function editTopic(){
 
     if (title != null && content != null) {
         axios.post('/addTopic', {
-            title: title,
+            topic: title,
             description:content
         }).then(response => {
-            window.reload();
+            //window.reload();
         })
     }
 }
@@ -39,7 +40,7 @@ function updataInfo(){
             tel: phone,
             password:pass
         }).then(response => {
-            window.reload();
+            //window.reload();
         })
     }
 
