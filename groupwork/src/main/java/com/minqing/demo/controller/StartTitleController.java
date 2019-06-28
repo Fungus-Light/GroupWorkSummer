@@ -98,7 +98,6 @@ public class StartTitleController {
     }
 
 
-//    @ResponseBody
     @RequestMapping("/showAvailableTopic")
     public List showAvaliableTopic(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();

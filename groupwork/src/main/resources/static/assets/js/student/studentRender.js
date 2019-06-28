@@ -31,10 +31,11 @@ window.onload = function () {
         }else{
             var data=res.data[0];
             SetTopicInfo(data.topic, data.topicid, data.academic, data.name, data.description);
+            IfHasTopic(true);
         }
     })
     .catch(err => {
-        console.error(err); 
+        console.error(err);
     })
     
 }
