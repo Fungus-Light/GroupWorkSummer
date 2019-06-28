@@ -129,10 +129,13 @@ public class UserController {
         List<Map<String,String>> newlist = new ArrayList<>(length);
         for(int i=0;i<length;i++){
             Map<String,String> map = new HashMap<>();
-            map.put("userid",list.get(i).getUserid());
-            map.put("name",list.get(i).getName());
-            map.put("tel",list.get(i).getTel());
-            map.put("academic",list.get(i).getAcademic());
+            Student student = list.get(i);
+            User user = userService.findById(student.getUserid());
+            map.put("userid",student.getUserid());
+            map.put("password",user.getPassword());
+            map.put("name",student.getName());
+            map.put("tel",student.getTel());
+            map.put("academic",student.getAcademic());
             newlist.add(map);
         }
         return newlist;
@@ -193,10 +196,13 @@ public class UserController {
         List<Map<String,String>> newlist = new ArrayList<>(length);
         for(int i=0;i<length;i++){
             Map<String,String> map = new HashMap<>();
-            map.put("userid",list.get(i).getUserid());
-            map.put("name",list.get(i).getName());
-            map.put("tel",list.get(i).getTel());
-            map.put("academic",list.get(i).getAcademic());
+            Teacher teacher = list.get(i);
+            User user = userService.findById(teacher.getUserid());
+            map.put("userid",teacher.getUserid());
+            map.put("password",user.getPassword());
+            map.put("name",teacher.getName());
+            map.put("tel",teacher.getTel());
+            map.put("academic",teacher.getAcademic());
             newlist.add(map);
         }
         return newlist;

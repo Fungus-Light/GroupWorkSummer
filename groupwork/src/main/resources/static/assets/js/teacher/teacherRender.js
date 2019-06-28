@@ -64,18 +64,18 @@ function MakeUpTopic(_title, _id, _status) {
 
     var btnRoot = MakeUpElement("td", "", "");
     var btnGroup = MakeUpElement('div', "", "tpl-table-black-operation");
-
-    var editBtn = MakeUpElement('a', "", "");
-    editBtn.setAttribute('href', "javascript:;");
-    editBtn.setAttribute("content_data", JSON.stringify({ title: _title, id: _id, status: _status }));
-    editBtn.setAttribute('data-am-modal', "{target: '#edit-mission',closeViaDimmer: 0, width: 600, height: 460}");
-    editBtn.innerHTML = '<i class="am-icon-pencil"></i>编辑';
-    editBtn.addEventListener('click', function () {
-        SetEditTopic();
-        var _data = JSON.parse(this.getAttribute("content_data"));
-        //console.log(_data);
-        SetEditTopic(_data.title);
-    });
+    //
+    // var editBtn = MakeUpElement('a', "", "");
+    // editBtn.setAttribute('href', "javascript:;");
+    // editBtn.setAttribute("content_data", JSON.stringify({ title: _title, id: _id, status: _status }));
+    // editBtn.setAttribute('data-am-modal', "{target: '#edit-mission',closeViaDimmer: 0, width: 600, height: 460}");
+    // editBtn.innerHTML = '<i class="am-icon-pencil"></i>编辑';
+    // editBtn.addEventListener('click', function () {
+    //     SetEditTopic();
+    //     var _data = JSON.parse(this.getAttribute("content_data"));
+    //     //console.log(_data);
+    //     SetEditTopic(_data.title);
+    // });
 
     var deleteBtn = MakeUpElement('a', "", "tpl-table-black-operation-del");
     deleteBtn.setAttribute('href', "javascript:;");
@@ -86,7 +86,7 @@ function MakeUpTopic(_title, _id, _status) {
         $("#del_topic_id").val(deleteBtn.getAttribute("content_data"));
     });
 
-    btnGroup.appendChild(editBtn);
+    //btnGroup.appendChild(editBtn);
     btnGroup.appendChild(deleteBtn);
     btnRoot.appendChild(btnGroup);
     root.innerHTML = inner;
