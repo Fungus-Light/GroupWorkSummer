@@ -99,7 +99,7 @@ public class StartTitleController {
 
 
 //    @ResponseBody
-    @RequestMapping("/showAvaliableTopic")
+    @RequestMapping("/showAvailableTopic")
     public List showAvaliableTopic(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         String studentid = "";
@@ -150,7 +150,8 @@ public class StartTitleController {
             }
         }
         int topicid=(int)m.get("topicid");
-        String teacherid=(String)m.get("teacherid");
-        selectTopicService.addSelectTopic(topicid,studentid,teacherid);
+//        String teacherid=(String)m.get("teacherid");
+        Topic topic = topicService.findTopicById(topicid);
+        selectTopicService.addSelectTopic(topicid,studentid,topic.getUserid());
     }
 }
