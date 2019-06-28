@@ -56,7 +56,7 @@ function addTeacher() {
     var name = document.getElementById("teach-name").value;
     var tel = document.getElementById("teach-contact").value;
     if ((userid != null && password != null && name != null && tel != null) &&
-     (userid.toString().length > 2 && password.length > 2)) {
+        (userid.toString().length > 2 && password.length > 2)) {
         axios.post('/addTeacher', {
             userid: userid,
             password: password,
@@ -154,3 +154,16 @@ function deleteStudent() {
         });
     })
 }
+
+//Upload File
+
+$("#upload-teach").click(function () {
+    var inputObj = document.createElement('input')
+    inputObj.setAttribute('id', '_ef');
+    inputObj.setAttribute('type', 'file');
+    inputObj.setAttribute("style", 'visibility:hidden');
+    document.body.appendChild(inputObj);
+    inputObj.click();
+    console.log(inputObj.value);
+    
+});
