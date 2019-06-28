@@ -1,4 +1,4 @@
-function updateStudentInfo(){
+function updateStuInfo(){
     var id=$("#user-id").val();
     var password=$("#user-password").val();
     var academic=$("#user-school").val();
@@ -6,7 +6,7 @@ function updateStudentInfo(){
     var name=$("#user-name").val();
 
     if(password!=null&&tel!=null){
-        axios.post('editStudent',{
+        axios.post('/editStudent',{
             userid:id,
             password:password,
             academic:academic,
