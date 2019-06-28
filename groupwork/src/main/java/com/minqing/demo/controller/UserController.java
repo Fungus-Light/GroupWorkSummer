@@ -41,7 +41,7 @@ public class UserController {
         String password = map.get("password");
         int number = userService.login(userid,password);
         if(number >=3){
-
+            response.addCookie(new Cookie("userid",userid));
         }
         return number;
     }

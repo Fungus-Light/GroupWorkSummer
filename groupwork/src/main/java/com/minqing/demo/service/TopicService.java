@@ -37,8 +37,5 @@ public class TopicService {
         return topicRepository.findAll();
     }
 
-    public List findAllAvaliableTopic(){
-        return topicRepository.findByState(1);
-    }
 
 }

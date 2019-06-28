@@ -95,25 +95,6 @@ public class StartTitleController {
         }
         return newlist;
     }
-    @ResponseBody
-    @RequestMapping("/showAvaliableTopic")
-    public List showAvaliableTopic()
-    {
-        return topicService.findAllAvaliableTopic();
-    }
 
-    public void selectTopic(@RequestBody Map<String,Object> m,HttpServletRequest request)
-    {
-        Cookie[] cookies = request.getCookies();
-        String studentid = "";
-        for(Cookie cookie:cookies){
-            if(cookie.getName().equals("userid")){
-                studentid = cookie.getValue();
-            }
-        }
-        int topicid=(int)m.get("topicid");
-        String teacherid=(String)m.get("teacherid");
-        selectTopicService.addSelectTopic(topicid,studentid,teacherid);
-        studentService.setHasTopic(studentid);
-    }
+
 }
