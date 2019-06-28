@@ -14,4 +14,12 @@ public class SelectTopicService {
         selectTopic.setTeacherid(teacherid);
         selectTopicRepository.save(selectTopic);
     }
+
+    public boolean hasSelected(String studentid){
+        return selectTopicRepository.findById(studentid).isPresent();
+    }
+
+    public SelectTopic findSelectTopicByStudentId(String studentid){
+        return selectTopicRepository.findById(studentid).get();
+    }
 }

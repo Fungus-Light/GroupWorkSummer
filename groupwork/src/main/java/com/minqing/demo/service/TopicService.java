@@ -1,7 +1,5 @@
 package com.minqing.demo.service;
 
-import com.minqing.demo.entity.SelectTopic;
-import com.minqing.demo.entity.SelectTopicRepository;
 import com.minqing.demo.entity.Topic;
 import com.minqing.demo.entity.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +35,12 @@ public class TopicService {
         return topicRepository.findAll();
     }
 
-    public List findAllAvaliableTopic(){
+    public List<Topic> findAllAvaliableTopic(){
         return topicRepository.findByState(1);
+    }
+
+    public Topic findTopicById(int topicid){
+        return topicRepository.findById(topicid).get();
     }
 
 }
