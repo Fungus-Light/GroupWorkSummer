@@ -27,10 +27,11 @@ window.onload = function () {
     .then(res => {
         if(res.data.length>1){
             IfHasTopic(false);
+        Refresh(res.data);
 
         }else{
             var data=res.data[0];
-            SetTopicInfo(data.topic, data.topicid, data.academic, data.name, data.description);
+            SetTopicInfo(data.topic, data.topicid,data.academic, data.name, data.description);
             IfHasTopic(true);
         }
     })
@@ -54,10 +55,10 @@ function SetShowTopicBar(data){
 }
 
 function SetTopicInfo(name, id, school, teacher, content) {
-    $('#topic-name').val(name);
-    $('#topic-id').val(id);
-    $('#topic-school').val(school);
-    $('#topic-teach').val(teacher);
+    $('#topic-name').text(name);
+    $('#topic-id').text(id);
+    $('#topic-school').text(school);
+    $('#topic-teach').text(teacher);
     $('#topic-content').attr("topic_data",JSON.stringify({
         name:name,
         content:content

@@ -33,7 +33,7 @@ function IfHasTopic(has) {
 }
 
 $("#topic-content").click(function () {
-    var data = addbtn.getAttribute("topic_data");
+    var data = document.getElementById("topic-content").getAttribute('topic_data')
     SetShowTopicBar(JSON.parse(data));
 });
 // $('.topic-more').click(function(){
@@ -50,11 +50,12 @@ function ChooseTopic() {
     //var name = $('#topic-choose-name').val();
     var id = $('#topic-choose-id').val();
 
+
     console.log(id);
 
     if(id!=null){
         axios.post('/selectTopic',{
-            topicid:id
+            topicid:parseInt(id)
         })
         .then(res => {
             window.location.reload();

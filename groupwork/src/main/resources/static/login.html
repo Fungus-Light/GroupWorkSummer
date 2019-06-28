@@ -97,7 +97,7 @@
                 userid:userid,
                 password:password
             }).then( response => {
-                if(response.data === 3){
+                if(response.data === 3 || response.data === 4){
                 window.location.href = 'index.html';
             }
 
