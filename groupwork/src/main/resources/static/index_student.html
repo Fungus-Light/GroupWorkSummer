@@ -250,7 +250,7 @@
                     <ul class="sidebar-nav sidebar-nav-sub">
                         <li class="sidebar-nav-link nvl">
                             <a href="javascript:;">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 开题答辩分组
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 查看答辩分组
                             </a>
                         </li>
 
@@ -508,7 +508,7 @@
                                     <div class="am-form-group">
                                         <label for="user-id" class="am-u-sm-3 am-form-label">用户ID</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" class="tpl-form-input" id="user-id" minlength="3"
+                                            <input disabled type="text" class="tpl-form-input" id="user-id" minlength="3"
                                                 maxlength="20" required>
                                             
                                         </div>
@@ -527,14 +527,9 @@
                                     <div class="am-form-group">
                                         <label for="user-school" class="am-u-sm-3 am-form-label">学院</label>
                                         <div class="am-u-sm-9">
-                                            <select id="user-school" disabled data-am-selected="{searchBox: 1}" style="display: none;">
-                                                <option value="CS">计算机学院</option>
-                                                <option value="MATH">数学学院</option>
-                                                <option value="ForeignLan">外国语学院</option>
-                                                <option value="Software">软件学院</option>
-                                                <option value="Physics">物理学院</option>
-                                                <option value="Food">轻纺与食品学院</option>
-                                            </select>
+                                            <div class="am-u-sm-9">
+                                                <input disabled id="user-school" type="text">
+                                            </div>
 
                                         </div>
                                     </div>
@@ -564,7 +559,7 @@
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-3 am-form-label">真实姓名 </label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" id="user-name">
+                                            <input disabled type="text" id="user-name">
                                         </div>
                                     </div>
 
@@ -595,7 +590,20 @@
 
     <!--弹出页面-->
     <!--------------------------------------------------------------------------------->
-
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="del-topic">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">注意！！！！
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd">
+                你无法直接删除你的题目
+            </div>
+            <div class="am-modal-bd">
+                请联系你的管理员进行操作
+            </div>
+            
+        </div>
+    </div>
     <!--------------------------------------------------------------------------------->
 
     <!--------------------------------------------------------------------------------->
