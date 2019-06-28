@@ -32,4 +32,6 @@ public class StudentService {
     public Student findStudent(String userid){
         return studentRepository.findById(userid).get();
     }
+
+    public void setHasTopic(String studentid){studentRepository.SetStudentHastopic(studentid);}
 }
