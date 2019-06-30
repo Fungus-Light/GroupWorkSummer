@@ -160,7 +160,7 @@ function MakeUpTeach(_name,_pass,_id,_contact,_school) {
     editBtn.addEventListener('click',function(){
         console.log("edit");
         //CleanAdminEdit();
-        var _data=JSON.parse(this.getAttribute("content_data"));
+        var _data=JSON.parse(editBtn.getAttribute("content_data"));
         console.log(_data);
         SetEditTeach(_data.name,_data.pass,_data.id,_data.tel,_data.school);
     });
