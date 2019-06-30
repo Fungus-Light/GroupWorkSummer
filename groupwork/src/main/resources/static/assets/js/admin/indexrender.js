@@ -234,3 +234,49 @@ function MakeUpStud(_name,_pass,_id,_contact,_school) {
     temp.appendChild(btnRoot);
     return temp;
 }
+
+function MakeUpTopic(_name,_id,_school,_teach,_content) {
+    var temp=MakeUpElement("tr","","gradeX");
+    
+    var name=MakeUpElement('td',_name,"");
+    var id=MakeUpElement('td',_id,"");
+    var school=MakeUpElement('td',_school,"");
+    var contact=MakeUpElement('td',_teach,"");
+    var btnRoot=MakeUpElement('td',"","");
+    var btnFather=MakeUpElement('div',"","tpl-table-black-operation");
+    var editBtn=MakeUpElement("a","详情  ","");
+    editBtn.setAttribute('href',"javascript:;");
+    editBtn.setAttribute("content_data",JSON.stringify({name:_name,id:_id,school:_school,teach:_teach,content:_content}));
+    //data-am-modal="{target: '#add-admin',closeViaDimmer: 0, width: 600, height: 500}"
+    editBtn.setAttribute('data-am-modal',"{target: '#edit-teach',closeViaDimmer: 0, width: 600, height: 600}");
+    editBtn.addEventListener('click',function(){
+        console.log("edit");
+        //CleanAdminEdit();
+        var _data=JSON.parse(editBtn.getAttribute("content_data"));
+        console.log(_data);
+        //SetEditTeach(_data.name,_data.pass,_data.id,_data.tel,_data.school);
+    });
+    var deleteBtn=MakeUpElement('a',"评阅  ","tpl-table-black-operation-del");
+    deleteBtn.setAttribute('href',"javascript:;");
+    deleteBtn.setAttribute('data-am-modal',"{target: '#del-teach', closeViaDimmer: 0, width: 400, height: 225}");
+    deleteBtn.setAttribute("data-content",_id);
+    deleteBtn.addEventListener('click',function(){
+        document.getElementById("del_teach_id").placeholder=deleteBtn.getAttribute("data-content");
+        document.getElementById("del_teach_id").value=deleteBtn.getAttribute("data-content");
+    });
+    var editIcon=MakeUpElement('i','',"am-icon-pencil");
+    var deleteIcon=MakeUpElement('i','',"am-icon-trash");
+    editBtn.appendChild(editIcon);
+    deleteBtn.appendChild(deleteIcon);
+    //editBtn.appendChild(document.createTextNode(""));
+    btnFather.appendChild(editBtn);
+    //deleteBtn.appendChild(document.createTextNode(" 删除\n     "));
+    btnFather.appendChild(deleteBtn);
+    btnRoot.appendChild(btnFather);
+    temp.appendChild(name);
+    temp.appendChild(id);
+    temp.appendChild(school);
+    temp.appendChild(contact);
+    temp.appendChild(btnRoot);
+    return temp;
+}
