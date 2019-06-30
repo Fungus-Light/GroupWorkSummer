@@ -6,15 +6,7 @@ import javax.persistence.Id;
 @Entity
 public class Period {
     @Id
-    private int segid;
-
-    public int getSegid() {
-        return segid;
-    }
-
-    public void setSegid(int segid) {
-        this.segid = segid;
-    }
+    private int status;
 
     public int getStatus() {
         return status;
@@ -24,6 +16,13 @@ public class Period {
         this.status = status;
     }
 
-    private int status;
+/*
+    status值：
+    0代表未开始
+    1代表开题
+    2代表开题答辩
+    3代表毕业答辩
+    4代表结束
+ */
 
 }
