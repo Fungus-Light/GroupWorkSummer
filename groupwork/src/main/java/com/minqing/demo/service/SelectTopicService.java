@@ -6,13 +6,20 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SelectTopicService {
-    SelectTopicRepository selectTopicRepository;
-    public void addSelectTopic(Integer topicid,String studentid,String teacherid)
-    {
+    private SelectTopicRepository selectTopicRepository;
+    public void addSelectTopic(Integer topicid,String studentid,String teacherid) {
         SelectTopic selectTopic=new SelectTopic();
         selectTopic.setTopicid(topicid);
         selectTopic.setStudentid(studentid);
         selectTopic.setTeacherid(teacherid);
         selectTopicRepository.save(selectTopic);
+    }
+
+    public boolean hasSelected(String studentid){
+        return selectTopicRepository.findById(studentid).isPresent();
+    }
+
+    public SelectTopic findSelectTopicByStudentId(String studentid){
+        return selectTopicRepository.findById(studentid).get();
     }
 }

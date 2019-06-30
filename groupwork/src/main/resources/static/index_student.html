@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="assets/css/amazeui.css" />
     <link rel="stylesheet" href="assets/css/amazeui.datatables.min.css" />
     <link rel="stylesheet" href="assets/css/app.css">
-    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/Util/jquery.min.js"></script>
     <script src="./assets/js/node_modules/_axios@0.19.0@axios/dist/axios.min.js"></script>
 </head>
 
@@ -215,10 +215,23 @@
                     </a>
                 </li>
 
-                <li class="sidebar-nav-link nvl" call="mission-info">
-                    <a href="javascript:;">
-                        <i class="am-icon-tasks sidebar-nav-link-logo"></i> 项目信息
+                <li class="sidebar-nav-link">
+                    <a href="javascript:;" class="sidebar-nav-sub-title">
+                        <i class="am-icon-tasks sidebar-nav-link-logo"></i> 项目管理
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                     </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link nvl" call="mission-select">
+                            <a href="javascript:;">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 项目选题
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-link nvl" call=mission-info>
+                            <a href="javascript:;">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 项目信息
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
 
@@ -237,7 +250,7 @@
                     <ul class="sidebar-nav sidebar-nav-sub">
                         <li class="sidebar-nav-link nvl">
                             <a href="javascript:;">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 开题答辩分组
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 查看答辩分组
                             </a>
                         </li>
 
@@ -291,7 +304,7 @@
         <div class="tpl-content-wrapper">
             <div>
                 <!-- 首页内容 -->
-                <div class="row-content am-cf rbd" style="" callid="first">
+                <div class="row-content am-cf rbd" callid="first">
                     <div class="row  am-cf">
                         <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                             <div class="widget am-cf">
@@ -326,13 +339,14 @@
                         </div>
                     </div>
                 </div>
-                <!--项目信息-->
-                <div class="row-content am-cf rbd" style="display: none;" callid="mission-info">
+
+                <!--项目选题-->
+                <div class="row-content am-cf rbd" style="display: none;" callid="mission-select">
                     <div class="row">
                         <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                             <div class="widget am-cf">
                                 <div class="widget-head am-cf">
-                                    <div class="widget-title  am-cf">项目信息</div>
+                                    <div class="widget-title  am-cf">项目选题</div>
                                 </div>
 
                                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
@@ -344,6 +358,113 @@
                                                 type="button"></button>
                                         </span>
                                     </div>
+                                </div>
+
+                                <div class="am-u-sm-12">
+                                    <table width="100%"
+                                        class="am-table am-table-compact am-table-striped tpl-table-black "
+                                        id="example-r">
+                                        <thead>
+                                            <tr>
+                                                <th>项目名</th>
+                                                <th>项目ID</th>
+                                                <th>学院</th>
+                                                <th>指导教师</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="Mission_List_Render">
+                                            <tr>
+                                                <td>大型购物商城</td>
+                                                <td>Tp1100</td>
+                                                <td>计算机学院</td>
+                                                <td>章一迷</td>
+                                                <td>
+                                                    <div class="am-btn-group am-btn-group-xs">
+                                                        <button type="button"
+                                                            class="am-btn am-btn-default am-btn-secondary"
+                                                            data-am-modal="{target: '#add-teach',closeViaDimmer: 0, width: 300, height: 300}"><span
+                                                                class="am-icon-anchor"></span> 详情</button>
+                                                        <button id="add-teach-test" type="button"
+                                                            class="am-btn am-btn-default am-btn-success"><span
+                                                                class="am-icon-archive"></span> 新增</button>
+
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                            <!-- more data -->
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="am-u-lg-12 am-cf">
+
+                                    <div class="am-fr">
+                                        <ul class="am-pagination tpl-pagination">
+                                            <li class="am-disabled"><a href="#">«</a></li>
+                                            <li class="am-active"><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li><a href="#">»</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                            <div class="widget am-cf">
+                                <div class="widget-head am-cf">
+                                    <div class="widget-title  am-cf">选题结果</div>
+                                </div>
+                                <div class="am-u-sm-12">
+                                    <table width="100%"
+                                        class="am-table am-table-compact am-table-striped tpl-table-black "
+                                        id="example-r">
+                                        <thead>
+                                            <tr>
+                                                <th>项目名</th>
+                                                <th>项目ID</th>
+                                                <th>学院</th>
+                                                <th>指导教师</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="Choose_Mission_Render">
+                                            <tr>
+                                                <td>大型购物商城</td>
+                                                <td>Tp1100</td>
+                                                <td>计算机学院</td>
+                                                <td>章一迷</td>
+                                                <td>
+                                                    <div class="am-btn-group am-btn-group-xs">
+                                                        <button type="button"
+                                                            class="am-btn am-btn-default am-btn-secondary"
+                                                            data-am-modal="{target: '#add-teach',closeViaDimmer: 0, width: 300, height: 300}"><span
+                                                                class="am-icon-anchor"></span> 详情</button>
+                                                        <button id="add-teach-test" type="button"
+                                                            class="am-btn am-btn-default am-btn-danger"><span
+                                                                class="am-icon-trash"></span> 删除</button>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <!-- more data -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--项目信息-->
+                <div class="row-content am-cf rbd" style="display: none;" callid="mission-info">
+                    <div class="row">
+                        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                            <div class="widget am-cf">
+                                <div class="widget-head am-cf">
+                                    <div class="widget-title  am-cf">项目信息</div>
                                 </div>
 
                                 <!--项目信息列表没想好怎么做，模版自带的那几个界面都不太适合表示这种信息，
@@ -366,18 +487,6 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="am-u-lg-12 am-cf">
-
-                                    <div class="am-fr">
-                                        <ul class="am-pagination tpl-pagination">
-                                            <li class="am-disabled"><a href="#">«</a></li>
-                                            <li class="am-active"><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">»</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -397,61 +506,43 @@
                             <div class="widget-body am-fr">
                                 <form class="am-form tpl-form-line-form">
                                     <div class="am-form-group">
-                                        <label for="user-name" class="am-u-sm-3 am-form-label">用户名 <span
-                                                class="tpl-form-line-small-title">NickName</span></label>
+                                        <label for="user-id" class="am-u-sm-3 am-form-label">用户ID</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" class="tpl-form-input" id="user-name" minlength="3"
+                                            <input disabled type="text" class="tpl-form-input" id="user-id" minlength="3"
                                                 maxlength="20" required>
-                                            <small>请输入昵称5-20字左右。</small>
+                                            
                                         </div>
                                     </div>
 
                                     <div class="am-form-group">
-                                        <label for="e-teach-pass" class="am-u-sm-3 am-form-label">密码 <span
-                                                class="tpl-form-line-small-title">Password</span></label>
+                                        <label for="user-password" class="am-u-sm-3 am-form-label">密码 </label>
                                         <div class="am-u-sm-9">
-                                            <input type="password" class="tpl-form-input" minlength="3" maxlength="20"
+                                            <input id="user-password" type="password" class="tpl-form-input" minlength="3" maxlength="20"
                                                 required>
-                                            <small>请输入密码3-20字左右。</small>
+                                            
                                         </div>
                                     </div>
 
+
                                     <div class="am-form-group">
-                                        <label for="user-email" class="am-u-sm-3 am-form-label">学号<span
-                                                class="tpl-form-line-small-title">ID</span></label>
+                                        <label for="user-school" class="am-u-sm-3 am-form-label">学院</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" class="am-form-field tpl-form-no-bg" required>
-                                            <small>学号为必填</small>
+                                            <div class="am-u-sm-9">
+                                                <input disabled id="user-school" type="text">
+                                            </div>
+
                                         </div>
                                     </div>
 
                                     <div class="am-form-group">
-                                        <label for="user-phone" class="am-u-sm-3 am-form-label">学院 <span
-                                                class="tpl-form-line-small-title">College</span></label>
+                                        <label class="am-u-sm-3 am-form-label">联系电话 </label>
                                         <div class="am-u-sm-9">
-                                            <select data-am-selected="{searchBox: 1}" style="display: none;">
-                                                <option value="CS">计算机学院</option>
-                                                <option value="MATH">数学学院</option>
-                                                <option value="ForeignLan">外国语学院</option>
-                                                <option value="Software">软件学院</option>
-                                                <option value="Physics">物理学院</option>
-                                                <option value="Food">轻纺与食品学院</option>
-                                            </select>
-
+                                            <input id="user-tel" type="text">
                                         </div>
                                     </div>
 
                                     <div class="am-form-group">
-                                        <label class="am-u-sm-3 am-form-label">联系电话 <span
-                                                class="tpl-form-line-small-title">Phone Number</span></label>
-                                        <div class="am-u-sm-9">
-                                            <input type="text">
-                                        </div>
-                                    </div>
-
-                                    <div class="am-form-group">
-                                        <label for="user-weibo" class="am-u-sm-3 am-form-label">个人照片 <span
-                                                class="tpl-form-line-small-title">Images</span></label>
+                                        <label for="user-weibo" class="am-u-sm-3 am-form-label">个人照片 </label>
                                         <div class="am-u-sm-9">
                                             <div class="am-form-group am-form-file">
                                                 <div class="tpl-form-file-img">
@@ -466,30 +557,12 @@
                                     </div>
 
                                     <div class="am-form-group">
-                                        <label for="user-weibo" class="am-u-sm-3 am-form-label">真实姓名 <span
-                                                class="tpl-form-line-small-title">RealName</span></label>
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">真实姓名 </label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" id="user-weibo">
-                                            <div>
-
-                                            </div>
+                                            <input disabled type="text" id="user-name">
                                         </div>
                                     </div>
 
-                                    <div class="am-form-group">
-                                        <label for="user-intro" class="am-u-sm-3 am-form-label">隐藏姓名</label>
-                                        <div class="am-u-sm-9">
-                                            <div class="tpl-switch">
-                                                <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn"
-                                                    checked="">
-                                                <div class="tpl-switch-btn-view">
-                                                    <div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
 
                                     <div class="am-form-group">
                                         <label for="user-intro" class="am-u-sm-3 am-form-label">备注</label>
@@ -501,7 +574,7 @@
                                     <div class="am-form-group">
                                         <div class="am-u-sm-9 am-u-sm-push-3">
                                             <button type="button"
-                                                class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                                                class="am-btn am-btn-primary tpl-btn-bg-color-success " onclick="updateStuInfo()">提交</button>
                                         </div>
                                     </div>
 
@@ -517,18 +590,30 @@
 
     <!--弹出页面-->
     <!--------------------------------------------------------------------------------->
-
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="del-topic">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">注意！！！！
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd">
+                你无法直接删除你的题目
+            </div>
+            <div class="am-modal-bd">
+                请联系你的管理员进行操作
+            </div>
+            
+        </div>
+    </div>
     <!--------------------------------------------------------------------------------->
 
     <!--------------------------------------------------------------------------------->
-    <script src="assets/js/amazeui.min.js"></script>
-    <script src="assets/js/amazeui.datatables.min.js"></script>
-    <script src="assets/js/dataTables.responsive.min.js"></script>
+    <script src="assets/js/Util/amazeui.min.js"></script>
+    <script src="assets/js/Util/amazeui.datatables.min.js"></script>
+    <script src="assets/js/Util/dataTables.responsive.min.js"></script>
     <script src="assets/js/app.js"></script>
-    <script src="assets/js/indexlogic.js"></script>
-    <script src="assets/js/indexrender.js"></script>
+    <script src="assets/js/student/studentRender.js"></script>
+    <script src="assets/js/student/studentLogic.js"></script>
 
-    <script src="assets/js/test.js"></script>
 </body>
 
 </html>

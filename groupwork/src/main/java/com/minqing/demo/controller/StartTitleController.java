@@ -1,14 +1,14 @@
 package com.minqing.demo.controller;
 
+import com.minqing.demo.entity.SelectTopic;
+import com.minqing.demo.entity.Teacher;
 import com.minqing.demo.entity.Topic;
 import com.minqing.demo.service.SelectTopicService;
-import com.minqing.demo.service.StudentService;
+import com.minqing.demo.service.TeacherService;
 import com.minqing.demo.service.TopicService;
-import com.minqing.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Cookie;
@@ -25,7 +25,8 @@ public class StartTitleController {
     @Autowired
     private SelectTopicService selectTopicService;
     @Autowired
-    private StudentService studentService;
+    private TeacherService teacherService;
+
 
 
     @RequestMapping("/addTopic")
@@ -97,4 +98,59 @@ public class StartTitleController {
     }
 
 
+//    @ResponseBody
+    @RequestMapping("/showAvaliableTopic")
+    public List showAvaliableTopic(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        String studentid = "";
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("userid")){
+                studentid = cookie.getValue();
+            }
+        }
+        List<Map<String,Object>> list = new ArrayList<>();
+        if(selectTopicService.hasSelected(studentid)){
+            SelectTopic selectTopic = selectTopicService.findSelectTopicByStudentId(studentid);
+            Teacher teacher = teacherService.findTeacher(selectTopic.getTeacherid());
+            Topic topic = topicService.findTopicById(selectTopic.getTopicid());
+            Map<String,Object> map = new HashMap<>();
+            map.put("topic",topic.getTopic());
+            map.put("topicid",topic.getTopicid());
+            map.put("description",topic.getDescription());
+            map.put("academic",teacher.getAcademic());
+            map.put("name",teacher.getName());
+            list.add(map);
+        }
+        else{
+            List<Topic> newlist = topicService.findAllAvaliableTopic();
+            int length = newlist.size();
+            for(int i=0;i<length;i++){
+                Map<String,Object> map = new HashMap<>();
+                Topic topic = newlist.get(i);
+                Teacher teacher = teacherService.findTeacher(newlist.get(i).getUserid());
+                map.put("topic",topic.getTopic());
+                map.put("topicid",topic.getTopicid());
+                map.put("description",topic.getDescription());
+                map.put("academic",teacher.getAcademic());
+                map.put("name",teacher.getName());
+                list.add(map);
+            }
+        }
+        return list;
+    }
+
+    @RequestMapping("/selectTopic")
+    public void selectTopic(@RequestBody Map<String,Object> m,HttpServletRequest request)
+    {
+        Cookie[] cookies = request.getCookies();
+        String studentid = "";
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("userid")){
+                studentid = cookie.getValue();
+            }
+        }
+        int topicid=(int)m.get("topicid");
+        String teacherid=(String)m.get("teacherid");
+        selectTopicService.addSelectTopic(topicid,studentid,teacherid);
+    }
 }
