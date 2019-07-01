@@ -210,3 +210,20 @@ function refuseTopic(){
         console.error(err); 
     })
 }
+
+//status manager
+
+$(".state-btn").click(function(){
+
+    var code=$(this).attr("statecode");
+    axios.post("/setPeriod",{
+        segid:code
+    })
+    .then(res => {
+        console.log(res);
+        window.location.reload();
+    })
+    .catch(err => {
+        console.error(err); 
+    })
+});
