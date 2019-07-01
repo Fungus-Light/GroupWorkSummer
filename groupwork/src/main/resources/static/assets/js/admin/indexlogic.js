@@ -192,7 +192,7 @@ $("#upload-teach").click(function () {
                         })
                     }
                 }
-
+                window.location.reload();
             })
         };
         reader.onerror = function (event) {
@@ -225,6 +225,20 @@ $("#upload-student").click(function () {
                 var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
                 if (XL_row_object.length > 0) {
                     console.log(JSON.stringify(XL_row_object));
+                    for(var i=0;i<XL_row_object.length;i++){
+                        var temp=XL_row_object[i];
+                        axios.post('/addStudent', {
+                            userid: temp.id,
+                            password: "123456",
+                            name: temp.name,
+                            tel: temp.tel,
+                            academic: temp.academic
+                        }).then(response => {
+                            console.log("finish"+i.toString());
+                        })
+                    }
+
+                    window.location.reload();
                     
                 }
 
