@@ -3,10 +3,7 @@ package com.minqing.demo.controller;
 import com.minqing.demo.entity.SelectTopic;
 import com.minqing.demo.entity.Teacher;
 import com.minqing.demo.entity.Topic;
-import com.minqing.demo.service.SelectTopicService;
-import com.minqing.demo.service.StudentService;
-import com.minqing.demo.service.TeacherService;
-import com.minqing.demo.service.TopicService;
+import com.minqing.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +26,8 @@ public class StartTitleController {
     private TeacherService teacherService;
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private ManagerService managerService;
 
 
 //教师用来出题
@@ -85,9 +84,9 @@ public class StartTitleController {
         return newlist;
     }
 
-//次级管理员只能看见对应学院的题目进行审核，学生只能看见对应学院的题目进行选取
-    @RequestMapping("/showAcademicTopic")
-    public List showAcademicTopic(HttpServletRequest request)
+//次学生只能看见对应学院的题目进行选取
+    @RequestMapping("/showAcademicTopicStudent")
+    public List<Map<String,Object>> showAcademicTopicStudent(HttpServletRequest request)
     {
         Cookie[] cookies = request.getCookies();
         String userid = "";
@@ -97,10 +96,51 @@ public class StartTitleController {
             }
         }
        String academic= studentService.findAcademic(userid);
-        List<Topic> t=topicService.findAllTopicByAcademic(academic);
-        return t;
+        List<Topic> list=topicService.findAllTopicByAcademic(academic);
+        int length=list.size();
+        List<Map<String,Object>> newlist = new ArrayList<>();
+        for(int i=0;i<length;i++){
+            Map<String,Object> map = new HashMap<>();
+            map.put("topicid",list.get(i).getTopicid());
+            map.put("topic",list.get(i).getTopic());
+            map.put("userid",list.get(i).getUserid());
+            map.put("state",list.get(i).getState());
+            map.put("description",list.get(i).getDescription());
+            newlist.add(map);
+        }
+        return newlist;
 
     }
+
+    @RequestMapping("/showAcademicTopicManager")
+    public List<Map<String,Object>> showAcademicTopicManager(HttpServletRequest request,@RequestBody Map<String,String> map1)
+    {
+//        Cookie[] cookies = request.getCookies();
+//        String userid = "";
+//        for(Cookie cookie:cookies){
+//            if(cookie.getName().equals("userid")){
+//                userid = cookie.getValue();
+//            }
+//        }
+        String userid = map1.get("userid");
+        String academic= managerService.findAcademic(userid);
+        List<Topic> list=topicService.findAllTopicByAcademic(academic);
+        int length=list.size();
+        List<Map<String,Object>> newlist = new ArrayList<>();
+        for(int i=0;i<length;i++){
+            Map<String,Object> map = new HashMap<>();
+            map.put("topicid",list.get(i).getTopicid());
+            map.put("topic",list.get(i).getTopic());
+            map.put("userid",list.get(i).getUserid());
+            map.put("state",list.get(i).getState());
+            map.put("description",list.get(i).getDescription());
+            newlist.add(map);
+        }
+        return newlist;
+
+    }
+
+
 //超管可以看见全部的题目并且审核
     @RequestMapping("/showAllTopic")
     public List<Map<String,Object>> showAllTopic(){

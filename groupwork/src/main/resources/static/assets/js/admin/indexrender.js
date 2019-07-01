@@ -31,13 +31,13 @@ function initPages() {
     });
 
     //init the topic review pages
-    axios.post('/showAcademicTopic')
-        .then(res => {
-            RefreshTopic(res.data);
-        })
-        .catch(err => {
-            console.error(err);
-        })
+    axios.post('/showAcademicTopicManager')
+    .then(res => {
+        RefreshTopic(res.data);
+    })
+    .catch(err => {
+        console.error(err); 
+    })
     //
     axios.post('/showPeriod')
         .then(res => {
@@ -55,7 +55,7 @@ window.onload = function () {
 function RefreshAdiminlist(adminarray) {
     ClearRenderer(Admin_List_Render);
     for (var i = 0; i < adminarray.length; i++) {
-        AttachChildren(Admin_List_Render, MakeUpAdmin(adminarray[i].name, adminarray[i].password, adminarray[i].userid, adminarray[i].tel));
+        AttachChildren(Admin_List_Render, MakeUpAdmin(adminarray[i].name, adminarray[i].password, adminarray[i].userid, adminarray[i].tel,adminarray[i].academic));
     }
 }
 
