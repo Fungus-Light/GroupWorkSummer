@@ -16,7 +16,7 @@ public class UserService {
     @Autowired
     private TeacherRepository teacherRepository;
     @Autowired
-    private StudentRepository 
+    private StudentRepository studentRepository;
 
     public int login(String userid,String password){
         Optional optional = userRepository.findById(userid);
@@ -59,15 +59,15 @@ public class UserService {
         return userRepository.findById(userid).get();
     }
 
-    public boolean isUseridMatchTel(String userid,String tel,int title){
-        if(title == 1){
-
-        }
-        else if(title == 2){
-
-        }
-        else{
-
-        }
-    }
+//    public boolean isUseridMatchTel(String userid,String tel,int title){
+//        if(title == 1){
+//            managerRepository.findById("userid")
+//        }
+//        else if(title == 2){
+//
+//        }
+//        else{
+//
+//        }
+//    }
 }
