@@ -60,7 +60,7 @@ public class UserController {
         String password = map.get("password");
         String name = map.get("name");
         String tel = map.get("tel");
-        String academic=map.get("academic");
+        String academic = map.get("academic");
         userService.addUser(userid,password,1);
         managerService.addManager(userid,name,tel,academic);
     }
@@ -87,7 +87,7 @@ public class UserController {
         String password = map.get("password");
         String name = map.get("name");
         String tel = map.get("tel");
-        String academic=map.get("academic");
+        String academic = map.get("academic");
         userService.addUser(userid,password,1);
         managerService.addManager(userid,name,tel,academic);
     }

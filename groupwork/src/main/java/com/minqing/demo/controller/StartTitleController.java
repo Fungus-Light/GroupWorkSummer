@@ -113,7 +113,7 @@ public class StartTitleController {
     }
 
     @RequestMapping("/showAcademicTopicManager")
-    public List<Map<String,Object>> showAcademicTopicManager(HttpServletRequest request)
+    public List<Map<String,Object>> showAcademicTopicManager(HttpServletRequest request,@RequestBody Map<String,String> map1)
     {
 //        Cookie[] cookies = request.getCookies();
 //        String userid = "";
@@ -122,7 +122,7 @@ public class StartTitleController {
 //                userid = cookie.getValue();
 //            }
 //        }
-        String userid="2016141462126";
+        String userid = map1.get("userid");
         String academic= managerService.findAcademic(userid);
         List<Topic> list=topicService.findAllTopicByAcademic(academic);
         int length=list.size();
@@ -139,6 +139,8 @@ public class StartTitleController {
         return newlist;
 
     }
+
+
 //超管可以看见全部的题目并且审核
     @RequestMapping("/showAllTopic")
     public List<Map<String,Object>> showAllTopic(){

@@ -36,8 +36,7 @@ public class ManagerService {
         return managerRepository.findById(userid).get();
     }
 
-    public String findAcademic(String userid){
-        return managerRepository.findAcademicByid(userid);}
+    public String findAcademic(String userid){return managerRepository.findById(userid).get().getAcademic();}
 
 
 }
