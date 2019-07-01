@@ -191,7 +191,7 @@ function passTopic(){
         topicid:id
     })
     .then(res => {
-        window.location.reload;
+        window.location.reload();
     })
     .catch(err => {
         console.error(err); 
@@ -204,7 +204,7 @@ function refuseTopic(){
         topicid:id
     })
     .then(res => {
-        window.location.reload;
+        window.location.reload();
     })
     .catch(err => {
         console.error(err); 
