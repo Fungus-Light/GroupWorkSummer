@@ -101,11 +101,12 @@ function CleanAdminEdit() {
     document.getElementById("e-admin-contact").value = "";
 }
 
-function SetEditAdmin(name, pass, id, tel) {
+function SetEditAdmin(name, pass, id, tel,school) {
     document.getElementById("e-admin-id").value = id;
     document.getElementById("e-admin-pass").value = pass;
     document.getElementById("e-admin-name").value = name;
     document.getElementById("e-admin-contact").value = tel;
+    document.getElementById("e-admin-school").value = school;
 }
 
 function SetTopicContent(name, content) {
