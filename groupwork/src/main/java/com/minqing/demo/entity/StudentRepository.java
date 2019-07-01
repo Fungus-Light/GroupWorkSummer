@@ -13,7 +13,7 @@ public interface StudentRepository extends JpaRepository<Student,String> {
 //    @Modifying
 //    @Query("update Student set hastopic=1 where userid=?1")
 //    public void SetStudentHastopic(String studentid);
-    @Modifying
+
     @Query("select academic from Student where userid=?1")
     public String findAcademicByid(String userid);
 }

@@ -115,13 +115,14 @@ public class StartTitleController {
     @RequestMapping("/showAcademicTopicManager")
     public List<Map<String,Object>> showAcademicTopicManager(HttpServletRequest request)
     {
-        Cookie[] cookies = request.getCookies();
-        String userid = "";
-        for(Cookie cookie:cookies){
-            if(cookie.getName().equals("userid")){
-                userid = cookie.getValue();
-            }
-        }
+//        Cookie[] cookies = request.getCookies();
+//        String userid = "";
+//        for(Cookie cookie:cookies){
+//            if(cookie.getName().equals("userid")){
+//                userid = cookie.getValue();
+//            }
+//        }
+        String userid="2016141462126";
         String academic= managerService.findAcademic(userid);
         List<Topic> list=topicService.findAllTopicByAcademic(academic);
         int length=list.size();

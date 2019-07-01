@@ -1,4 +1,4 @@
-POST http://localhost:8080/showAvailableTopic
+POST http://localhost:8080/showAcademicTopicManager
 Content-Type: application/json
 
 {}

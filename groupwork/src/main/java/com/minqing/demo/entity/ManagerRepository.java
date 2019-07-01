@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 @RepositoryRestResource
 @Transactional
 public interface ManagerRepository extends JpaRepository<Manager,String> {
-    @Modifying
+
     @Query("select academic from Manager where userid=?1")
     public String findAcademicByid(String userid);
 }
