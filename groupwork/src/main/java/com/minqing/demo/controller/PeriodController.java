@@ -17,6 +17,7 @@ public class PeriodController {
     {
         periodService.setPeriod(m.get("segid"));
     }
+
     @RequestMapping("/showPeriod")
     public Period showPeriod(){
         return periodService.findById();
