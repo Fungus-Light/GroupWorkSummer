@@ -15,11 +15,12 @@ public class ManagerService {
     @Autowired
     private TopicRepository topicRepository;
 
-    public void addManager(String userid,String name,String tel){
+    public void addManager(String userid,String name,String tel,String academic){
         Manager manager = new Manager();
         manager.setUserid(userid);
         manager.setName(name);
         manager.setTel(tel);
+        manager.setAcademic(academic);
         managerRepository.save(manager);
     }
 
@@ -34,7 +35,5 @@ public class ManagerService {
     public Manager findManager(String userid){
         return managerRepository.findById(userid).get();
     }
-
-
 
 }

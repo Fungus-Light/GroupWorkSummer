@@ -10,6 +10,15 @@ public class Manager {
     private String userid;
     private String name;
     private String tel;
+    private String academic;
+
+    public String getAcademic() {
+        return academic;
+    }
+
+    public void setAcademic(String academic) {
+        this.academic = academic;
+    }
 
     public String getUserid() {
         return userid;
@@ -34,4 +43,6 @@ public class Manager {
     public void setTel(String tel) {
         this.tel = tel;
     }
+
+
 }

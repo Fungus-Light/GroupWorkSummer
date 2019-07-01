@@ -20,12 +20,8 @@ public class PeriodController {
     {
         periodService.setPeriod(m.get("segid"));
     }
-    /*@RequestMapping("/showPeriod")
-    public List<Period> showPeriod(){
-        List<Period> periods=new ArrayList<>();
-        for(int i=0;i<4;i++)
-        {
-            //
-        }
-    }*/
+    @RequestMapping("/showPeriod")
+    public Period showPeriod(){
+        return periodService.findById();
+    }
 }

@@ -60,8 +60,9 @@ public class UserController {
         String password = map.get("password");
         String name = map.get("name");
         String tel = map.get("tel");
+        String academic = map.get("academic");
         userService.addUser(userid,password,1);
-        managerService.addManager(userid,name,tel);
+        managerService.addManager(userid,name,tel,academic);
     }
 
     @RequestMapping("/showManager")
@@ -74,6 +75,7 @@ public class UserController {
             map.put("userid",list.get(i).getUserid());
             map.put("name",list.get(i).getName());
             map.put("tel",list.get(i).getTel());
+            map.put("academic",list.get(i).getAcademic());
             newlist.add(map);
         }
         return newlist;
@@ -85,8 +87,9 @@ public class UserController {
         String password = map.get("password");
         String name = map.get("name");
         String tel = map.get("tel");
+        String academic = map.get("academic");
         userService.addUser(userid,password,1);
-        managerService.addManager(userid,name,tel);
+        managerService.addManager(userid,name,tel,academic);
     }
 
     @RequestMapping("/deleteManager")

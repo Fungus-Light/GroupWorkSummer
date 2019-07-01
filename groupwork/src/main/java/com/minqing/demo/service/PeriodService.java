@@ -8,15 +8,13 @@ import org.springframework.stereotype.Service;
 public class PeriodService {
     private PeriodRepository periodRepository;
 
-    public void setPeriod(Integer segid)
-    {
+    public void setPeriod(Integer status) {
         Period p=new Period();
-        p.setStatus(1);
-        p.setSegid(segid);
+        p.setStatus(status);
         periodRepository.save(p);
     }
-    public Period findById(Integer id)
+    public Period findById()
     {
-        return periodRepository.findById(id).get();
+        return periodRepository.findAll().get(0);
     }
 }
