@@ -113,27 +113,28 @@ public class StartTitleController {
     }
 
     @RequestMapping("/showAcademicTopicManager")
-    public List<Map<String,Object>> showAcademicTopicManager(HttpServletRequest request,@RequestBody Map<String,String> map1)
+    public List<Map<String,Object>> showAcademicTopicManager(HttpServletRequest request)
     {
-//        Cookie[] cookies = request.getCookies();
-//        String userid = "";
-//        for(Cookie cookie:cookies){
-//            if(cookie.getName().equals("userid")){
-//                userid = cookie.getValue();
-//            }
-//        }
-        String userid = map1.get("userid");
+        Cookie[] cookies = request.getCookies();
+        String userid = "";
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("userid")){
+                userid = cookie.getValue();
+            }
+        }
         String academic= managerService.findAcademic(userid);
         List<Topic> list=topicService.findAllTopicByAcademic(academic);
         int length=list.size();
         List<Map<String,Object>> newlist = new ArrayList<>();
         for(int i=0;i<length;i++){
+            Teacher teacher=teacherService.findTeacher(list.get(i).getUserid());
             Map<String,Object> map = new HashMap<>();
             map.put("topicid",list.get(i).getTopicid());
             map.put("topic",list.get(i).getTopic());
             map.put("userid",list.get(i).getUserid());
             map.put("state",list.get(i).getState());
             map.put("description",list.get(i).getDescription());
+            map.put("name",teacher.getName());
             newlist.add(map);
         }
         return newlist;

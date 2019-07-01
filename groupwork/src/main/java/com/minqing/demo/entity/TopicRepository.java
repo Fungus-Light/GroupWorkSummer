@@ -13,7 +13,8 @@ public interface TopicRepository extends JpaRepository<Topic,Integer> {
     List<Topic> findByUserid(String userid);
     List<Topic> findByState(Integer state);
 
-    @Query(value = "select topicid from Student,Teacher,Topic where student.academic=teacher.academic " +
-            "and teacher.userid=topic.userid and student.academic=?1",nativeQuery = true)
+    @Query(value = "select topicid from Teacher,Topic where " +
+            "teacher.userid=topic.userid and teacher.academic=?1",nativeQuery = true)
     List findTopicidByAcademic(String academic);
+
 }

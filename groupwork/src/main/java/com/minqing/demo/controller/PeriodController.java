@@ -4,11 +4,8 @@ import com.minqing.demo.entity.Period;
 import com.minqing.demo.service.PeriodService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -20,6 +17,7 @@ public class PeriodController {
     {
         periodService.setPeriod(m.get("segid"));
     }
+
     @RequestMapping("/showPeriod")
     public Period showPeriod(){
         return periodService.findById();
