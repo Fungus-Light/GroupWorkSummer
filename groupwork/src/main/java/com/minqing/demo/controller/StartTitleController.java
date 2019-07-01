@@ -4,6 +4,7 @@ import com.minqing.demo.entity.SelectTopic;
 import com.minqing.demo.entity.Teacher;
 import com.minqing.demo.entity.Topic;
 import com.minqing.demo.service.SelectTopicService;
+import com.minqing.demo.service.StudentService;
 import com.minqing.demo.service.TeacherService;
 import com.minqing.demo.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,11 @@ public class StartTitleController {
     private SelectTopicService selectTopicService;
     @Autowired
     private TeacherService teacherService;
+    @Autowired
+    private StudentService studentService;
 
 
-
+//教师用来出题
     @RequestMapping("/addTopic")
     public void addTopic(@RequestBody Map<String,String> map, HttpServletRequest request){
         String topic = map.get("topic");
@@ -44,6 +47,7 @@ public class StartTitleController {
         topicService.addTopic(topic,userid,description);
     }
 
+//管理员用来审核
     @RequestMapping("/acceptTopic")
     public void acceptTopic(@RequestBody Map<String,Integer> map){
         int topicid = map.get("topicid");
@@ -56,6 +60,7 @@ public class StartTitleController {
         topicService.decideTopic(topicid,2);
     }
 
+//某个老师只能看见自己出的题目
     @RequestMapping("/showTeacherTopic")
     public List<Map<String,Object>> showTeacherTopic(HttpServletRequest request){
         Cookie[] cookies = request.getCookies();
@@ -80,6 +85,23 @@ public class StartTitleController {
         return newlist;
     }
 
+//次级管理员只能看见对应学院的题目进行审核，学生只能看见对应学院的题目进行选取
+    @RequestMapping("/showAcademicTopic")
+    public List showAcademicTopic(HttpServletRequest request)
+    {
+        Cookie[] cookies = request.getCookies();
+        String userid = "";
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("userid")){
+                userid = cookie.getValue();
+            }
+        }
+       String academic= studentService.findAcademic(userid);
+        List<Topic> t=topicService.findAllTopicByAcademic(academic);
+        return t;
+
+    }
+//超管可以看见全部的题目并且审核
     @RequestMapping("/showAllTopic")
     public List<Map<String,Object>> showAllTopic(){
         List<Topic> list = topicService.findAllTopic();
@@ -97,7 +119,7 @@ public class StartTitleController {
         return newlist;
     }
 
-
+//学生只能看见通过了审核的题目进行选取
     @RequestMapping("/showAvailableTopic")
     public List showAvaliableTopic(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
@@ -138,6 +160,7 @@ public class StartTitleController {
         return list;
     }
 
+//学生只能选取对应学院的课程
     @RequestMapping("/selectTopic")
     public void selectTopic(@RequestBody Map<String,Object> m,HttpServletRequest request)
     {
