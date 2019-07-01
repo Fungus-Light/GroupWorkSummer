@@ -186,7 +186,7 @@ $("#upload-teach").click(function () {
                             password: "123456",
                             name: temp.name,
                             tel: temp.tel,
-                            academic: temp.school
+                            academic: temp.academic
                         }).then(response => {
                             console.log("finish "+i.toString());
                         })
