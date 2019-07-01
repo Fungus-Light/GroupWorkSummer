@@ -4,12 +4,14 @@ function addManager() {
     var password = document.getElementById("admin-pass").value;
     var name = document.getElementById("admin-name").value;
     var tel = document.getElementById("admin-contact").value;
-    if ((userid != null && password != null && name != null && tel != null) && (userid.toString().length > 2 && password.length > 2)) {
+    var school=document.getElementById("admin-school").value;
+    if ((userid != null && password != null && name != null && tel != null&&school!=null) && (userid.toString().length > 2 && password.length > 2)) {
         axios.post('/addManager', {
             userid: userid,
             password: password,
             name: name,
-            tel: tel
+            tel: tel,
+            academic:school
         }).then(response => {
             window.reload();
         })
@@ -21,12 +23,14 @@ function editManager() {
     var password = document.getElementById("e-admin-pass").value;
     var name = document.getElementById("e-admin-name").value;
     var tel = document.getElementById("e-admin-contact").value;
+    var school=$("#e-admin-school").val();
     if ((userid != null && password != null && name != null && tel != null) && (userid.toString().length > 2 && password.length > 2)) {
         axios.post('/editManager', {
             userid: userid,
             password: password,
             name: name,
-            tel: tel
+            tel: tel,
+            academic:school
         }).then(response => {
             window.reload();
         })
@@ -158,6 +162,17 @@ function deleteStudent() {
 //Upload File
 
 $("#upload-teach").click(function () {
+    var inputObj = document.createElement('input')
+    inputObj.setAttribute('id', '_ef');
+    inputObj.setAttribute('type', 'file');
+    inputObj.setAttribute("style", 'visibility:hidden');
+    document.body.appendChild(inputObj);
+    inputObj.click();
+    console.log(inputObj.value);
+    
+});
+
+$("#upload-student").click(function () {
     var inputObj = document.createElement('input')
     inputObj.setAttribute('id', '_ef');
     inputObj.setAttribute('type', 'file');

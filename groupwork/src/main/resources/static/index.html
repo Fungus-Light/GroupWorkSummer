@@ -400,6 +400,7 @@
                                             <tr>
                                                 <th>管理员姓名</th>
                                                 <th>管理员ID</th>
+                                                <th>负责学院</th>
                                                 <th>联系方式</th>
                                                 <th>操作</th>
                                             </tr>
@@ -607,11 +608,9 @@
                                                 <button type="button" class="am-btn am-btn-default am-btn-success"
                                                     data-am-modal="{target: '#add-stud',closeViaDimmer: 0, width: 600, height: 600}"><span
                                                         class="am-icon-plus"></span> 新增学生</button>
-                                                <button type="button" class="am-btn am-btn-default am-btn-success"><span
+                                                <button id="upload-student" type="button" class="am-btn am-btn-default am-btn-success"><span
                                                         class="am-icon-plus"></span> 批量添加</button>
-                                                <button id="add-stud-test" type="button"
-                                                    class="am-btn am-btn-default am-btn-success"><span
-                                                        class="am-icon-plus"></span> 添加Test</button>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -838,6 +837,11 @@
                     </div>
 
                     <div class="am-form-group">
+                        <label for="admin-school">负责学院：</label>
+                        <input type="text" id="admin-school" minlength="2" maxlength="5" placeholder="输入学院名称" required />
+                    </div>
+
+                    <div class="am-form-group">
                         <label for="admin-name">真实姓名：</label>
                         <input type="text" id="admin-name" minlength="2" maxlength="5" placeholder="输入真实姓名" required />
                     </div>
@@ -870,6 +874,12 @@
                     <div class="am-form-group">
                         <label for="e-admin-pass">密码：</label>
                         <input type="password" id="e-admin-pass" minlength="3" maxlength="20" placeholder="输入密码" />
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="e-admin-school">负责学院：</label>
+                        <input type="text" id="e-admin-school" minlength="2" maxlength="5" placeholder="输入学院"
+                            required />
                     </div>
 
                     <div class="am-form-group">

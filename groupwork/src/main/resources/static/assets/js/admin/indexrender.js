@@ -99,17 +99,18 @@ function SetEditStud(name,pass,id,tel,school){
     document.getElementById("e-stud-school").value=school;
 }
 
-function MakeUpAdmin(_name,_pass,_id,_contact) {
+function MakeUpAdmin(_name,_pass,_id,_contact,_school) {
     var temp=MakeUpElement("tr","","gradeX");
     
     var name=MakeUpElement('td',_name,"");
     var id=MakeUpElement('td',_id,"");
+    var academic=MakeUpElement('td',_school,"");
     var contact=MakeUpElement('td',_contact,"");
     var btnRoot=MakeUpElement('td',"","");
     var btnFather=MakeUpElement('div',"","tpl-table-black-operation");
     var editBtn=MakeUpElement("a","编辑  ","");
     editBtn.setAttribute('href',"javascript:;");
-    editBtn.setAttribute("content_data",JSON.stringify({name:_name,pass:_pass,id:_id,tel:_contact}));
+    editBtn.setAttribute("content_data",JSON.stringify({name:_name,pass:_pass,id:_id,tel:_contact,school:_school}));
     //data-am-modal="{target: '#add-admin',closeViaDimmer: 0, width: 600, height: 500}"
     editBtn.setAttribute('data-am-modal',"{target: '#edit-admin',closeViaDimmer: 0, width: 600, height: 500}");
     editBtn.addEventListener('click',function(){
@@ -117,7 +118,7 @@ function MakeUpAdmin(_name,_pass,_id,_contact) {
         //CleanAdminEdit();
         var _data=JSON.parse(this.getAttribute("content_data"));
         //console.log(_data);
-        SetEditAdmin(_data.name,_data.pass,_data.id,_data.tel);
+        SetEditAdmin(_data.name,_data.pass,_data.id,_data.tel,_data.school);
     });
     var deleteBtn=MakeUpElement('a',"删除  ","tpl-table-black-operation-del");
     deleteBtn.setAttribute('href',"javascript:;");
@@ -138,6 +139,7 @@ function MakeUpAdmin(_name,_pass,_id,_contact) {
     btnRoot.appendChild(btnFather);
     temp.appendChild(name);
     temp.appendChild(id);
+    temp.appendChild(academic)
     temp.appendChild(contact);
     temp.appendChild(btnRoot);
     return temp;
