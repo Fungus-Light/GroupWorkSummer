@@ -1,6 +1,7 @@
 package com.minqing.demo.controller;
 
 import com.minqing.demo.entity.SelectTopic;
+import com.minqing.demo.entity.Student;
 import com.minqing.demo.entity.Teacher;
 import com.minqing.demo.entity.Topic;
 import com.minqing.demo.service.*;
@@ -100,11 +101,13 @@ public class StartTitleController {
         int length=list.size();
         List<Map<String,Object>> newlist = new ArrayList<>();
         for(int i=0;i<length;i++){
+            Teacher teacher =teacherService.findTeacher(list.get(i).getUserid());
             Map<String,Object> map = new HashMap<>();
             map.put("topicid",list.get(i).getTopicid());
             map.put("topic",list.get(i).getTopic());
             map.put("userid",list.get(i).getUserid());
             map.put("state",list.get(i).getState());
+            map.put("name",teacher.getName());
             map.put("description",list.get(i).getDescription());
             newlist.add(map);
         }
