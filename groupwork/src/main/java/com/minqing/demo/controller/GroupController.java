@@ -32,6 +32,7 @@ public class GroupController {
     private StudentService studentService;
     @Autowired
     private TeacherService teacherService;
+
     @RequestMapping("/groupshowAcademicStudent")
     public List<List<String>> groupshowAcademicStudent(HttpServletRequest request)
     {
@@ -42,7 +43,6 @@ public class GroupController {
                 userid = cookie.getValue();
             }
         }
-
         String academic = managerService.findAcademic(userid);//找到了管理员的学院
 
         List<String> students=studentService.findIdByAcademic(academic);//根据学院找到所有学生
