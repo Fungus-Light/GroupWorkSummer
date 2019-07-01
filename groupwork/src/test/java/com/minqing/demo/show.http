@@ -1,7 +1,9 @@
-POST http://localhost:8080/showAcademicTopicManager
+POST http://localhost:8080/setPeriod
 Content-Type: application/json
 
-{}
+{
+"segid":1
+}
 
 #### For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection).
 #

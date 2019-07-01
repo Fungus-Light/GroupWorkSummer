@@ -1,7 +1,6 @@
 package com.minqing.demo.controller;
 
 import com.minqing.demo.entity.SelectTopic;
-import com.minqing.demo.entity.Student;
 import com.minqing.demo.entity.Teacher;
 import com.minqing.demo.entity.Topic;
 import com.minqing.demo.service.*;
@@ -96,28 +95,51 @@ public class StartTitleController {
                 userid = cookie.getValue();
             }
         }
-       String academic= studentService.findAcademic(userid);
-        List<Topic> list=topicService.findAllTopicByAcademic(academic);
-        List<Topic> availablelist=new ArrayList<>();
-        for(Topic p:list)
-        {
-            if(p.getState()==1)
-                availablelist.add(p);
-        }
-        int length=availablelist.size();
+        boolean hasselected=selectTopicService.hasSelected(userid);
         List<Map<String,Object>> newlist = new ArrayList<>();
-        for(int i=0;i<length;i++){
-            Teacher teacher =teacherService.findTeacher(availablelist.get(i).getUserid());
-            Map<String,Object> map = new HashMap<>();
-            map.put("topicid",availablelist.get(i).getTopicid());
-            map.put("topic",availablelist.get(i).getTopic());
-            map.put("userid",availablelist.get(i).getUserid());
-            map.put("state",availablelist.get(i).getState());
-            map.put("name",teacher.getName());
-            map.put("description",availablelist.get(i).getDescription());
-            newlist.add(map);
+        if(!hasselected)
+        {
+            String academic= studentService.findAcademic(userid);
+            List<Topic> list=topicService.findAllTopicByAcademic(academic);
+            List<Topic> availablelist=new ArrayList<>();
+            for(Topic p:list)
+            {
+                if(p.getState()==1)
+                    availablelist.add(p);
+            }
+            int length=availablelist.size();
+
+            for(int i=0;i<length;i++){
+                Teacher teacher =teacherService.findTeacher(availablelist.get(i).getUserid());
+                Map<String,Object> map = new HashMap<>();
+                map.put("topicid",availablelist.get(i).getTopicid());
+                map.put("topic",availablelist.get(i).getTopic());
+                map.put("userid",availablelist.get(i).getUserid());
+                map.put("status",0);
+                map.put("state",availablelist.get(i).getState());
+                map.put("name",teacher.getName());
+                map.put("description",availablelist.get(i).getDescription());
+                newlist.add(map);
+            }
+            return newlist;
         }
-        return newlist;
+        else
+        {
+
+            SelectTopic selectTopic = selectTopicService.findSelectTopicByStudentId(userid);
+            Teacher teacher = teacherService.findTeacher(selectTopic.getTeacherid());
+            Topic topic = topicService.findTopicById(selectTopic.getTopicid());
+            Map<String,Object> map = new HashMap<>();
+            map.put("topic",topic.getTopic());
+            map.put("topicid",topic.getTopicid());
+            map.put("description",topic.getDescription());
+            map.put("academic",teacher.getAcademic());
+            map.put("name",teacher.getName());
+            map.put("status",1);
+            newlist.add(map);
+            return newlist;
+        }
+
 
     }
 

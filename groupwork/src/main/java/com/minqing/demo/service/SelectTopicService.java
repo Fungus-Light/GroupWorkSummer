@@ -25,4 +25,8 @@ public class SelectTopicService {
     public SelectTopic findSelectTopicByStudentId(String studentid){
         return selectTopicRepository.findById(studentid).get();
     }
+    public boolean isSelectTopic(String studentid)
+    {
+        return selectTopicRepository.findById(studentid).isPresent();
+    }
 }

@@ -2,6 +2,7 @@ package com.minqing.demo.controller;
 
 import com.minqing.demo.entity.Period;
 import com.minqing.demo.service.PeriodService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +12,7 @@ import java.util.Map;
 @RestController
 
 public class PeriodController {
+    @Autowired
     private PeriodService periodService;
     @RequestMapping("/setPeriod")
     public void setPeriod(@RequestBody Map<String,Integer> m)

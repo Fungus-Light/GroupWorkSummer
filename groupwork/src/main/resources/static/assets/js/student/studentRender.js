@@ -23,9 +23,9 @@ window.onload = function () {
             console.error(err);
         });
     
-    axios.post('/showAvailableTopic')
+    axios.post('/showAcademicTopicStudent')
     .then(res => {
-        if(res.data.length>1){
+        if(res.data[0].status==0){
             IfHasTopic(false);
         Refresh(res.data);
 
@@ -45,7 +45,7 @@ function Refresh(topicarray){
     ClearRenderer(Topic_List_Render);
     for(var i=0;i<topicarray.length;i++){
         var data=topicarray[i];
-        AttachChildren(Topic_List_Render,MakeTopicStu(data.topic,data.topicid,data.academic,data.name,data.description));
+        AttachChildren(Topic_List_Render,MakeTopicStu(data.topic,data.topicid,data.name,data.description));
     }
 }
 
@@ -96,11 +96,11 @@ function SetChooseTopicBar(data){
 
 */
 
-function MakeTopicStu(_name,_id,_academic,_teach,_content) {
+function MakeTopicStu(_name,_id,_teach,_content) {
     var root=MakeUpElement('tr',"","");
     var innertd='<td>'+_name+'</td>'
                 +'<td>'+_id+'</td>'
-                +'<td>'+_academic+'</td>'
+
                 +'<td>'+_teach+'</td>';
     var btnroot=MakeUpElement('td',"","");
     var btngroup=MakeUpElement('div',"","am-btn-group am-btn-group-xs");
