@@ -55,4 +55,5 @@ public class TopicService {
         return topicRepository.findById(topicid).get();
     }
 
+   // public String findTeacherNameBy(int topicid){}
 }
