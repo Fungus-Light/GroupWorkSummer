@@ -31,7 +31,7 @@ function initPages() {
     });
 
     //init the topic review pages
-    axios.post('/showAcademicTopic')
+    axios.post('/showAcademicTopicManager')
     .then(res => {
         RefreshTopic(res.data);
     })
@@ -48,7 +48,7 @@ window.onload = function () {
 function RefreshAdiminlist(adminarray) {
     ClearRenderer(Admin_List_Render);
     for (var i = 0; i < adminarray.length; i++) {
-        AttachChildren(Admin_List_Render, MakeUpAdmin(adminarray[i].name, adminarray[i].password, adminarray[i].userid, adminarray[i].tel));
+        AttachChildren(Admin_List_Render, MakeUpAdmin(adminarray[i].name, adminarray[i].password, adminarray[i].userid, adminarray[i].tel,adminarray[i].academic));
     }
 }
 
