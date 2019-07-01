@@ -32,12 +32,12 @@ function initPages() {
 
     //init the topic review pages
     axios.post('/showAcademicTopicManager')
-    .then(res => {
-        RefreshTopic(res.data);
-    })
-    .catch(err => {
-        console.error(err); 
-    })
+        .then(res => {
+            RefreshTopic(res.data);
+        })
+        .catch(err => {
+            console.error(err);
+        })
     //
     axios.post('/showPeriod')
         .then(res => {
@@ -46,6 +46,16 @@ function initPages() {
         .catch(err => {
             console.error(err);
         })
+    
+    //var stuarr,teacharr;
+    axios.post('/groupshowAcademicStudent')
+    .then(res => {
+        RefreshUngroup(res.data[1],res.data[1]);
+    })
+    .catch(err => {
+        console.error(err); 
+    })
+
 }
 
 window.onload = function () {
@@ -55,7 +65,7 @@ window.onload = function () {
 function RefreshAdiminlist(adminarray) {
     ClearRenderer(Admin_List_Render);
     for (var i = 0; i < adminarray.length; i++) {
-        AttachChildren(Admin_List_Render, MakeUpAdmin(adminarray[i].name, adminarray[i].password, adminarray[i].userid, adminarray[i].tel,adminarray[i].academic));
+        AttachChildren(Admin_List_Render, MakeUpAdmin(adminarray[i].name, adminarray[i].password, adminarray[i].userid, adminarray[i].tel, adminarray[i].academic));
     }
 }
 
@@ -355,4 +365,53 @@ function checkStateRender(currentstate) {
         }
     }
     console.log(statestrs);
+}
+
+//
+
+function RefreshUngroup(teacharray,studentarray){
+    ClearRenderer(document.getElementById("ungroup_teacher"));
+    ClearRenderer(document.getElementById("ungroup_student"));
+
+    for(var i=0;i<teacharray.length;i++){
+        document.getElementById("ungroup_teacher").appendChild(MakeUpUngroup(teacharray[i]));
+    }
+    for(var i=0;i<studentarray.length;i++){
+        document.getElementById("ungroup_student").appendChild(MakeUpUngroup(studentarray[i]));
+    }
+}
+
+function MakeUpUngroup(id) {
+    var temp = MakeUpElement("tr", "", "gradeX");
+    var content = MakeUpElement("td", id, "");
+    temp.appendChild(content);
+    return temp;
+}
+
+/**
+
+<tr class="gradeX">
+                                                    <td>1</td>
+                                                    <td>111</td>
+                                                    <td>老师</td>
+                                                    
+                                                </tr>
+
+ */
+
+function MakeUpGrouped(gid, id, type) {
+    var temp = MakeUpElement("tr", "", "gradeX");
+    var _type;
+    if(type==0){
+        _type="教师";
+    }else{
+        _type="学生";
+    }
+    var inner = "<td>" + gid + "</td>"
+        + "<td>" + id + "</td>"
+        + "<td>" + _type + "</td>";
+    
+    //temp.
+    temp.innerHTML=inner;
+    return temp;
 }
