@@ -19,3 +19,11 @@ $("#add-topic").click(function(){
 });
 
 //checkStateRender(3);
+
+// for(var i=0;i<10;i++){
+//     document.getElementById("ungroup_teacher").appendChild(MakeUpUngroup('111'));
+//     document.getElementById("ungroup_student").appendChild(MakeUpUngroup('111'));
+
+//     document.getElementById("grouped_list").appendChild(MakeUpGrouped("222","333",1))
+//     console.log("!!!!!!")
+// }
