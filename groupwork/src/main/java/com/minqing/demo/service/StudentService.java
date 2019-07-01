@@ -33,5 +33,9 @@ public class StudentService {
         return studentRepository.findById(userid).get();
     }
 
+    public String findAcademic(String studentid)
+    {
+        return studentRepository.findAcademicByid(studentid);
+    }
 //    public void setHasTopic(String studentid){studentRepository.SetStudentHastopic(studentid);}
 }

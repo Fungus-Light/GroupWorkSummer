@@ -5,6 +5,7 @@ import com.minqing.demo.entity.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,6 +30,17 @@ public class TopicService {
 
     public List<Topic> findTopicByTeacher(String userid){
         return topicRepository.findByUserid(userid);
+    }
+
+    public List findAllTopicByAcademic(String academic){
+        List<Integer> topicids=topicRepository.findTopicidByAcademic(academic);
+        List<Topic> topics=new ArrayList<>();
+        for(Integer s:topicids)
+        {
+            Topic t=topicRepository.findById(s).get();
+            topics.add(t);
+        }
+        return topics;
     }
 
     public List<Topic> findAllTopic(){

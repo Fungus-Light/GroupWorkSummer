@@ -12,6 +12,14 @@ public class Manager {
     private String tel;
     private String academic;
 
+    public String getAcademic() {
+        return academic;
+    }
+
+    public void setAcademic(String academic) {
+        this.academic = academic;
+    }
+
     public String getUserid() {
         return userid;
     }
@@ -36,11 +44,5 @@ public class Manager {
         this.tel = tel;
     }
 
-    public String getAcademic() {
-        return academic;
-    }
 
-    public void setAcademic(String academic) {
-        this.academic = academic;
-    }
 }

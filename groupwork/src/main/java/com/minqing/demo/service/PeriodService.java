@@ -13,8 +13,8 @@ public class PeriodService {
         p.setStatus(status);
         periodRepository.save(p);
     }
-    public Period findById(Integer status)
+    public Period findById()
     {
-        return periodRepository.findById(status).get();
+        return periodRepository.findAll().get(0);
     }
 }
