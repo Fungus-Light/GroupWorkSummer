@@ -11,10 +11,11 @@ public class PeriodService {
     public void setPeriod(Integer status) {
         Period p=new Period();
         p.setStatus(status);
+        p.setFlag(1);
         periodRepository.save(p);
     }
     public Period findById()
     {
-        return periodRepository.findAll().get(0);
+        return periodRepository.findById(1).get();
     }
 }
