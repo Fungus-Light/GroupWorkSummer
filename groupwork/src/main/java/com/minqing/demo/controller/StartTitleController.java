@@ -98,17 +98,23 @@ public class StartTitleController {
         }
        String academic= studentService.findAcademic(userid);
         List<Topic> list=topicService.findAllTopicByAcademic(academic);
-        int length=list.size();
+        List<Topic> availablelist=new ArrayList<>();
+        for(Topic p:list)
+        {
+            if(p.getState()==1)
+                availablelist.add(p);
+        }
+        int length=availablelist.size();
         List<Map<String,Object>> newlist = new ArrayList<>();
         for(int i=0;i<length;i++){
-            Teacher teacher =teacherService.findTeacher(list.get(i).getUserid());
+            Teacher teacher =teacherService.findTeacher(availablelist.get(i).getUserid());
             Map<String,Object> map = new HashMap<>();
-            map.put("topicid",list.get(i).getTopicid());
-            map.put("topic",list.get(i).getTopic());
-            map.put("userid",list.get(i).getUserid());
-            map.put("state",list.get(i).getState());
+            map.put("topicid",availablelist.get(i).getTopicid());
+            map.put("topic",availablelist.get(i).getTopic());
+            map.put("userid",availablelist.get(i).getUserid());
+            map.put("state",availablelist.get(i).getState());
             map.put("name",teacher.getName());
-            map.put("description",list.get(i).getDescription());
+            map.put("description",availablelist.get(i).getDescription());
             newlist.add(map);
         }
         return newlist;
