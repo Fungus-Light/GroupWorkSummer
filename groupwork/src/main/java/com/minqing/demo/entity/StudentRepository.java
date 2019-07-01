@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @RepositoryRestResource
 @Transactional
@@ -14,4 +15,6 @@ public interface StudentRepository extends JpaRepository<Student,String> {
 //    public void SetStudentHastopic(String studentid);
     @Query("select academic from Student where userid=?1")
     public String findAcademicByid(String userid);
+    @Query("select userid from Student where academic=?1")
+    public List findIdByAcademic(String academic);
 }

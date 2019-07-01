@@ -37,5 +37,6 @@ public class StudentService {
     {
         return studentRepository.findAcademicByid(studentid);
     }
+    public List<String> findIdByAcademic(String academic){return studentRepository.findIdByAcademic(academic);}
 //    public void setHasTopic(String studentid){studentRepository.SetStudentHastopic(studentid);}
 }

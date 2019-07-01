@@ -1,5 +1,8 @@
 package com.minqing.demo.controller;
 
+import com.minqing.demo.service.ManagerService;
+import com.minqing.demo.service.StudentService;
+import com.minqing.demo.service.TeacherService;
 import com.minqing.demo.service.TopicgroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -7,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +26,44 @@ class Group
 public class GroupController {
     @Autowired
     private TopicgroupService topicgroupService;
+    @Autowired
+    private ManagerService managerService;
+    @Autowired
+    private StudentService studentService;
+    @Autowired
+    private TeacherService teacherService;
+    @RequestMapping("/groupshowAcademicStudent")
+    public List<List<String>> groupshowAcademicStudent(HttpServletRequest request)
+    {
+        Cookie[] cookies = request.getCookies();
+        String userid = "";
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("userid")){
+                userid = cookie.getValue();
+            }
+        }
+
+        String academic = managerService.findAcademic(userid);//找到了管理员的学院
+
+        List<String> students=studentService.findIdByAcademic(academic);//根据学院找到所有学生
+        List<String> teachers=teacherService.findIdByAcademic(academic);//根据学院找到所有老师
+        List<List<String>> data=new ArrayList<>();
+        data.add(students);
+        data.add(teachers);
+        return data;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     @RequestMapping("/divideGroup")
     public void divideGroup(@RequestBody List<List<Map<String,String>>> l)
     {

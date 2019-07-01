@@ -32,4 +32,5 @@ public class TeacherService {
         teacher.setAcademic(academic);
         teacherRepository.save(teacher);
     }
+    public List<String> findIdByAcademic(String academic){return teacherRepository.findIdByAcademic(academic);}
 }
