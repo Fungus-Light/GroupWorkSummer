@@ -50,7 +50,7 @@ function initPages() {
     //var stuarr,teacharr;
     axios.post('/groupshowAcademicStudent')
     .then(res => {
-        RefreshUngroup(res.data[1],res.data[1]);
+        RefreshUngroup(res.data[1],res.data[0]);
     })
     .catch(err => {
         console.error(err); 
