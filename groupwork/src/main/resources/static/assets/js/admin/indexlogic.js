@@ -182,3 +182,31 @@ $("#upload-student").click(function () {
     console.log(inputObj.value);
     
 });
+
+//topic review 
+
+function passTopic(){
+    var id=$("#topic_review_id").val();
+    axios.post('acceptTopic',{
+        topicid:id
+    })
+    .then(res => {
+        window.location.reload;
+    })
+    .catch(err => {
+        console.error(err); 
+    })
+}
+
+function refuseTopic(){
+    var id=$("#topic_review_id").val();
+    axios.post('refuseTopic',{
+        topicid:id
+    })
+    .then(res => {
+        window.location.reload;
+    })
+    .catch(err => {
+        console.error(err); 
+    })
+}

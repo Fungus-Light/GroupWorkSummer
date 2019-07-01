@@ -31,7 +31,13 @@ function initPages() {
     });
 
     //init the topic review pages
-    
+    axios.post('/showAcademicTopic')
+    .then(res => {
+        RefreshTopic(res.data);
+    })
+    .catch(err => {
+        console.error(err); 
+    })
     //
 }
 
@@ -64,7 +70,7 @@ function RefreshTopic(topicarray) {
     ClearRenderer(Topic_List_Render);
     for (var i = 0; i < topicarray.length; i++) {
         var temp = topicarray[i];
-        AttachChildren(Topic_List_Render, MakeUpTopic(temp.name, temp.id, temp.academic, temp.teacher, temp.brief));
+        AttachChildren(Topic_List_Render, MakeUpTopic(temp.topic, temp.topicid, temp.academic, temp.name, temp.description));
     }
 }
 
