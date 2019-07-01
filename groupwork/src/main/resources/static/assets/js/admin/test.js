@@ -12,3 +12,8 @@ $("#add-stud-test").click(function () {
 //    console.log("add mission");
 //   AttachChildren(Mission_List_Render,MakeUpMission(""));
 //})
+
+$("#add-topic").click(function(){
+    console.log("add topic");
+    AttachChildren(Topic_List_Render,MakeUpTopic("aaaa","11111","ccccc","aaaaaa","hhhhhhhhhh"));
+});

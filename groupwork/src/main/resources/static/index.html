@@ -517,8 +517,8 @@
                                     <div class="am-form-group">
                                         <div class="am-btn-toolbar">
                                             <div class="am-btn-group am-btn-group-xs">
-                                                <button type="button" class="am-btn am-btn-default am-btn-success"
-                                                    data-am-modal="{target: '#add-teach',closeViaDimmer: 0, width: 600, height: 600}"><span
+                                                <button id="add-topic" type="button" class="am-btn am-btn-default am-btn-success"
+                                                    ><span
                                                         class="am-icon-plus"></span> 刷新列表</button>
                                             </div>
                                         </div>
@@ -781,13 +781,17 @@
             <form class="am-form">
                 <fieldset>
                     <div class="am-form-group">
-                        <input disabled type="text" id="del_admin_id" minlength="3" maxlength="20"
+                        <input disabled type="text" id="topic_review_id" minlength="3" maxlength="20"
+                            placeholder="输入用户名（至少 3 个字符）" required />
+                    </div>
+                    <div class="am-form-group">
+                        <input disabled type="text" id="topic_review_name" minlength="3" maxlength="20"
                             placeholder="输入用户名（至少 3 个字符）" required />
                     </div>
                     <button data-am-modal-close class="am-btn am-btn-danger" type=""
-                        onclick="deleteManager()">通过</button>
+                        onclick="passTopic()">通过</button>
                     <button data-am-modal-close class="am-btn am-btn-danger" type=""
-                        onclick="deleteManager()">拒绝</button>
+                        onclick="refuseTopic()">拒绝</button>
                 </fieldset>
             </form>
         </div>
