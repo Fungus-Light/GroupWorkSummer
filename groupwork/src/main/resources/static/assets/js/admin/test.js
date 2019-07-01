@@ -15,5 +15,7 @@ $("#add-stud-test").click(function () {
 
 $("#add-topic").click(function(){
     console.log("add topic");
-    AttachChildren(Topic_List_Render,MakeUpTopic("aaaa","11111","ccccc","aaaaaa","hhhhhhhhhh"));
+    AttachChildren(Topic_List_Render,MakeUpTopic("aaaa","11111","aaaaaa","hhhhhhhhhh"));
 });
+
+//checkStateRender(3);

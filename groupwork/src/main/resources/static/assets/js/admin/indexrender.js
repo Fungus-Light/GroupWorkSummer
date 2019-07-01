@@ -32,13 +32,20 @@ function initPages() {
 
     //init the topic review pages
     axios.post('/showAcademicTopic')
-    .then(res => {
-        RefreshTopic(res.data);
-    })
-    .catch(err => {
-        console.error(err); 
-    })
+        .then(res => {
+            RefreshTopic(res.data);
+        })
+        .catch(err => {
+            console.error(err);
+        })
     //
+    axios.post('/showPeriod')
+        .then(res => {
+            checkStateRender(res.data.status)
+        })
+        .catch(err => {
+            console.error(err);
+        })
 }
 
 window.onload = function () {
@@ -70,7 +77,11 @@ function RefreshTopic(topicarray) {
     ClearRenderer(Topic_List_Render);
     for (var i = 0; i < topicarray.length; i++) {
         var temp = topicarray[i];
-        AttachChildren(Topic_List_Render, MakeUpTopic(temp.topic, temp.topicid, temp.academic, temp.name, temp.description));
+        if (temp.state == 0) {
+
+            AttachChildren(Topic_List_Render, MakeUpTopic(temp.topic, temp.topicid, temp.name, temp.description));
+        }
+
     }
 }
 
@@ -101,7 +112,7 @@ function CleanAdminEdit() {
     document.getElementById("e-admin-contact").value = "";
 }
 
-function SetEditAdmin(name, pass, id, tel,school) {
+function SetEditAdmin(name, pass, id, tel, school) {
     document.getElementById("e-admin-id").value = id;
     document.getElementById("e-admin-pass").value = pass;
     document.getElementById("e-admin-name").value = name;
@@ -268,18 +279,18 @@ function MakeUpStud(_name, _pass, _id, _contact, _school) {
     return temp;
 }
 
-function MakeUpTopic(_name, _id, _school, _teach, _content) {
+function MakeUpTopic(_name, _id, _teach, _content) {
     var temp = MakeUpElement("tr", "", "gradeX");
 
     var name = MakeUpElement('td', _name, "");
     var id = MakeUpElement('td', _id, "");
-    var school = MakeUpElement('td', _school, "");
+    //var school = MakeUpElement('td', _school, "");
     var contact = MakeUpElement('td', _teach, "");
     var btnRoot = MakeUpElement('td', "", "");
     var btnFather = MakeUpElement('div', "", "tpl-table-black-operation");
     var ShowBtn = MakeUpElement("a", "详情  ", "");
     ShowBtn.setAttribute('href', "javascript:;");
-    ShowBtn.setAttribute("content_data", JSON.stringify({ name: _name, id: _id, school: _school, teach: _teach, content: _content }));
+    ShowBtn.setAttribute("content_data", JSON.stringify({ name: _name, id: _id, teach: _teach, content: _content }));
     //data-am-modal="{target: '#add-admin',closeViaDimmer: 0, width: 600, height: 500}"
     ShowBtn.setAttribute('data-am-modal', "{target: '#show-topic',closeViaDimmer: 0, width: 600, height: 600}");
     ShowBtn.addEventListener('click', function () {
@@ -313,8 +324,35 @@ function MakeUpTopic(_name, _id, _school, _teach, _content) {
     btnRoot.appendChild(btnFather);
     temp.appendChild(name);
     temp.appendChild(id);
-    temp.appendChild(school);
+    //temp.appendChild(school);
     temp.appendChild(contact);
     temp.appendChild(btnRoot);
     return temp;
+}
+
+
+//state manager
+
+function checkStateRender(currentstate) {
+    var statestrs = document.getElementsByClassName("state-str");
+    for (var i = 0; i < statestrs.length; i++) {
+        var state = statestrs[i].getAttribute("statecode")
+        if (state < currentstate) {
+            statestrs[i].innerText = "已结束";
+        } else if (state == currentstate) {
+            statestrs[i].innerText = "进行中";
+        } else {
+            statestrs[i].innerText = "未开始";
+        }
+    }
+    var statebtns = document.getElementsByClassName("state-btn");
+    for (var i = 0; i < statebtns.length; i++) {
+        var state = statebtns[i].getAttribute("statecode")
+        if (state == currentstate + 1) {
+            //statebtns[i].setAttribute("disabled","");
+        } else {
+            statebtns[i].setAttribute("disabled", "");
+        }
+    }
+    console.log(statestrs);
 }
