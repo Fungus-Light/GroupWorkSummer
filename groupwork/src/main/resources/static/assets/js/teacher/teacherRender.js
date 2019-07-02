@@ -39,6 +39,8 @@ window.onload=function(){
     });
 
     axios.post('/showSingleTeacher').then(response=>{
+        document.getElementById("username-bar").innerHTML='<i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>'+response.data.name+"老师";
+        document.getElementById("username-head").innerText=response.data.name+"老师";
         presetInfo(response.data);
     });
 
