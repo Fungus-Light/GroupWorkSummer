@@ -56,9 +56,13 @@ function updataInfo(){
 function addGuide(){
     var userid=$("#add-guide").attr("user-id");
     var content=$("#guide-content").val();
-    axios.post('',params)
+    axios.post('/addRecord',{
+        studentid:userid,
+        content:content
+    })
     .then(res => {
         console.log(res)
+        window.location.reload();
     })
     .catch(err => {
         console.error(err); 
