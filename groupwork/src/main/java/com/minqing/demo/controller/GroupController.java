@@ -108,6 +108,5 @@ public class GroupController {
          }
 
          return g;
-
     }
 }
