@@ -300,3 +300,30 @@ $(".state-btn").click(function () {
             console.error(err);
         })
 });
+
+
+//subgroup
+
+$("#subgroup-btn").click(function(){
+    if(groupedFinalLine==null){
+        ArrangeStudentTeach(teachIdArray,stuIdArray);
+    }
+    for(var i=0;i<groupedFinalLine.length;i++){
+        var temp=groupedFinalLine[i];
+        axios.post('groupsetAcademic',{
+            type:temp.type,
+            userid:temp.id,
+            groupid:temp.gid
+        })
+        .then(res => {
+            console.log("success "+i.toString());
+        })
+        .catch(err => {
+            console.error(err); 
+        })
+    }
+});
+
+$("#arrange-btn").click(function () {
+    ArrangeStudentTeach(teachIdArray,stuIdArray);
+})
