@@ -6,8 +6,11 @@ import com.minqing.demo.entity.RecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
-public class RecodeService {
+public class RecordService {
     @Autowired
     private RecordRepository recordRepository;
 
@@ -19,8 +22,12 @@ public class RecodeService {
         recordRepository.save(record);
     }
 
-    public void delete(int recordid){
-        recordRepository.deleteById(recordid);
+    public List findRecord(String studentid,String teacherid){
+        List<Record> list= recordRepository.findRecordsByStudentidAndTeacherid(studentid,teacherid);
+        List<String> newlist = new ArrayList<>();
+        for(int i=0;i<list.size();i++){
+            newlist.add(list.get(i).getContent());
+        }
+        return newlist;
     }
-    
 }

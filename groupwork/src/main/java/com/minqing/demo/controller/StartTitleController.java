@@ -1,6 +1,7 @@
 package com.minqing.demo.controller;
 
 import com.minqing.demo.entity.SelectTopic;
+import com.minqing.demo.entity.Student;
 import com.minqing.demo.entity.Teacher;
 import com.minqing.demo.entity.Topic;
 import com.minqing.demo.service.*;
@@ -28,6 +29,8 @@ public class StartTitleController {
     private StudentService studentService;
     @Autowired
     private ManagerService managerService;
+    @Autowired
+    private RecordService recordService;
 
 
 //教师用来出题
@@ -247,5 +250,33 @@ public class StartTitleController {
 //        String teacherid=(String)m.get("teacherid");
         Topic topic = topicService.findTopicById(topicid);
         selectTopicService.addSelectTopic(topicid,studentid,topic.getUserid());
+    }
+
+    @RequestMapping("/showStudentBySingleTeacher")
+    public List showStudentBySingleTeacher(HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        String teacherid = "";
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("userid")){
+                teacherid = cookie.getValue();
+            }
+        }
+        
+        List<SelectTopic> list = selectTopicService.findSelectTopicByTeacher(teacherid);
+        int length = list.size();
+        List<Map<String,Object>> newlist = new ArrayList<>();
+        for(int i=0;i<length;i++){
+            SelectTopic selectTopic = list.get(i);
+            Map<String,Object> map = new HashMap<>();
+            Topic topic = topicService.findTopicById(selectTopic.getTopicid());
+            Student student = studentService.findStudent(selectTopic.getStudentid());
+            map.put("name",student.getName());
+            map.put("studentid",selectTopic.getStudentid());
+            map.put("title",topic.getTopic());
+            map.put("topicid",selectTopic.getTopicid());
+            map.put("record",recordService.findRecord(selectTopic.getStudentid(),selectTopic.getTeacherid()));
+            newlist.add(map);
+        }
+        return newlist;
     }
 }

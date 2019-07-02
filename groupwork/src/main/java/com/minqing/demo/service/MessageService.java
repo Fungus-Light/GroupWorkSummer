@@ -30,11 +30,7 @@ public class MessageService {
     }
 
     public List<Message> findMessageByUser(String userid){
-        return messageRepository.findByUserid(userid);
-    }
-
-    public List<Message> findAllMessages(){
-        return messageRepository.findAll();
+        return messageRepository.findMessagesByUserid(userid);
     }
 
     public void haveReadMessage(int messageid){
