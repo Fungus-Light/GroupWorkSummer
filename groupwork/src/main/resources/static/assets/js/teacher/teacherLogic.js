@@ -62,7 +62,7 @@ function addGuide(){
     })
     .then(res => {
         console.log(res)
-        window.location.reload();
+        //window.location.reload();
     })
     .catch(err => {
         console.error(err); 

@@ -17,7 +17,7 @@ public class RecordService {
     public void addRecord(String studentid,String teacherid,String content){
         Record record = new Record();
         record.setStudentid(studentid);
-        record.setStudentid(teacherid);
+        record.setTeacherid(teacherid);
         record.setContent(content);
         recordRepository.save(record);
     }
