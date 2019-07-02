@@ -17,6 +17,8 @@ window.onload = function () {
 
     axios.post('/showSingleStudent')
         .then(res => {
+            document.getElementById("username-bar").innerHTML='<i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>'+response.data.name+"同学";
+        document.getElementById("username-head").innerText=response.data.name+"同学";
             SetPreUserInfo(res.data);
         })
         .catch(err => {

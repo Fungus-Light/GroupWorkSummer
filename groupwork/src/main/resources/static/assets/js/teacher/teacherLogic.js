@@ -51,3 +51,16 @@ function updataInfo(){
     }
 
 }
+
+//------------
+function addGuide(){
+    var userid=$("#add-guide").attr("user-id");
+    var content=$("#guide-content").val();
+    axios.post('',params)
+    .then(res => {
+        console.log(res)
+    })
+    .catch(err => {
+        console.error(err); 
+    })
+}
