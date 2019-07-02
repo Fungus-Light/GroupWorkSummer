@@ -1,5 +1,6 @@
 package com.minqing.demo.controller;
 
+import com.minqing.demo.entity.Topicgroup;
 import com.minqing.demo.service.ManagerService;
 import com.minqing.demo.service.StudentService;
 import com.minqing.demo.service.TeacherService;
@@ -63,6 +64,21 @@ public class GroupController {
         topicgroupService.addTopicgroup(userid,groupid,type);
     }
 
+
+    @RequestMapping("/showYourgroups")
+    public List showYourgroups(HttpServletRequest request)
+    {
+        Cookie[] cookies = request.getCookies();
+        String userid = "";
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("userid")){
+                userid = cookie.getValue();
+            }
+        }
+        String groupid=topicgroupService.findGropuidByUserid(userid);
+        List<Topicgroup> topicgroups=topicgroupService.findTopicgroupByGroupid(groupid);
+        return topicgroups;
+    }
 
 
 }

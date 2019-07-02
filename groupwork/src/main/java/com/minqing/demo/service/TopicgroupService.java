@@ -6,6 +6,8 @@ import com.minqing.demo.entity.TopicgroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TopicgroupService {
     @Autowired
@@ -19,6 +21,13 @@ public class TopicgroupService {
         topicgroup.setUserid(userid);
         topicgroup.setIdentity(identity);
         topicgroupRepository.save(topicgroup);
+    }
+
+    public String findGropuidByUserid(String userid){
+        return topicgroupRepository.findGropuidByUserid(userid);
+    }
+    public List findTopicgroupByGroupid(String groupid){
+        return topicgroupRepository.findTopicgroupByGroupid(groupid);
     }
 
 
