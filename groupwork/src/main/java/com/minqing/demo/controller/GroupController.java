@@ -1,6 +1,5 @@
 package com.minqing.demo.controller;
 
-import com.minqing.demo.entity.Topicgroup;
 import com.minqing.demo.service.ManagerService;
 import com.minqing.demo.service.StudentService;
 import com.minqing.demo.service.TeacherService;
@@ -42,7 +41,6 @@ public class GroupController {
                 userid = cookie.getValue();
             }
         }
-
         String academic = managerService.findAcademic(userid);//找到了管理员的学院
 
         List<String> students=studentService.findIdByAcademic(academic);//根据学院找到所有学生
@@ -60,7 +58,7 @@ public class GroupController {
 
         Integer type=(int)m.get("type");
         String userid=(String)m.get("userid");
-        String groupid=(String)m.get("groupid");
+        String groupid= m.get("groupid").toString();
 
         topicgroupService.addTopicgroup(userid,groupid,type);
     }

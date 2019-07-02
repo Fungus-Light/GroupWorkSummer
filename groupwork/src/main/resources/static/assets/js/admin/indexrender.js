@@ -3,6 +3,10 @@
  * 
  */
 
+var teachIdArray={};
+var stuIdArray={};
+var groupedFinalLine={};
+
 var Admin_List_Render = document.getElementById("Admin_List_Render");
 var Teacher_List_Render = document.getElementById("Teacher_List_Render");
 var Student_List_Render = document.getElementById("Student_List_Render");
@@ -32,12 +36,12 @@ function initPages() {
 
     //init the topic review pages
     axios.post('/showAcademicTopicManager')
-    .then(res => {
-        RefreshTopic(res.data);
-    })
-    .catch(err => {
-        console.error(err); 
-    })
+        .then(res => {
+            RefreshTopic(res.data);
+        })
+        .catch(err => {
+            console.error(err);
+        })
     //
     axios.post('/showPeriod')
         .then(res => {
@@ -46,6 +50,18 @@ function initPages() {
         .catch(err => {
             console.error(err);
         })
+    
+    //var stuarr,teacharr;
+    axios.post('/groupshowAcademicStudent')
+    .then(res => {
+        teachIdArray=res.data[1];
+        stuIdArray=res.data[0];
+        RefreshUngroup(res.data[1],res.data[0]);
+    })
+    .catch(err => {
+        console.error(err); 
+    })
+
 }
 
 window.onload = function () {
@@ -55,7 +71,7 @@ window.onload = function () {
 function RefreshAdiminlist(adminarray) {
     ClearRenderer(Admin_List_Render);
     for (var i = 0; i < adminarray.length; i++) {
-        AttachChildren(Admin_List_Render, MakeUpAdmin(adminarray[i].name, adminarray[i].password, adminarray[i].userid, adminarray[i].tel,adminarray[i].academic));
+        AttachChildren(Admin_List_Render, MakeUpAdmin(adminarray[i].name, adminarray[i].password, adminarray[i].userid, adminarray[i].tel, adminarray[i].academic));
     }
 }
 
@@ -355,4 +371,120 @@ function checkStateRender(currentstate) {
         }
     }
     console.log(statestrs);
+}
+
+//
+
+function RefreshUngroup(teacharray,studentarray){
+    ClearRenderer(document.getElementById("ungroup_teacher"));
+    ClearRenderer(document.getElementById("ungroup_student"));
+
+    for(var i=0;i<teacharray.length;i++){
+        document.getElementById("ungroup_teacher").appendChild(MakeUpUngroup(teacharray[i]));
+    }
+    for(var i=0;i<studentarray.length;i++){
+        document.getElementById("ungroup_student").appendChild(MakeUpUngroup(studentarray[i]));
+    }
+}
+
+function MakeUpUngroup(id) {
+    var temp = MakeUpElement("tr", "", "gradeX");
+    var content = MakeUpElement("td", id, "");
+    temp.appendChild(content);
+    return temp;
+}
+
+/**
+
+<tr class="gradeX">
+                                                    <td>1</td>
+                                                    <td>111</td>
+                                                    <td>老师</td>
+                                                    
+                                                </tr>
+
+ */
+
+function MakeUpGrouped(gid, id, type) {
+    var temp = MakeUpElement("tr", "", "gradeX");
+    var _type;
+    if(type==0){
+        _type="教师";
+    }else{
+        _type="学生";
+    }
+    var inner = "<td>" + gid + "</td>"
+        + "<td>" + id + "</td>"
+        + "<td>" + _type + "</td>";
+    
+    //temp.
+    temp.innerHTML=inner;
+    return temp;
+}
+
+function RefreshGrouped(grouparray){
+    ClearRenderer(document.getElementById("grouped_list"));
+    for(var i=0;i<grouparray.length;i++){
+        document.getElementById("grouped_list").appendChild(MakeUpGrouped(grouparray[i].gid,grouparray[i].id,grouparray[i].type))
+    }
+}
+
+function GroupedItem(_gid,_id,_type){
+    this.gid=_gid;
+    this.id=_id;
+    this.type=_type;
+}
+
+function ArrangeNGroup(arr,numpergroup,type){
+    var TempLine=new Array();
+    var currentGid=1;
+    var tempCount=0;
+    for (var i = 0; i < arr.length; i++) {
+        var temp = new GroupedItem(currentGid, arr[i], type);
+        TempLine.push(temp);
+        tempCount++;
+        if (tempCount > (numpergroup-1)) {
+            currentGid++;
+            tempCount = 0;
+        }
+    }
+    return TempLine;
+}
+
+function ArrangeStudentTeach(teacharray,studarray){
+    
+    Shuffle(teacharray);
+    Shuffle(studarray);
+    var teachSize=teacharray.length;
+    var stuSize=studarray.length;
+
+    var groupnum=Math.ceil(teachSize/2);
+    var manpergroup=Math.ceil(stuSize/groupnum);
+
+    var teachtempline=ArrangeNGroup(teacharray,2,0);
+    var studtempline=ArrangeNGroup(studarray,manpergroup,1);
+
+    groupedFinalLine=teachtempline;
+
+    for(var i=0;i<studtempline.length;i++){
+        groupedFinalLine.push(studtempline[i]);
+    }
+
+    console.log(groupedFinalLine);
+    RefreshGrouped(teachtempline);
+
+}
+
+function Shuffle(arr) {
+    var len = arr.length;
+    
+    for(var i=len-1;i>=0;i--){
+      
+      var randomIndex = Math.floor(Math.random() * (i+1));
+      
+      var itemIndex = arr[randomIndex];
+      arr[randomIndex] = arr[i];
+      arr[i] = itemIndex;
+    }
+    return arr;
 }

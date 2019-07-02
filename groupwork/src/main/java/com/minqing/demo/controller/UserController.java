@@ -51,6 +51,15 @@ public class UserController {
         userService.deleteUser(userid);
     }
 */
+//    @RequestMapping("/isSendMessage")
+//    public int isSendMessage(@RequestBody Map<String,Object> map){
+//        String userid = (String) map.get("userid");
+//        String tel = (String)map.get("tel");
+//        int title = (int)map.get("title");
+//        if(userService.isUseridMatchTel(userid,tel,title)){
+//
+//        }
+//    }
 
 
     //管理员的增删改查

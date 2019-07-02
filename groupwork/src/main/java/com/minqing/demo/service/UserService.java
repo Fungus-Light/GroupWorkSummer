@@ -1,7 +1,6 @@
 package com.minqing.demo.service;
 
-import com.minqing.demo.entity.User;
-import com.minqing.demo.entity.UserRepository;
+import com.minqing.demo.entity.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +11,12 @@ import java.util.*;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private ManagerRepository managerRepository;
+    @Autowired
+    private TeacherRepository teacherRepository;
+    @Autowired
+    private StudentRepository studentRepository;
 
     public int login(String userid,String password){
         Optional optional = userRepository.findById(userid);
@@ -53,4 +58,16 @@ public class UserService {
     public User findById(String userid){
         return userRepository.findById(userid).get();
     }
+
+//    public boolean isUseridMatchTel(String userid,String tel,int title){
+//        if(title == 1){
+//            managerRepository.findById("userid")
+//        }
+//        else if(title == 2){
+//
+//        }
+//        else{
+//
+//        }
+//    }
 }

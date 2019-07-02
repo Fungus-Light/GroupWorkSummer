@@ -4,14 +4,14 @@ function addManager() {
     var password = document.getElementById("admin-pass").value;
     var name = document.getElementById("admin-name").value;
     var tel = document.getElementById("admin-contact").value;
-    var school=document.getElementById("admin-school").value;
-    if ((userid != null && password != null && name != null && tel != null&&school!=null) && (userid.toString().length > 2 && password.length > 2)) {
+    var school = document.getElementById("admin-school").value;
+    if ((userid != null && password != null && name != null && tel != null && school != null) && (userid.toString().length > 2 && password.length > 2)) {
         axios.post('/addManager', {
             userid: userid,
             password: password,
             name: name,
             tel: tel,
-            academic:school
+            academic: school
         }).then(response => {
             window.reload();
         })
@@ -23,14 +23,14 @@ function editManager() {
     var password = document.getElementById("e-admin-pass").value;
     var name = document.getElementById("e-admin-name").value;
     var tel = document.getElementById("e-admin-contact").value;
-    var school=$("#e-admin-school").val();
+    var school = $("#e-admin-school").val();
     if ((userid != null && password != null && name != null && tel != null) && (userid.toString().length > 2 && password.length > 2)) {
         axios.post('/editManager', {
             userid: userid,
             password: password,
             name: name,
             tel: tel,
-            academic:school
+            academic: school
         }).then(response => {
             window.reload();
         })
@@ -167,9 +167,44 @@ $("#upload-teach").click(function () {
     inputObj.setAttribute('type', 'file');
     inputObj.setAttribute("style", 'visibility:hidden');
     document.body.appendChild(inputObj);
+    inputObj.onchange = function (evt) {
+        var selectedFile = evt.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            var data = event.target.result;
+            var workbook = XLSX.read(data, {
+                type: 'binary'
+            });
+            workbook.SheetNames.forEach(function (sheetName) {
+                var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+                if (XL_row_object.length > 0) {
+                    console.log(XL_row_object);
+                    for(var i=0;i<XL_row_object.length;i++){
+                        var temp=XL_row_object[i];
+                        axios.post('/addTeacher', {
+                            userid: temp.id,
+                            password: "123456",
+                            name: temp.name,
+                            tel: temp.tel,
+                            academic: temp.academic
+                        }).then(response => {
+                            console.log("finish "+i.toString());
+                        })
+                    }
+                }
+                window.location.reload();
+            })
+        };
+        reader.onerror = function (event) {
+            console.error("File could not be read! Code " + event.target.error.code);
+        };
+        // 读取上传文件为二进制
+        reader.readAsBinaryString(selectedFile);
+        //console.log(document.getElementById("jsonObject").value);
+    }
     inputObj.click();
     console.log(inputObj.value);
-    
+
 });
 
 $("#upload-student").click(function () {
@@ -178,52 +213,117 @@ $("#upload-student").click(function () {
     inputObj.setAttribute('type', 'file');
     inputObj.setAttribute("style", 'visibility:hidden');
     document.body.appendChild(inputObj);
+    inputObj.onchange = function (evt) {
+        var selectedFile = evt.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            var data = event.target.result;
+            var workbook = XLSX.read(data, {
+                type: 'binary'
+            });
+            workbook.SheetNames.forEach(function (sheetName) {
+                var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+                if (XL_row_object.length > 0) {
+                    console.log(JSON.stringify(XL_row_object));
+                    for(var i=0;i<XL_row_object.length;i++){
+                        var temp=XL_row_object[i];
+                        axios.post('/addStudent', {
+                            userid: temp.id,
+                            password: "123456",
+                            name: temp.name,
+                            tel: temp.tel,
+                            academic: temp.academic
+                        }).then(response => {
+                            console.log("finish"+i.toString());
+                        })
+                    }
+
+                    window.location.reload();
+                    
+                }
+
+            })
+        };
+        reader.onerror = function (event) {
+            console.error("File could not be read! Code " + event.target.error.code);
+        };
+        // 读取上传文件为二进制
+        reader.readAsBinaryString(selectedFile);
+        //console.log(document.getElementById("jsonObject").value);
+    }
     inputObj.click();
     console.log(inputObj.value);
-    
+
 });
 
 //topic review 
 
-function passTopic(){
-    var id=$("#topic_review_id").val();
-    axios.post('acceptTopic',{
-        topicid:id
+function passTopic() {
+    var id = $("#topic_review_id").val();
+    axios.post('acceptTopic', {
+        topicid: id
     })
-    .then(res => {
-        window.location.reload();
-    })
-    .catch(err => {
-        console.error(err); 
-    })
+        .then(res => {
+            window.location.reload();
+        })
+        .catch(err => {
+            console.error(err);
+        })
 }
 
-function refuseTopic(){
-    var id=$("#topic_review_id").val();
-    axios.post('refuseTopic',{
-        topicid:id
+function refuseTopic() {
+    var id = $("#topic_review_id").val();
+    axios.post('refuseTopic', {
+        topicid: id
     })
-    .then(res => {
-        window.location.reload();
-    })
-    .catch(err => {
-        console.error(err); 
-    })
+        .then(res => {
+            window.location.reload();
+        })
+        .catch(err => {
+            console.error(err);
+        })
 }
 
 //status manager
 
-$(".state-btn").click(function(){
+$(".state-btn").click(function () {
 
-    var code=$(this).attr("statecode");
-    axios.post("/setPeriod",{
-        segid:code
+    var code = $(this).attr("statecode");
+    axios.post("/setPeriod", {
+        segid: code
     })
-    .then(res => {
-        console.log(res);
-        window.location.reload();
-    })
-    .catch(err => {
-        console.error(err); 
-    })
+        .then(res => {
+            console.log(res);
+            window.location.reload();
+        })
+        .catch(err => {
+            console.error(err);
+        })
 });
+
+
+//subgroup
+
+$("#subgroup-btn").click(function(){
+    if(groupedFinalLine==null){
+        ArrangeStudentTeach(teachIdArray,stuIdArray);
+    }
+    for(var i=0;i<groupedFinalLine.length;i++){
+        var temp=groupedFinalLine[i];
+        axios.post('groupsetAcademic',{
+            type:temp.type,
+            userid:temp.id,
+            groupid:temp.gid
+        })
+        .then(res => {
+            console.log("success "+i.toString());
+        })
+        .catch(err => {
+            console.error(err); 
+        })
+    }
+});
+
+$("#arrange-btn").click(function () {
+    ArrangeStudentTeach(teachIdArray,stuIdArray);
+})
