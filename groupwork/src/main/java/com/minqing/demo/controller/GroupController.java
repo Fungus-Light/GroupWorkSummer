@@ -1,10 +1,12 @@
 package com.minqing.demo.controller;
 
+import com.minqing.demo.entity.Topicgroup;
 import com.minqing.demo.service.ManagerService;
 import com.minqing.demo.service.StudentService;
 import com.minqing.demo.service.TeacherService;
 import com.minqing.demo.service.TopicgroupService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,6 +14,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class GroupController {
@@ -51,7 +54,16 @@ public class GroupController {
     }
 
 
+    @RequestMapping("/groupsetAcademic")
+    public void groupsetAcademic(@RequestBody Map<String,Object> m )
+    {
 
+        Integer type=(int)m.get("type");
+        String userid=(String)m.get("userid");
+        String groupid=(String)m.get("groupid");
+
+        topicgroupService.addTopicgroup(userid,groupid,type);
+    }
 
 
 
