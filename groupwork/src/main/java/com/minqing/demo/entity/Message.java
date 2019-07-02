@@ -6,28 +6,24 @@ import javax.persistence.Id;
 @Entity
 public class Message {
     @Id
-    private int messageid;
-    private String senderid;
-    private String userid;
+    private Integer messageid;
     private String title;
     private String content;
-    private String time;
-    private int state;
 
-    public int getMessageid() {
+    public Integer getMessageid() {
         return messageid;
     }
 
-    public void setMessageid(int messageid) {
+    public void setMessageid(Integer messageid) {
         this.messageid = messageid;
     }
 
-    public String getUserid() {
-        return userid;
+    public String getTitle() {
+        return title;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {
@@ -46,27 +42,5 @@ public class Message {
         this.time = time;
     }
 
-    public String getSenderid() {
-        return senderid;
-    }
-
-    public void setSenderid(String senderid) {
-        this.senderid = senderid;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-    }
+    private String time;
 }
