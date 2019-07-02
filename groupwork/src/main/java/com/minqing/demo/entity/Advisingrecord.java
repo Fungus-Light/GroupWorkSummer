@@ -1,4 +1,4 @@
 package com.minqing.demo.entity;
 
-public class Advisingrecord {
+public class Record {
 }
