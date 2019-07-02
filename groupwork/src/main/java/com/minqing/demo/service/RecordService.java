@@ -14,7 +14,7 @@ public class RecordService {
     @Autowired
     private RecordRepository recordRepository;
 
-    public void addRecode(String studentid,String teacherid,String content){
+    public void addRecord(String studentid,String teacherid,String content){
         Record record = new Record();
         record.setStudentid(studentid);
         record.setStudentid(teacherid);

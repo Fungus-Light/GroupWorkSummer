@@ -261,7 +261,7 @@ public class StartTitleController {
                 teacherid = cookie.getValue();
             }
         }
-        
+
         List<SelectTopic> list = selectTopicService.findSelectTopicByTeacher(teacherid);
         int length = list.size();
         List<Map<String,Object>> newlist = new ArrayList<>();
@@ -278,5 +278,19 @@ public class StartTitleController {
             newlist.add(map);
         }
         return newlist;
+    }
+
+    @RequestMapping("/addRecord")
+    public void addRecord(@RequestBody Map<String,String> map,HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        String teacherid = "";
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("userid")){
+                teacherid = cookie.getValue();
+            }
+        }
+        String studentid = map.get("studentid");
+        String content = map.get("content");
+        recordService.addRecord(studentid,teacherid,content);
     }
 }

@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
     "senderid":"2016141223043",
-    "userid":"222222",
+    "userid":"2016141223043",
     "title":"老师们请注意",
     "content":"请老师及时出题"
 }
