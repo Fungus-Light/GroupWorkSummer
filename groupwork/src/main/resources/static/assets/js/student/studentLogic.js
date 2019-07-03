@@ -75,3 +75,16 @@ function IfHasFile(has){
         $('.hasnofile').show();
     }
 }
+
+$("#upload-article").click(function(){
+    console.log("click me")
+    var inputObj = document.createElement('input')
+    inputObj.setAttribute('id', '_ef');
+    inputObj.setAttribute('type', 'file');
+    inputObj.setAttribute("style", 'visibility:hidden');
+    document.body.appendChild(inputObj);
+    inputObj.onchange = function (evt) {
+
+    }
+    inputObj.click();
+});
