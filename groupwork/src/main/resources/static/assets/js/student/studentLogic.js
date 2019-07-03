@@ -84,7 +84,18 @@ $("#upload-article").click(function(){
     inputObj.setAttribute("style", 'visibility:hidden');
     document.body.appendChild(inputObj);
     inputObj.onchange = function (evt) {
-
+        console.log(inputObj.files);
+        var file=inputObj.files[0];
+        console.log(file);
+        axios.post('uploadfile',{
+            file:file
+        })
+        .then(res => {
+            console.log("send success");
+        })
+        .catch(err => {
+            console.error(err); 
+        })
     }
     inputObj.click();
 });
