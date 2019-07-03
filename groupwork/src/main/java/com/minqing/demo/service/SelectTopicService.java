@@ -5,6 +5,8 @@ import com.minqing.demo.entity.SelectTopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SelectTopicService {
     @Autowired
@@ -28,5 +30,8 @@ public class SelectTopicService {
     public boolean isSelectTopic(String studentid)
     {
         return selectTopicRepository.findById(studentid).isPresent();
+    }
+    public List<SelectTopic> findSelectTopicByTeacher(String teacherid){
+        return selectTopicRepository.findSelectTopicsByTeacherid(teacherid);
     }
 }

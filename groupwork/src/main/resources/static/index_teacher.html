@@ -50,7 +50,7 @@
                     <ul>
                         <!-- 欢迎语 -->
                         <li class="am-text-sm tpl-header-navbar-welcome">
-                            <a href="javascript:;">欢迎你, <span>老师</span> </a>
+                            <a href="javascript:;">欢迎你, <span id="username-head">老师</span> </a>
                         </li>
 
                         <!-- 新邮件 -->
@@ -195,11 +195,11 @@
                     <div class="tpl-user-panel-profile-picture">
                         <img src="assets/img/user02.png" alt="">
                     </div>
-                    <span class="user-panel-logged-in-text">
+                    <span class="user-panel-logged-in-text" id="username-bar">
                         <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
                         教师-A
                     </span>
-                    <a href="javascript:;" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span>
+                    <a href="javascript:;" class="tpl-user-panel-action-link nvl" call="personal-info"> <span class="am-icon-pencil"></span>
                         账号设置</a>
                 </div>
             </div>
@@ -231,7 +231,7 @@
 
                 <li class="sidebar-nav-link nvl" call="state">
                     <a href="javascript:;">
-                        <i class="am-icon-calendar sidebar-nav-link-logo"></i> 选题结果查看
+                        <i class="am-icon-calendar sidebar-nav-link-logo"></i> 选题查看和指导
 
                     </a>
                 </li>
@@ -340,19 +340,20 @@
                                     <div class="am-form-group">
                                         <label for="user_id" class="am-u-sm-3 am-form-label">用户ID</label>
                                         <div class="am-u-sm-9">
-                                            <input disabled type="text" class="tpl-form-input" id="user_id" minlength="3"
-                                                maxlength="20" required>
+                                            <input disabled type="text" class="tpl-form-input" id="user_id"
+                                                minlength="3" maxlength="20" required>
                                         </div>
                                     </div>
 
                                     <div class="am-form-group">
                                         <label for="user_password" class="am-u-sm-3 am-form-label">密码 </label>
                                         <div class="am-u-sm-9">
-                                            <input id="user_password" type="password" class="tpl-form-input" minlength="3" maxlength="20">
+                                            <input id="user_password" type="password" class="tpl-form-input"
+                                                minlength="3" maxlength="20">
                                         </div>
                                     </div>
 
-                                    
+
 
                                     <div class="am-form-group">
                                         <label for="user_school" class="am-u-sm-3 am-form-label">学院 </label>
@@ -387,7 +388,7 @@
                                         <label for="user-name" class="am-u-sm-3 am-form-label">真实姓名 </label>
                                         <div class="am-u-sm-9">
                                             <input disabled type="text" id="user-name">
-                                            
+
                                         </div>
                                     </div>
 
@@ -402,7 +403,8 @@
                                     <div class="am-form-group">
                                         <div class="am-u-sm-9 am-u-sm-push-3">
                                             <button type="button"
-                                                class="am-btn am-btn-primary tpl-btn-bg-color-success "onclick="updataInfo()">提交</button>
+                                                class="am-btn am-btn-primary tpl-btn-bg-color-success "
+                                                onclick="updataInfo()">提交</button>
                                         </div>
                                     </div>
 
@@ -456,7 +458,7 @@
                                             <tr>
                                                 <th>题目名</th>
                                                 <th>题目ID</th>
-                                                
+
                                                 <th>状态及信息</th>
                                                 <th>操作</th>
                                             </tr>
@@ -470,9 +472,9 @@
                                                     <div class="tpl-table-black-operation">
                                                         <a href="javascript:;">
                                                             <i class="am-icon-pencil"></i>编辑
-                                                        </a> 
+                                                        </a>
                                                         <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                            <i class="am-icon-trash"></i>删除 
+                                                            <i class="am-icon-trash"></i>删除
                                                         </a>
                                                     </div>
                                                 </td>
@@ -515,39 +517,40 @@
                                         <thead>
                                             <tr>
                                                 <th>学生姓名</th>
-                                                <th>学生代码</th>
+                                                <th>学生ID</th>
                                                 <th>选题名称</th>
-                                                <th>选题代码</th>
-                                                <th>当前状态</th>
-                                                <th>开始日期</th>
-                                                <th>验收日期</th>
-                                                <th>详情</th>
+                                                <th>附件查看</th>
+                                                <th>操作</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="State_List_Render">
+                                        <tbody id="TopicResult_List_Render">
                                             <tr class="gradeX">
-                                                <td>Uncle wang</id>
+                                                <td>李二狗</id>
                                                 <td>2015424275589</id>
                                                 <td>大型购物商城</td>
-                                                <td>th-1001</td>
                                                 <td>
                                                     <div class="tpl-table-black-operation">
                                                         <a href="javascript:;">
-                                                            <i class="am-icon-pencil"></i> 当前阶段
+                                                            下载附件
                                                         </a>
+
 
                                                     </div>
                                                 </td>
-                                                <td>2019-1-1</td>
-                                                <td>2019-2-5</td>
                                                 <td>
                                                     <div class="tpl-table-black-operation">
-                                                        <a href="javascript:;" class="widget-fluctuation-description-text">
-                                                            <i class="am-icon-digg"></i>
+                                                        <a href="javascript:;"
+                                                            data-am-modal="{target: '#add-guide',closeViaDimmer: 0, width: 600, height: 460}">
+                                                            <i class="am-icon-pencil"></i> 添加指导
+                                                        </a>
+
+                                                        <a href="javascript:;">
+                                                            <i class="am-icon-pencil"></i> 指导记录
                                                         </a>
 
                                                     </div>
                                                 </td>
+
                                             </tr>
                                             <!-- more data -->
                                         </tbody>
@@ -604,8 +607,8 @@
                 <fieldset>
                     <div class="am-form-group">
                         <label for="e-mission-name">选题名：</label>
-                        <input type="text" id="e-mission-name" minlength="3" maxlength="20" placeholder="输入选题名（至少 3 个字符）"
-                            required />
+                        <input type="text" id="e-mission-name" minlength="3" maxlength="20"
+                            placeholder="输入选题名（至少 3 个字符）" required />
                     </div>
                     <div class="am-form-group">
                         <label for="e-mission-brief">简述</label>
@@ -629,6 +632,38 @@
             </div>
             <div class="am-modal-bd">
                 请联系你的管理员进行操作
+            </div>
+
+        </div>
+    </div>
+
+
+    <!--指导学生-->
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="add-guide">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">添加指导
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <form class="am-form">
+                <fieldset>
+                    <div class="am-form-group">
+                        <label for="guide-content">指导内容</label>
+                        <textarea rows="14" cols="40" id="guide-content" placeholder="请输入详细指导："></textarea>
+                    </div>
+
+                    <button class="am-btn am-btn-secondary" type="" onclick="addGuide()">提交</button>
+                </fieldset>
+            </form>
+
+        </div>
+    </div>
+
+    <!--指导记录-->
+
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="his-guide">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">指导记录
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
             </div>
             
         </div>

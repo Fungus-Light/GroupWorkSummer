@@ -1,4 +1,4 @@
-var Topic_List_Render=document.getElementById('Topic_List_Render');
+var Topic_List_Render = document.getElementById('Topic_List_Render');
 
 function SetPreUserInfo(data) {
     $("#user-id").val(data.userid);
@@ -17,39 +17,41 @@ window.onload = function () {
 
     axios.post('/showSingleStudent')
         .then(res => {
+            document.getElementById("username-bar").innerHTML = '<i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>' + res.data.name + "同学";
+            document.getElementById("username-head").innerText = res.data.name + "同学";
             SetPreUserInfo(res.data);
         })
         .catch(err => {
             console.error(err);
         });
-    
-    axios.post('/showAcademicTopicStudent')
-    .then(res => {
-        if(res.data[0].status==0){
-            IfHasTopic(false);
-        Refresh(res.data);
 
-        }else{
-            var data=res.data[0];
-            SetTopicInfo(data.topic, data.topicid,data.academic, data.name, data.description);
-            IfHasTopic(true);
-        }
-    })
-    .catch(err => {
-        console.error(err);
-    })
-    
+    axios.post('/showAcademicTopicStudent')
+        .then(res => {
+            if (res.data[0].status == 0) {
+                IfHasTopic(false);
+                Refresh(res.data);
+
+            } else {
+                var data = res.data[0];
+                SetTopicInfo(data.topic, data.topicid, data.academic, data.name, data.description);
+                IfHasTopic(true);
+            }
+        })
+        .catch(err => {
+            console.error(err);
+        })
+
 }
 
-function Refresh(topicarray){
+function Refresh(topicarray) {
     ClearRenderer(Topic_List_Render);
-    for(var i=0;i<topicarray.length;i++){
-        var data=topicarray[i];
-        AttachChildren(Topic_List_Render,MakeTopicStu(data.topic,data.topicid,data.name,data.description));
+    for (var i = 0; i < topicarray.length; i++) {
+        var data = topicarray[i];
+        AttachChildren(Topic_List_Render, MakeTopicStu(data.topic, data.topicid, data.name, data.description));
     }
 }
 
-function SetShowTopicBar(data){
+function SetShowTopicBar(data) {
     $('#s-topic-name').val(data.name);
     $('#s-topic-brief').val(data.content);
 }
@@ -59,13 +61,13 @@ function SetTopicInfo(name, id, school, teacher, content) {
     $('#topic-id').text(id);
     $('#topic-school').text(school);
     $('#topic-teach').text(teacher);
-    $('#topic-content').attr("topic_data",JSON.stringify({
-        name:name,
-        content:content
+    $('#topic-content').attr("topic_data", JSON.stringify({
+        name: name,
+        content: content
     }));
 }
 
-function SetChooseTopicBar(data){
+function SetChooseTopicBar(data) {
     $('#topic-choose-name').val(data.name);
     $('#topic-choose-id').val(data.id);
 }
@@ -96,42 +98,42 @@ function SetChooseTopicBar(data){
 
 */
 
-function MakeTopicStu(_name,_id,_teach,_content) {
-    var root=MakeUpElement('tr',"","");
-    var innertd='<td>'+_name+'</td>'
-                +'<td>'+_id+'</td>'
+function MakeTopicStu(_name, _id, _teach, _content) {
+    var root = MakeUpElement('tr', "", "");
+    var innertd = '<td>' + _name + '</td>'
+        + '<td>' + _id + '</td>'
 
-                +'<td>'+_teach+'</td>';
-    var btnroot=MakeUpElement('td',"","");
-    var btngroup=MakeUpElement('div',"","am-btn-group am-btn-group-xs");
-    var showbtn=MakeUpElement('button','',"am-btn am-btn-default am-btn-secondary topic-more");
-    showbtn.innerHTML='<span class="am-icon-anchor"></span> 详情';
-    showbtn.setAttribute('data-am-modal',"{target: '#show-topic',closeViaDimmer: 0, width: 500, height: 400}");
-    showbtn.setAttribute('topic_data',JSON.stringify({
-        name:_name,
-        content:_content
+        + '<td>' + _teach + '</td>';
+    var btnroot = MakeUpElement('td', "", "");
+    var btngroup = MakeUpElement('div', "", "am-btn-group am-btn-group-xs");
+    var showbtn = MakeUpElement('button', '', "am-btn am-btn-default am-btn-secondary topic-more");
+    showbtn.innerHTML = '<span class="am-icon-anchor"></span> 详情';
+    showbtn.setAttribute('data-am-modal', "{target: '#show-topic',closeViaDimmer: 0, width: 500, height: 400}");
+    showbtn.setAttribute('topic_data', JSON.stringify({
+        name: _name,
+        content: _content
     }));
     showbtn.addEventListener('click', function () {
-        var data=showbtn.getAttribute("topic_data");
+        var data = showbtn.getAttribute("topic_data");
         SetShowTopicBar(JSON.parse(data));
     });
 
-    var addbtn=MakeUpElement('button','',"am-btn am-btn-default am-btn-success topic-add");
-    addbtn.innerHTML='<span class="am-icon-plus"></span> 选择'
-    addbtn.setAttribute('data-am-modal',"{target: '#choose-topic',closeViaDimmer: 0, width: 300, height: 300}");
-    addbtn.setAttribute('topic_data',JSON.stringify({
-        name:_name,
-        id:_id
+    var addbtn = MakeUpElement('button', '', "am-btn am-btn-default am-btn-success topic-add");
+    addbtn.innerHTML = '<span class="am-icon-plus"></span> 选择'
+    addbtn.setAttribute('data-am-modal', "{target: '#choose-topic',closeViaDimmer: 0, width: 300, height: 300}");
+    addbtn.setAttribute('topic_data', JSON.stringify({
+        name: _name,
+        id: _id
     }))
-    addbtn.addEventListener('click',function(){
-        var data=addbtn.getAttribute("topic_data");
+    addbtn.addEventListener('click', function () {
+        var data = addbtn.getAttribute("topic_data");
         SetChooseTopicBar(JSON.parse(data));
     })
 
     btngroup.appendChild(showbtn);
     btngroup.appendChild(addbtn);
     btnroot.appendChild(btngroup);
-    root.innerHTML=innertd;
+    root.innerHTML = innertd;
     root.appendChild(btnroot);
 
     return root;

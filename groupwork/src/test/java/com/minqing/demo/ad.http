@@ -1,4 +1,4 @@
-POST http://localhost:8080/groupshowAcademicStudent
+POST http://localhost:8080/showStudentBySingleTeacher
 Content-Type: application/json
 
 {

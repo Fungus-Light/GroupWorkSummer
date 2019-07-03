@@ -10,5 +10,4 @@ import java.util.List;
 @RepositoryRestResource
 @Transactional
 public interface MessageRepository extends JpaRepository<Message,Integer> {
-
 }

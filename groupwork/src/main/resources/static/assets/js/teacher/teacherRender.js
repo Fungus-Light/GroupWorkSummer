@@ -24,6 +24,7 @@
 
 */
 var Topic_List_Render = $("#Topic_List_Render").get(0);
+var TopicResult_List_Render=document.getElementById("TopicResult_List_Render");
 
 window.onload=function(){
     axios.post('/checkCookie').then(response=>{
@@ -38,8 +39,19 @@ window.onload=function(){
     });
 
     axios.post('/showSingleTeacher').then(response=>{
+        document.getElementById("username-bar").innerHTML='<i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>'+response.data.name+"老师";
+        document.getElementById("username-head").innerText=response.data.name+"老师";
         presetInfo(response.data);
     });
+
+    //the topiced stu
+    axios.post('showStudentBySingleTeacher')
+    .then(res => {
+        RefreshTopicStu(res.data);
+    })
+    .catch(err => {
+        console.error(err); 
+    })
     
 }
 
@@ -112,4 +124,90 @@ function RefreshTopic(topicarray) {
         }
         AttachChildren(Topic_List_Render, MakeUpTopic(topicarray[i].topic, topicarray[i].topicid,status));
     }
+}
+
+//topic-stud
+/*
+
+<tr class="gradeX">
+        <td>李二狗</id>
+        <td>2015424275589</id>
+        <td>大型购物商城</td>
+        <td>
+            <div class="tpl-table-black-operation">
+                <a href="javascript:;">
+                    下载附件
+                </a>
+            </div>
+        </td>
+        <td>
+            <div class="tpl-table-black-operation">
+                <a href="javascript:;"
+                data-am-modal="{target: '#add-guide',closeViaDimmer: 0, width: 600, height: 460}">
+                    <i class="am-icon-pencil"></i> 添加指导
+                </a>
+                <a href="javascript:;">
+                    <i class="am-icon-pencil"></i> 指导记录
+                </a>
+
+            </div>
+        </td>
+
+</tr>
+
+*/
+
+function RefreshTopicStu(topicarray){
+    ClearRenderer(TopicResult_List_Render);
+    for(var i=0;i<topicarray.length;i++){
+        var temp=topicarray[i];
+        TopicResult_List_Render.appendChild(MakeUpTopicStu(temp.name,temp.studentid,temp.title,temp.record));
+    }
+}
+
+function SetAddGuideID(id){
+    document.getElementById("add-guide").setAttribute("user-id",id);
+}
+
+function MakeUpTopicStu(_name,_userid,_topic,_guidelist){
+    var Root=MakeUpElement("tr","","gradeX");
+    var inner="<td>"+_name+"</id>"
+        +"<td>"+_userid+"</id>"
+        +"<td>"+_topic+"</td>";
+    Root.innerHTML=inner;
+    var downloadbtnroot=MakeUpElement("td","","");
+    var downbtngroup=MakeUpElement("div","","tpl-table-black-operation");
+    var downbtn=MakeUpElement("a","下载附件","");
+    downbtn.setAttribute("data-content",JSON.stringify({
+        userid:_userid
+    }))
+    downbtn.addEventListener('click',function(){
+        console.log("down it");
+    })
+    downbtngroup.appendChild(downbtn);
+    downloadbtnroot.appendChild(downbtngroup);
+
+    var actionbtnroot=MakeUpElement("td","","");
+    var actionbtngroup=MakeUpElement("div","","tpl-table-black-operation");
+    var addguidebtn=MakeUpElement("a","","");
+    addguidebtn.innerHTML='<i class="am-icon-pencil"></i> 添加指导';
+    addguidebtn.setAttribute("data-content",JSON.stringify({
+        userid:_userid
+    }))
+    addguidebtn.setAttribute("data-am-modal","{target: '#add-guide',closeViaDimmer: 0, width: 600, height: 460}");
+    addguidebtn.addEventListener('click',()=>{
+        SetAddGuideID(JSON.parse(addguidebtn.getAttribute("data-content")).userid);
+    })
+    var viewbtn=MakeUpElement("a","","");
+    viewbtn.setAttribute("data-am-modal","{target: '#his-guide',closeViaDimmer: 0, width: 600, height: 460}");
+    viewbtn.innerHTML='<i class="am-icon-pencil"></i> 指导记录';
+    viewbtn.setAttribute("data-content",JSON.stringify(_guidelist));
+    actionbtngroup.appendChild(addguidebtn);
+    actionbtngroup.appendChild(viewbtn);
+    actionbtnroot.appendChild(actionbtngroup);
+
+    Root.appendChild(downloadbtnroot);
+    Root.appendChild(actionbtnroot);
+
+    return Root;
 }
