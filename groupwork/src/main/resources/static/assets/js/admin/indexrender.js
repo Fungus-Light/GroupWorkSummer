@@ -534,7 +534,7 @@ function MakeUpMsg(mid,mtitle,mcontent,mtime){
         //设置msg信息
         var data=JSON.parse(showbtn.getAttribute("data-content"));
         $("#msg-title").val(data.title);
-        $("#msg-content").val(data.title);
+        $("#msg-content").val(data.content);
     });
 
     var delbtn=MakeUpElement("a","","tpl-table-black-operation-del");
@@ -550,6 +550,7 @@ function MakeUpMsg(mid,mtitle,mcontent,mtime){
     btngroup.appendChild(delbtn);
     btnroot.appendChild(btngroup);
     Root.appendChild(title);
+    Root.appendChild(time);
     Root.appendChild(btnroot);
     return Root;
 }
