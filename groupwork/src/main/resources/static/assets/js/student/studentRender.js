@@ -51,6 +51,14 @@ window.onload = function () {
             console.error(err);
         })
 
+    axios.post("/showYourgroups")
+        .then(res => {
+            RefreshInGoup(res.data);
+        })
+        .catch(err => {
+            console.error(err);
+        })
+
 }
 
 function Refresh(topicarray) {
@@ -185,5 +193,30 @@ function RefreshMsg(msgarr) {
     for (var i = 0; i < msgarr.length; i++) {
         var temp = msgarr[i];
         Msg_List_Render.appendChild(MakeUpMsg(temp.title, temp.content, temp.time));
+    }
+}
+
+
+function MakeUpInGroup(gid, uid, type) {
+    var Root = MakeUpElement("tr", "", "");
+    var _type;
+    if (type == 0) {
+        _type = "教师";
+    } else {
+        _type = "学生";
+    }
+    var inner = "<td>" + gid + "</td>"
+        + "<td>" + uid + "</td>"
+        + "<td>" + _type + "</td>";
+    Root.innerHTML = inner;
+    return Root;
+}
+
+var Group_Render = document.getElementById("Group_Render");
+function RefreshInGoup(grouparr) {
+    ClearRenderer(Group_Render);
+    for (var i = 0; i < grouparr; i++) {
+        var data = grouparr[i];
+        Group_Render.appendChild(MakeUpInGroup(data.groupid, data.userid, data.identity))
     }
 }
