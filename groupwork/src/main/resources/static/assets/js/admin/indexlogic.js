@@ -327,3 +327,24 @@ $("#subgroup-btn").click(function(){
 $("#arrange-btn").click(function () {
     ArrangeStudentTeach(teachIdArray,stuIdArray);
 })
+
+//msg functions
+function deleteMsg(){
+
+}
+
+function addMsg(){
+    var title =$("#add-msg-name").val();
+    var content=$("#add-msg-content").val();
+
+    axios.post("/addMessage",{
+        title:title,
+        content:content
+    })
+    .then(res => {
+        window.location.reload();
+    })
+    .catch(err => {
+        console.error(err); 
+    })
+}

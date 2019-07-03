@@ -10,7 +10,8 @@ var groupedFinalLine={};
 var Admin_List_Render = document.getElementById("Admin_List_Render");
 var Teacher_List_Render = document.getElementById("Teacher_List_Render");
 var Student_List_Render = document.getElementById("Student_List_Render");
-Topic_List_Render = document.getElementById("Topic_List_Render");
+var Topic_List_Render = document.getElementById("Topic_List_Render");
+var Msg_List_Render=document.getElementById("Msg_List_Render");
 
 function initPages() {
     //check the cookies
@@ -18,7 +19,6 @@ function initPages() {
         if (response.data === 0) {
             window.location.href = 'login.html';
         }
-
     });
     //init the manager page
     axios.post('/showManager').then(response => {
@@ -57,6 +57,14 @@ function initPages() {
         teachIdArray=res.data[1];
         stuIdArray=res.data[0];
         RefreshUngroup(res.data[1],res.data[0]);
+    })
+    .catch(err => {
+        console.error(err); 
+    });
+
+    axios.post("/showMessage")
+    .then(res => {
+        RefreshMsg(res.data)
     })
     .catch(err => {
         console.error(err); 
@@ -487,4 +495,69 @@ function Shuffle(arr) {
       arr[i] = itemIndex;
     }
     return arr;
+}
+
+/*
+
+<tr class="gradeX">
+    <td>对于学生必须严格遵循选题规范的通知</td>
+    <td>
+        <div class="tpl-table-black-operation">
+            <a href="javascript:;"
+                data-am-modal="{target: '#show-msg',closeViaDimmer: 0, width: 600, height: 600}">
+                <i class="am-icon-pencil"></i> 阅读
+            </a>
+            <a href="javascript:;" class="tpl-table-black-operation-del"
+                data-am-modal="{target: '#del-msg',closeViaDimmer: 0, width: 400, height: 200}">
+                <i class="am-icon-trash"></i> 删除
+            </a>
+        </div>
+    </td>
+</tr>
+
+*/
+
+function MakeUpMsg(mid,mtitle,mcontent,mtime){
+    var Root=MakeUpElement("tr","","gradeX");
+    var title=MakeUpElement("td",mtitle,"");
+    var time=MakeUpElement("td",mtime,"")
+    var btnroot=MakeUpElement("td","","");
+    var btngroup=MakeUpElement("div","","tpl-table-black-operation");
+    var showbtn=MakeUpElement("a","","");
+    showbtn.innerHTML='<i class="am-icon-pencil"></i> 阅读';
+    showbtn.setAttribute("data-am-modal","{target: '#show-msg',closeViaDimmer: 0, width: 600, height: 600}");
+    showbtn.setAttribute("data-content",JSON.stringify({
+        title:mtitle,
+        content:mcontent
+    }));
+    showbtn.addEventListener('click',()=>{
+        //设置msg信息
+        var data=JSON.parse(showbtn.getAttribute("data-content"));
+        $("#msg-title").val(data.title);
+        $("#msg-content").val(data.title);
+    });
+
+    var delbtn=MakeUpElement("a","","tpl-table-black-operation-del");
+    delbtn.innerHTML='<i class="am-icon-trash"></i> 删除';
+    delbtn.setAttribute("data-am-modal","{target: '#del-msg',closeViaDimmer: 0, width: 400, height: 200}");
+    delbtn.setAttribute("mid",mid);
+    delbtn.addEventListener('click',()=>{
+        //设置隐含msg id
+        $("#del-msg").attr("mid",delbtn.getAttribute("mid"));
+    })
+    
+    btngroup.appendChild(showbtn);
+    btngroup.appendChild(delbtn);
+    btnroot.appendChild(btngroup);
+    Root.appendChild(title);
+    Root.appendChild(btnroot);
+    return Root;
+}
+
+function RefreshMsg(msgarr){
+    ClearRenderer(Msg_List_Render);
+    for(var i=0;i<msgarr.length;i++){
+        var temp=msgarr[i];
+        Msg_List_Render.appendChild(MakeUpMsg(temp.id,temp.title,temp.content,temp.time));
+    }
 }
