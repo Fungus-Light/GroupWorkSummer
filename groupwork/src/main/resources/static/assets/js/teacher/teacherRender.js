@@ -24,38 +24,49 @@
 
 */
 var Topic_List_Render = $("#Topic_List_Render").get(0);
-var TopicResult_List_Render=document.getElementById("TopicResult_List_Render");
+var TopicResult_List_Render = document.getElementById("TopicResult_List_Render");
+var Msg_List_Render=document.getElementById("Msg_List_Render");
 
-window.onload=function(){
-    axios.post('/checkCookie').then(response=>{
-        if(response.data === 0){
-        window.location.href = 'login.html';
-    }
+window.onload = function () {
+    axios.post('/checkCookie').then(response => {
+        if (response.data === 0) {
+            window.location.href = 'login.html';
+        }
     });
 
-    axios.post('/showTeacherTopic').then(response=>{
+    axios.post('/showTeacherTopic').then(response => {
         // console.log(response.data);
         RefreshTopic(response.data);
     });
 
-    axios.post('/showSingleTeacher').then(response=>{
-        document.getElementById("username-bar").innerHTML='<i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>'+response.data.name+"老师";
-        document.getElementById("username-head").innerText=response.data.name+"老师";
+    axios.post('/showSingleTeacher').then(response => {
+        document.getElementById("username-bar").innerHTML = '<i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>' + response.data.name + "老师";
+        document.getElementById("username-head").innerText = response.data.name + "老师";
         presetInfo(response.data);
     });
 
     //the topiced stu
     axios.post('showStudentBySingleTeacher')
-    .then(res => {
-        RefreshTopicStu(res.data);
-    })
-    .catch(err => {
-        console.error(err); 
-    })
-    
+        .then(res => {
+            RefreshTopicStu(res.data);
+        })
+        .catch(err => {
+            console.error(err);
+        })
+
+    axios.post("/showMessage")
+        .then(res => {
+            var data = res.data;
+            data.reverse();
+            RefreshMsg(data)
+        })
+        .catch(err => {
+            console.error(err);
+        })
+
 }
 
-function presetInfo(data){
+function presetInfo(data) {
     $("#user-name").val(data.name);
     $("#user_password").val(data.password);
     $("#user_id").val(data.userid);
@@ -122,7 +133,7 @@ function RefreshTopic(topicarray) {
                 status = "被拒绝";
                 break;
         }
-        AttachChildren(Topic_List_Render, MakeUpTopic(topicarray[i].topic, topicarray[i].topicid,status));
+        AttachChildren(Topic_List_Render, MakeUpTopic(topicarray[i].topic, topicarray[i].topicid, status));
     }
 }
 
@@ -157,51 +168,51 @@ function RefreshTopic(topicarray) {
 
 */
 
-function RefreshTopicStu(topicarray){
+function RefreshTopicStu(topicarray) {
     ClearRenderer(TopicResult_List_Render);
-    for(var i=0;i<topicarray.length;i++){
-        var temp=topicarray[i];
-        TopicResult_List_Render.appendChild(MakeUpTopicStu(temp.name,temp.studentid,temp.title,temp.record));
+    for (var i = 0; i < topicarray.length; i++) {
+        var temp = topicarray[i];
+        TopicResult_List_Render.appendChild(MakeUpTopicStu(temp.name, temp.studentid, temp.title, temp.record));
     }
 }
 
-function SetAddGuideID(id){
-    document.getElementById("add-guide").setAttribute("user-id",id);
+function SetAddGuideID(id) {
+    document.getElementById("add-guide").setAttribute("user-id", id);
 }
 
-function MakeUpTopicStu(_name,_userid,_topic,_guidelist){
-    var Root=MakeUpElement("tr","","gradeX");
-    var inner="<td>"+_name+"</id>"
-        +"<td>"+_userid+"</id>"
-        +"<td>"+_topic+"</td>";
-    Root.innerHTML=inner;
-    var downloadbtnroot=MakeUpElement("td","","");
-    var downbtngroup=MakeUpElement("div","","tpl-table-black-operation");
-    var downbtn=MakeUpElement("a","下载附件","");
-    downbtn.setAttribute("data-content",JSON.stringify({
-        userid:_userid
+function MakeUpTopicStu(_name, _userid, _topic, _guidelist) {
+    var Root = MakeUpElement("tr", "", "gradeX");
+    var inner = "<td>" + _name + "</id>"
+        + "<td>" + _userid + "</id>"
+        + "<td>" + _topic + "</td>";
+    Root.innerHTML = inner;
+    var downloadbtnroot = MakeUpElement("td", "", "");
+    var downbtngroup = MakeUpElement("div", "", "tpl-table-black-operation");
+    var downbtn = MakeUpElement("a", "下载附件", "");
+    downbtn.setAttribute("data-content", JSON.stringify({
+        userid: _userid
     }))
-    downbtn.addEventListener('click',function(){
+    downbtn.addEventListener('click', function () {
         console.log("down it");
     })
     downbtngroup.appendChild(downbtn);
     downloadbtnroot.appendChild(downbtngroup);
 
-    var actionbtnroot=MakeUpElement("td","","");
-    var actionbtngroup=MakeUpElement("div","","tpl-table-black-operation");
-    var addguidebtn=MakeUpElement("a","","");
-    addguidebtn.innerHTML='<i class="am-icon-pencil"></i> 添加指导';
-    addguidebtn.setAttribute("data-content",JSON.stringify({
-        userid:_userid
+    var actionbtnroot = MakeUpElement("td", "", "");
+    var actionbtngroup = MakeUpElement("div", "", "tpl-table-black-operation");
+    var addguidebtn = MakeUpElement("a", "", "");
+    addguidebtn.innerHTML = '<i class="am-icon-pencil"></i> 添加指导';
+    addguidebtn.setAttribute("data-content", JSON.stringify({
+        userid: _userid
     }))
-    addguidebtn.setAttribute("data-am-modal","{target: '#add-guide',closeViaDimmer: 0, width: 600, height: 460}");
-    addguidebtn.addEventListener('click',()=>{
+    addguidebtn.setAttribute("data-am-modal", "{target: '#add-guide',closeViaDimmer: 0, width: 600, height: 460}");
+    addguidebtn.addEventListener('click', () => {
         SetAddGuideID(JSON.parse(addguidebtn.getAttribute("data-content")).userid);
     })
-    var viewbtn=MakeUpElement("a","","");
-    viewbtn.setAttribute("data-am-modal","{target: '#his-guide',closeViaDimmer: 0, width: 600, height: 460}");
-    viewbtn.innerHTML='<i class="am-icon-pencil"></i> 指导记录';
-    viewbtn.setAttribute("data-content",JSON.stringify(_guidelist));
+    var viewbtn = MakeUpElement("a", "", "");
+    viewbtn.setAttribute("data-am-modal", "{target: '#his-guide',closeViaDimmer: 0, width: 600, height: 460}");
+    viewbtn.innerHTML = '<i class="am-icon-pencil"></i> 指导记录';
+    viewbtn.setAttribute("data-content", JSON.stringify(_guidelist));
     actionbtngroup.appendChild(addguidebtn);
     actionbtngroup.appendChild(viewbtn);
     actionbtnroot.appendChild(actionbtngroup);
@@ -210,4 +221,44 @@ function MakeUpTopicStu(_name,_userid,_topic,_guidelist){
     Root.appendChild(actionbtnroot);
 
     return Root;
+}
+
+//--------------------
+
+function MakeUpMsg(mtitle, mcontent, mtime) {
+    var Root = MakeUpElement("tr", "", "gradeX");
+    var title = MakeUpElement("td", mtitle, "");
+    var time = MakeUpElement("td", mtime, "")
+    var btnroot = MakeUpElement("td", "", "");
+    var btngroup = MakeUpElement("div", "", "tpl-table-black-operation");
+    var showbtn = MakeUpElement("a", "", "");
+    showbtn.innerHTML = '<i class="am-icon-pencil"></i> 阅读';
+    showbtn.setAttribute("data-am-modal", "{target: '#show-msg',closeViaDimmer: 0, width: 600, height: 600}");
+    showbtn.setAttribute("data-content", JSON.stringify({
+        title: mtitle,
+        content: mcontent
+    }));
+    showbtn.addEventListener('click', () => {
+        //设置msg信息
+        var data = JSON.parse(showbtn.getAttribute("data-content"));
+        $("#msg-title").val(data.title);
+        $("#msg-content").val(data.content);
+    });
+
+
+    btngroup.appendChild(showbtn);
+    //btngroup.appendChild(delbtn);
+    btnroot.appendChild(btngroup);
+    Root.appendChild(title);
+    Root.appendChild(time);
+    Root.appendChild(btnroot);
+    return Root;
+}
+
+function RefreshMsg(msgarr) {
+    ClearRenderer(Msg_List_Render);
+    for (var i = 0; i < msgarr.length; i++) {
+        var temp = msgarr[i];
+        Msg_List_Render.appendChild(MakeUpMsg(temp.title, temp.content, temp.time));
+    }
 }

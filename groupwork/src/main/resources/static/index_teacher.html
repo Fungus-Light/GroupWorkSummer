@@ -199,7 +199,8 @@
                         <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
                         教师-A
                     </span>
-                    <a href="javascript:;" class="tpl-user-panel-action-link nvl" call="personal-info"> <span class="am-icon-pencil"></span>
+                    <a href="javascript:;" class="tpl-user-panel-action-link nvl" call="personal-info"> <span
+                            class="am-icon-pencil"></span>
                         账号设置</a>
                 </div>
             </div>
@@ -302,23 +303,55 @@
                                 </div> -->
                             </div>
                             <div class="widget-body am-fr">
-                                <div class="am-fl">
-                                    <div class="widget-fluctuation-period-text">
-                                        这里是首页要显示的内容
-                                        <!-- <button class="widget-fluctuation-tpl-btn">
-                                            <i class="am-icon-calendar"></i>
-                                            更多月份
-                                        </button> -->
-                                    </div>
-                                </div>
-                                <div class="am-fr am-cf">
-                                    <div class="widget-fluctuation-description-amount text-success" am-cf>
-                                        。。。。。
 
-                                    </div>
-                                    <div class="widget-fluctuation-description-text am-text-right">
-                                        。。。。。
-                                    </div>
+                                <div class="am-u-sm-12">
+                                    <table width="100%"
+                                        class="am-table am-table-compact am-table-striped tpl-table-black "
+                                        id="example-r">
+                                        <thead>
+                                            <tr>
+                                                <th> </th>
+                                                <th> </th>
+                                                <th> </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="Msg_List_Render">
+                                            <tr class="gradeX">
+                                                <td>对于学生必须严格遵循选题规范的通知</td>
+                                                <td>2019-1-1</td>
+                                                <td>
+                                                    <div class="tpl-table-black-operation">
+                                                        <a href="javascript:;"
+                                                            data-am-modal="{target: '#show-msg',closeViaDimmer: 0, width: 600, height: 600}">
+                                                            <i class="am-icon-pencil"></i> 阅读
+                                                        </a>
+                                                        <a href="javascript:;" class="tpl-table-black-operation-del"
+                                                            data-am-modal="{target: '#del-msg',closeViaDimmer: 0, width: 400, height: 200}">
+                                                            <i class="am-icon-trash"></i> 删除
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr class="gradeX">
+                                                <td>所有瞎几把操作的老师和学生一律开除和退学。</td>
+                                                <td>2019-1-1</td>
+                                                <td>
+                                                    <div class="tpl-table-black-operation">
+                                                        <a href="javascript:;"
+                                                            data-am-modal="{target: '#show-msg',closeViaDimmer: 0, width: 600, height: 600}">
+                                                            <i class="am-icon-pencil"></i> 阅读
+                                                        </a>
+                                                        <a href="javascript:;" class="tpl-table-black-operation-del"
+                                                            data-am-modal="{target: '#del-msg',closeViaDimmer: 0, width: 400, height: 200}">
+                                                            <i class="am-icon-trash"></i> 删除
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <!-- more data -->
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -665,7 +698,32 @@
             <div class="am-modal-hd">指导记录
                 <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
             </div>
-            
+
+        </div>
+    </div>
+
+
+
+    <!--查看公告-->
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="show-msg">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">公告详情
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <form class="am-form">
+                <fieldset>
+                    <div class="am-form-group">
+
+                        <input disabled type="text" id="msg-title" minlength="3" maxlength="20"
+                            placeholder="输入选题名（至少 3 个字符）" required />
+                    </div>
+                    <div class="am-form-group">
+
+                        <textarea disabled rows="20" cols="40" id="msg-content" placeholder="请输入该选题简述："></textarea>
+                    </div>
+                </fieldset>
+            </form>
+
         </div>
     </div>
     <!--------------------------------------------------------------------------------->
