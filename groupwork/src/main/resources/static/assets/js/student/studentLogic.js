@@ -99,6 +99,7 @@ $("#upload-article").click(function () {
         axios.post('/uploadfile',fm,config)
             .then(res => {
                 console.log("send success");
+                window.location.reload();
             })
             .catch(err => {
                 console.error(err);
