@@ -41,6 +41,16 @@ window.onload = function () {
             console.error(err);
         })
 
+    axios.post("/showMessage")
+        .then(res => {
+            var data = res.data;
+            data.reverse();
+            RefreshMsg(data)
+        })
+        .catch(err => {
+            console.error(err);
+        })
+
 }
 
 function Refresh(topicarray) {
@@ -138,4 +148,42 @@ function MakeTopicStu(_name, _id, _teach, _content) {
 
     return root;
 
+}
+
+function MakeUpMsg(mtitle, mcontent, mtime) {
+    var Root = MakeUpElement("tr", "", "gradeX");
+    var title = MakeUpElement("td", mtitle, "");
+    var time = MakeUpElement("td", mtime, "")
+    var btnroot = MakeUpElement("td", "", "");
+    var btngroup = MakeUpElement("div", "", "tpl-table-black-operation");
+    var showbtn = MakeUpElement("a", "", "");
+    showbtn.innerHTML = '<i class="am-icon-pencil"></i> 阅读';
+    showbtn.setAttribute("data-am-modal", "{target: '#show-msg',closeViaDimmer: 0, width: 600, height: 600}");
+    showbtn.setAttribute("data-content", JSON.stringify({
+        title: mtitle,
+        content: mcontent
+    }));
+    showbtn.addEventListener('click', () => {
+        //设置msg信息
+        var data = JSON.parse(showbtn.getAttribute("data-content"));
+        $("#msg-title").val(data.title);
+        $("#msg-content").val(data.content);
+    });
+
+
+    btngroup.appendChild(showbtn);
+    //btngroup.appendChild(delbtn);
+    btnroot.appendChild(btngroup);
+    Root.appendChild(title);
+    Root.appendChild(time);
+    Root.appendChild(btnroot);
+    return Root;
+}
+
+function RefreshMsg(msgarr) {
+    ClearRenderer(Msg_List_Render);
+    for (var i = 0; i < msgarr.length; i++) {
+        var temp = msgarr[i];
+        Msg_List_Render.appendChild(MakeUpMsg(temp.title, temp.content, temp.time));
+    }
 }
