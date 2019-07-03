@@ -197,11 +197,19 @@ function MakeUpTopicStu(_name, _userid, _topic, _guidelist) {
     var downloadbtnroot = MakeUpElement("td", "", "");
     var downbtngroup = MakeUpElement("div", "", "tpl-table-black-operation");
     var downbtn = MakeUpElement("a", "下载附件", "");
-    downbtn.setAttribute("data-content", JSON.stringify({
-        userid: _userid
-    }))
+    downbtn.setAttribute("data-content", _userid)
     downbtn.addEventListener('click', function () {
         console.log("down it");
+        var id=downbtn.getAttribute("data-content");
+        axios.post('/download',{
+            userid:id
+        })
+        .then(res => {
+            console.log("download success")
+        })
+        .catch(err => {
+            console.error(err); 
+        })
     })
     downbtngroup.appendChild(downbtn);
     downloadbtnroot.appendChild(downbtngroup);
