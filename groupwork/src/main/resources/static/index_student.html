@@ -248,14 +248,14 @@
                         <i class="am-icon-line-chart sidebar-nav-link-logo"></i> 毕业设计过程
                         <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                     </a>
-                    <ul class="sidebar-nav sidebar-nav-sub">
-                        <li class="sidebar-nav-link nvl">
+                    <ul class="sidebar-nav sidebar-nav-sub" >
+                        <li class="sidebar-nav-link nvl" call="group">
                             <a href="javascript:;">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 查看答辩分组（成绩）
                             </a>
                         </li>
 
-                        <li class="sidebar-nav-link nvl">
+                        <li class="sidebar-nav-link nvl" >
                             <a href="javascript:;">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 论文提交
                             </a>
@@ -303,6 +303,58 @@
 
 
         <div class="tpl-content-wrapper">
+            <!--分组信息管理-->
+            <div class="row-content am-cf rbd" style="display: none;" callid="group">
+                <div class="row">
+                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                        <div class="widget am-cf">
+                            <div class="widget-head am-cf">
+                                <div class="widget-title  am-cf">分组信息</div>
+                            </div>
+                            <div class="widget-body  am-fr">
+
+
+                                <div class="am-u-sm-12">
+                                    <table width="100%"
+                                           class="am-table am-table-compact am-table-striped tpl-table-black "
+                                           id="example-r">
+                                        <thead>
+                                        <tr>
+                                            <th>组号</th>
+                                            <th>用户ID</th>
+
+                                            <th>用户身份</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="Topic_List_Render">
+                                        <tr>
+                                            <td>1</td>
+                                            <td>222222</td>
+                                            <td>学生</td>
+
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                                <div class="am-u-lg-12 am-cf">
+
+                                    <div class="am-fr">
+                                        <ul class="am-pagination tpl-pagination">
+                                            <li class="am-disabled"><a href="#">«</a></li>
+                                            <li class="am-active"><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li><a href="#">»</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div>
                 <!-- 首页内容 -->
                 <div class="row-content am-cf rbd" style="" callid="first">
