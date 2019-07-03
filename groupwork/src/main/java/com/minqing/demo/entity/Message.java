@@ -11,11 +11,11 @@ public class Message {
     private String content;
     private String time;
 
-    public int getMessageid() {
+    public Integer getMessageid() {
         return messageid;
     }
 
-    public void setMessageid(int messageid) {
+    public void setMessageid(Integer messageid) {
         this.messageid = messageid;
     }
 

@@ -28,4 +28,11 @@ public class MessageController {
     public List<Message> showMessage(){
         return messageService.findAllMessages();
     }
+
+    @RequestMapping("/deleteMessage")
+    public void deleteMessage(@RequestBody Map<String,Integer> map){
+        Integer messageid = map.get("messageid");
+        messageService.deleteMessage(messageid);
+    }
+
 }

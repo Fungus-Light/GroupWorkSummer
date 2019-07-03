@@ -561,6 +561,6 @@ function RefreshMsg(msgarr){
     ClearRenderer(Msg_List_Render);
     for(var i=0;i<msgarr.length;i++){
         var temp=msgarr[i];
-        Msg_List_Render.appendChild(MakeUpMsg(temp.id,temp.title,temp.content,temp.time));
+        Msg_List_Render.appendChild(MakeUpMsg(temp.messageid,temp.title,temp.content,temp.time));
     }
 }
