@@ -65,3 +65,13 @@ function ChooseTopic() {
         })
     }
 }
+
+function IfHasFile(has){
+    if(has){
+        $(".hasfile").show();
+        $('.hasnofile').hide();
+    }else{
+        $(".hasfile").hide();
+        $('.hasnofile').show();
+    }
+}
