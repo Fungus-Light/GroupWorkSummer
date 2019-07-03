@@ -58,6 +58,15 @@ window.onload = function () {
         .catch(err => {
             console.error(err);
         })
+    
+    axios.post('/showStudentHasUploaded')
+    .then(res => {
+        IfHasFile(res.data);
+        console.log(res)
+    })
+    .catch(err => {
+        console.error(err); 
+    })
 
 }
 
