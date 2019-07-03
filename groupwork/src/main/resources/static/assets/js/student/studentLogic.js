@@ -53,15 +53,57 @@ function ChooseTopic() {
 
     console.log(id);
 
-    if(id!=null){
-        axios.post('/selectTopic',{
-            topicid:parseInt(id)
+    if (id != null) {
+        axios.post('/selectTopic', {
+            topicid: parseInt(id)
         })
-        .then(res => {
-            window.location.reload();
-        })
-        .catch(err => {
-            console.error(err); 
-        })
+            .then(res => {
+                window.location.reload();
+            })
+            .catch(err => {
+                console.error(err);
+            })
     }
 }
+
+function IfHasFile(has) {
+    if (has) {
+        $(".hasfile").show();
+        $('.hasnofile').hide();
+    } else {
+        $(".hasfile").hide();
+        $('.hasnofile').show();
+    }
+}
+
+$("#upload-article").click(function () {
+    console.log("click me")
+    var inputObj = document.createElement('input')
+    inputObj.setAttribute('id', '_ef');
+    inputObj.setAttribute('type', 'file');
+    inputObj.setAttribute("style", 'visibility:hidden');
+    document.body.appendChild(inputObj);
+    inputObj.onchange = function (evt) {
+        console.log(inputObj.files);
+        var file = inputObj.files[0];
+        console.log(file);
+
+        let fm = new FormData();
+        fm.append('file', file);
+        let config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        };
+
+        axios.post('/uploadfile',fm,config)
+            .then(res => {
+                console.log("send success");
+                window.location.reload();
+            })
+            .catch(err => {
+                console.error(err);
+            })
+    }
+    inputObj.click();
+});

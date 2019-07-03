@@ -248,14 +248,14 @@
                         <i class="am-icon-line-chart sidebar-nav-link-logo"></i> 毕业设计过程
                         <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                     </a>
-                    <ul class="sidebar-nav sidebar-nav-sub" >
+                    <ul class="sidebar-nav sidebar-nav-sub">
                         <li class="sidebar-nav-link nvl" call="group">
                             <a href="javascript:;">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 查看答辩分组（成绩）
                             </a>
                         </li>
 
-                        <li class="sidebar-nav-link nvl" >
+                        <li class="sidebar-nav-link nvl" call="file-upload">
                             <a href="javascript:;">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 论文提交
                             </a>
@@ -263,7 +263,7 @@
 
                         <li class="sidebar-nav-link nvl">
                             <a href="javascript:;">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 答辩申请提交，答辩申请表下载
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 答辩申请相关
                             </a>
                         </li>
 
@@ -316,23 +316,23 @@
 
                                 <div class="am-u-sm-12">
                                     <table width="100%"
-                                           class="am-table am-table-compact am-table-striped tpl-table-black "
-                                           id="example-r">
+                                        class="am-table am-table-compact am-table-striped tpl-table-black "
+                                        id="example-r">
                                         <thead>
-                                        <tr>
-                                            <th>组号</th>
-                                            <th>用户ID</th>
+                                            <tr>
+                                                <th>组号</th>
+                                                <th>用户ID</th>
 
-                                            <th>用户身份</th>
-                                        </tr>
+                                                <th>用户身份</th>
+                                            </tr>
                                         </thead>
-                                        <tbody id="Topic_List_Render">
-                                        <tr>
-                                            <td>1</td>
-                                            <td>222222</td>
-                                            <td>学生</td>
+                                        <tbody id="Group_Render">
+                                            <tr>
+                                                <td>1</td>
+                                                <td>222222</td>
+                                                <td>学生</td>
 
-                                        </tr>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -587,13 +587,142 @@
                     </div>
                 </div>
 
+                <!--文件提交-->
+                <div class="row-content am-cf rbd" style="display: none;" callid="file-upload">
+                    <div class="row">
+
+                        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 hasfile">
+
+
+
+                            <div class="widget am-cf">
+                                <div class="widget-head am-cf">
+                                    <div class="widget-title  am-cf">文件提交</div>
+                                </div>
+
+                                
+
+                                
+
+                                <div class="am-u-sm-12">
+                                    <div class="am-fl">
+                                        <div class="widget-fluctuation-period-text">
+                                            你已经上传了。
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div >
+                                    <div class="am-u-sm-12">
+                                        <table width="100%"
+                                            class="am-table am-table-compact am-table-striped tpl-table-black "
+                                            id="example-r">
+                                            <thead>
+                                                <tr>
+                                                    <th>项目名</th>
+                                                    <th>项目ID</th>
+
+                                                    <th>指导教师</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="Topic_List_Render">
+                                                <tr>
+                                                    <td>大型购物商城</td>
+                                                    <td>Tp1100</td>
+                                                    <td>计算机学院</td>
+                                                    
+                                                    <td>
+                                                        <div class="am-btn-group am-btn-group-xs">
+                                                            <button
+                                                                class="am-btn am-btn-default am-btn-secondary topic-more"
+                                                                ><span
+                                                                    class="am-icon-anchor"></span> 下载</button>
+                                                            <button id="add-teach-test"
+                                                                
+                                                                class="am-btn am-btn-default am-btn-success topic-add"><span
+                                                                    class="am-icon-plus"></span> 更新</button>
+
+                                                        </div>
+
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+
+
+                        </div>
+
+
+
+                        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 hasnofile">
+                            <div class="widget am-cf">
+                                <div class="widget-head am-cf">
+                                    <div class="widget-title  am-cf">文件提交</div>
+                                </div>
+
+                                <div class="am-u-sm-12">
+                                    <div class="am-fl">
+                                        <div class="widget-fluctuation-period-text">
+                                            你尚未提交论文
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+
+                                    <div class="am-u-sm-12">
+                                        <table width="100%"
+                                            class="am-table am-table-compact am-table-striped tpl-table-black "
+                                            id="example-r">
+                                            <thead>
+                                                <tr>
+                                                    
+                                                    <th> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    
+                                                    <td>
+                                                        <div class="am-btn-group am-btn-group-xs">
+                                                            <button id="upload-article"
+                                                                
+                                                                class="am-btn am-btn-default am-btn-secondary topic-more"><span
+                                                                    class="am-icon-anchor"></span> 上传论文</button>
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <!-- more data -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
                 <!--项目信息-->
                 <div class="row-content am-cf rbd" style="display: none;" callid="mission-info">
                     <div class="row">
                         <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                             <div class="widget am-cf">
                                 <div class="widget-head am-cf">
-                                    <div class="widget-title  am-cf">项目信息(页面施工中，敬请期待  查看教师指导记录)</div>
+                                    <div class="widget-title  am-cf">项目信息(页面施工中，敬请期待 查看教师指导记录)</div>
                                 </div>
 
                                 <!--项目信息列表没想好怎么做，模版自带的那几个界面都不太适合表示这种信息，
@@ -817,7 +946,7 @@
     <script src="assets/js/RenderCommon.js"></script>
     <script src="assets/js/student/studentRender.js"></script>
     <script src="assets/js/student/studentLogic.js"></script>
-    <!-- <script src="assets/js/student/test.js"></script> -->
+    <script src="assets/js/student/test.js"></script>
 
 </body>
 
