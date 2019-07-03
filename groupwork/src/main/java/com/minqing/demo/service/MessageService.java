@@ -30,4 +30,7 @@ public class MessageService {
         return messageRepository.findAll();
     }
 
+    public void deleteMessage(int messageid){
+        messageRepository.deleteById(messageid);
+    }
 }

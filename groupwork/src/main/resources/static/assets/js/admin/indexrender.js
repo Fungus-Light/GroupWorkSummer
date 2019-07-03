@@ -64,7 +64,9 @@ function initPages() {
 
     axios.post("/showMessage")
     .then(res => {
-        RefreshMsg(res.data)
+        var data=res.data;
+        data.reverse();
+        RefreshMsg(data)
     })
     .catch(err => {
         console.error(err); 
@@ -559,6 +561,6 @@ function RefreshMsg(msgarr){
     ClearRenderer(Msg_List_Render);
     for(var i=0;i<msgarr.length;i++){
         var temp=msgarr[i];
-        Msg_List_Render.appendChild(MakeUpMsg(temp.id,temp.title,temp.content,temp.time));
+        Msg_List_Render.appendChild(MakeUpMsg(temp.messageid,temp.title,temp.content,temp.time));
     }
 }
