@@ -331,8 +331,9 @@ $("#arrange-btn").click(function () {
 //msg functions
 function deleteMsg(){
     var mid=$("#del-msg").attr("mid");
+    console.log(mid);
     axios.post('deleteMessage',{
-        massageid:mid
+        messageid:mid
     })
     .then(res => {
         console.log(res);

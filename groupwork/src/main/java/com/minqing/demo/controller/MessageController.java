@@ -30,8 +30,9 @@ public class MessageController {
     }
 
     @RequestMapping("/deleteMessage")
-    public void deleteMessage(int messageid){
+    public void deleteMessage(@RequestBody Map<String,Integer> map){
+        Integer messageid = map.get("messageid");
         messageService.deleteMessage(messageid);
     }
-    
+
 }
