@@ -1,4 +1,4 @@
-POST http://localhost:8080/showYourgroups
+POST http://localhost:8080/download/333333
 Content-Type: application/json
 
 {

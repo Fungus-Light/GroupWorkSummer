@@ -200,17 +200,17 @@ function MakeUpTopicStu(_name, _userid, _topic, _guidelist) {
     var downbtn = MakeUpElement("a", "下载附件", "");
     downbtn.setAttribute("data-content", _userid)
     downbtn.addEventListener('click', function () {
-        console.log("down it");
+    //     console.log("down it");
         var id=downbtn.getAttribute("data-content");
-        axios.post('/download',{
-            userid:id
-        })
-        .then(res => {
-            console.log("download success")
-        })
-        .catch(err => {
-            console.error(err); 
-        })
+    //     console.log(id);
+    //     axios.get('/download?userid='+id)
+    //     .then(res => {
+    //         console.log("download success")
+    //     })
+    //     .catch(err => {
+    //         console.error(err);
+    //     })
+        window.location.href = "/download/"+id;
     })
     downbtngroup.appendChild(downbtn);
     downloadbtnroot.appendChild(downbtngroup);

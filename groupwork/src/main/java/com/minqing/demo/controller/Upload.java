@@ -1,7 +1,6 @@
 package com.minqing.demo.controller;
 
 
-import com.minqing.demo.entity.Student;
 import com.minqing.demo.service.PaperstateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
