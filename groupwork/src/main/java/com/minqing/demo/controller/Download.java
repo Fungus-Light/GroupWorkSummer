@@ -45,22 +45,28 @@ public class Download {
 
 
     @RequestMapping(path = "/download")
-    public ResponseEntity<Object> download() throws IOException {
-        File file = new File(SERVER_LOCATION + "2016141223043" + EXTENSION);
+    public Object download(@RequestBody Map<String,String> m) throws IOException {
+        if(paperstateService.hasUploaded(m.get("studentid"))==1) {
+            File file = new File(SERVER_LOCATION + m.get("studentid") + EXTENSION);
 
-        HttpHeaders header = new HttpHeaders();
-        header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=2016141223043.doc");
-        header.add("Cache-Control", "no-cache, no-store, must-revalidate");
-        header.add("Pragma", "no-cache");
-        header.add("Expires", "0");
+            HttpHeaders header = new HttpHeaders();
+            header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + m.get("studentid") + ".doc");
+            header.add("Cache-Control", "no-cache, no-store, must-revalidate");
+            header.add("Pragma", "no-cache");
+            header.add("Expires", "0");
 
-        Path path = Paths.get(file.getAbsolutePath());
-        ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
+            Path path = Paths.get(file.getAbsolutePath());
+            ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
 
-        return ResponseEntity.ok()
-                .headers(header)
-                .contentLength(file.length())
-                .contentType(MediaType.parseMediaType("application/octet-stream"))
-                .body(resource);
+            return ResponseEntity.ok()
+                    .headers(header)
+                    .contentLength(file.length())
+                    .contentType(MediaType.parseMediaType("application/octet-stream"))
+                    .body(resource);
+        }
+        else{
+            return 0;
+
+        }
     }
 }
