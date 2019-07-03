@@ -7,12 +7,9 @@ import javax.persistence.Id;
 public class Message {
     @Id
     private int messageid;
-    private String senderid;
-    private String userid;
     private String title;
     private String content;
     private String time;
-    private int state;
 
     public int getMessageid() {
         return messageid;
@@ -20,14 +17,6 @@ public class Message {
 
     public void setMessageid(int messageid) {
         this.messageid = messageid;
-    }
-
-    public String getUserid() {
-        return userid;
-    }
-
-    public void setUserid(String userid) {
-        this.userid = userid;
     }
 
     public String getContent() {
@@ -46,14 +35,6 @@ public class Message {
         this.time = time;
     }
 
-    public String getSenderid() {
-        return senderid;
-    }
-
-    public void setSenderid(String senderid) {
-        this.senderid = senderid;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -62,11 +43,5 @@ public class Message {
         this.title = title;
     }
 
-    public int getState() {
-        return state;
-    }
 
-    public void setState(int state) {
-        this.state = state;
-    }
 }
