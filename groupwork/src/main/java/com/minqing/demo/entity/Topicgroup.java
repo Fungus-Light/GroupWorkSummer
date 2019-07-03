@@ -9,7 +9,7 @@ public class Topicgroup {
     @Id
     private String userid;
     private String groupid;
-    private Integer identity;
+    private Integer identity;//教师=0，学生=1
 
     public String getUserid() {
         return userid;
