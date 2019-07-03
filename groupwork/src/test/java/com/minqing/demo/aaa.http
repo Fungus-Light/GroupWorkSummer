@@ -1,11 +1,8 @@
-POST http://localhost:8080/addMessage
+POST http://localhost:8080/showMessage
 Content-Type: application/json
 
 {
-    "senderid":"2016141223043",
-    "userid":"2016141223043",
-    "title":"老师们请注意",
-    "content":"请老师及时出题"
+
 }
 
 #### For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection).

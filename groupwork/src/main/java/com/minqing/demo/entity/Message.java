@@ -6,9 +6,10 @@ import javax.persistence.Id;
 @Entity
 public class Message {
     @Id
-    private Integer messageid;
+    private int messageid;
     private String title;
     private String content;
+    private String time;
 
     public Integer getMessageid() {
         return messageid;
@@ -16,14 +17,6 @@ public class Message {
 
     public void setMessageid(Integer messageid) {
         this.messageid = messageid;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getContent() {
@@ -42,5 +35,13 @@ public class Message {
         this.time = time;
     }
 
-    private String time;
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+
 }
