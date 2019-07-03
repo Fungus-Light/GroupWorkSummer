@@ -64,7 +64,9 @@ function initPages() {
 
     axios.post("/showMessage")
     .then(res => {
-        RefreshMsg(res.data)
+        var data=res.data;
+        data.reverse();
+        RefreshMsg(data)
     })
     .catch(err => {
         console.error(err); 
