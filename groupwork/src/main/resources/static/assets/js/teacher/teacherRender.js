@@ -66,6 +66,7 @@ window.onload = function () {
 
     axios.post("/showYourgroups")
     .then(res => {
+        console.log(res.data)
         RefreshInGoup(res.data);
     })
     .catch(err => {
@@ -301,7 +302,7 @@ function MakeUpInGroup(gid,uid,type){
 var Group_Render=document.getElementById("Group_Render");
 function RefreshInGoup(grouparr){
     ClearRenderer(Group_Render);
-    for(var i=0;i<grouparr;i++){
+    for(var i=0;i<grouparr.length;i++){
         var data=grouparr[i];
         Group_Render.appendChild(MakeUpInGroup(data.groupid,data.userid,data.identity))
     }

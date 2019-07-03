@@ -68,14 +68,14 @@ public class GroupController {
     @RequestMapping("/showYourgroups")
     public List showYourgroups(HttpServletRequest request)
     {
-//        Cookie[] cookies = request.getCookies();
-//        String userid = "";
-//        for(Cookie cookie:cookies){
-//            if(cookie.getName().equals("userid")){
-//                userid = cookie.getValue();
-//            }
-//        }
-        String userid = "222222";
+        Cookie[] cookies = request.getCookies();
+        String userid = "";
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("userid")){
+                userid = cookie.getValue();
+            }
+        }
+       // String userid = "222222";
         String groupid=topicgroupService.findGropuidByUserid(userid);
         List<Topicgroup> topicgroups=topicgroupService.findTopicgroupByGroupid(groupid);
         return topicgroups;
