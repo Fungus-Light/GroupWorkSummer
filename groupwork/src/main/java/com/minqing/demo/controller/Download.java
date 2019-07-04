@@ -7,6 +7,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,6 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -43,14 +43,28 @@ public class Download {
     }
 
 
+    @RequestMapping("/download/{userid}")
+    public ResponseEntity<Object> downloadbyuser (@PathVariable("userid") String userid) throws IOException{
+        File file = new File(SERVER_LOCATION + userid + EXTENSION);
+
+        HttpHeaders header = new HttpHeaders();
+        header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + userid + ".doc");
+        header.add("Cache-Control", "no-cache, no-store, must-revalidate");
+        header.add("Pragma", "no-cache");
+        header.add("Expires", "0");
+
+        Path path = Paths.get(file.getAbsolutePath());
+        ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
 
 
 
 
 
-
-
-
+    // @RequestMapping("/hasuploaded")
+    // public int hasuploaded(@RequestBody Map<String,String> m)
+    // {
+    //     return paperstateService.hasUploaded(m.get("studentid"));
+    // }
     @RequestMapping(path = "/download/{userid}")
     public Object download(@PathVariable("userid") String userid) throws IOException {
         if(paperstateService.hasUploaded(userid)==1) {

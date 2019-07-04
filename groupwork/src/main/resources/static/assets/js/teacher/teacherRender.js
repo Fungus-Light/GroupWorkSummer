@@ -66,6 +66,7 @@ window.onload = function () {
 
     axios.post("/showYourgroups")
     .then(res => {
+        console.log(res.data)
         RefreshInGoup(res.data);
     })
     .catch(err => {
@@ -180,7 +181,7 @@ function RefreshTopicStu(topicarray) {
     ClearRenderer(TopicResult_List_Render);
     for (var i = 0; i < topicarray.length; i++) {
         var temp = topicarray[i];
-        TopicResult_List_Render.appendChild(MakeUpTopicStu(temp.name, temp.studentid, temp.title, temp.record));
+        TopicResult_List_Render.appendChild(MakeUpTopicStu(temp.name, temp.studentid, temp.title, temp.record,temp.hasuploaded));
     }
 }
 
@@ -188,7 +189,7 @@ function SetAddGuideID(id) {
     document.getElementById("add-guide").setAttribute("user-id", id);
 }
 
-function MakeUpTopicStu(_name, _userid, _topic, _guidelist) {
+function MakeUpTopicStu(_name, _userid, _topic, _guidelist,_hasuploaded) {
     var Root = MakeUpElement("tr", "", "gradeX");
     var inner = "<td>" + _name + "</id>"
         + "<td>" + _userid + "</id>"
@@ -197,20 +198,19 @@ function MakeUpTopicStu(_name, _userid, _topic, _guidelist) {
     var downloadbtnroot = MakeUpElement("td", "", "");
     var downbtngroup = MakeUpElement("div", "", "tpl-table-black-operation");
     var downbtn = MakeUpElement("a", "下载附件", "");
-    downbtn.setAttribute("data-content", _userid)
+    downbtn.setAttribute("data-content",JSON.stringify({
+        userid:_userid,
+        hasuploaded:_hasuploaded
+    }))
     downbtn.addEventListener('click', function () {
-        // console.log("down it");
-        var id=downbtn.getAttribute("data-content");
-        // axios.post('/download',{
-        //     userid:id
-        // })
-        // .then(res => {
-        //     console.log("download success")
-        // })
-        // .catch(err => {
-        //     console.error(err);
-        // })
-        window.location.href="/download/"+id;
+        console.log("down it");
+        var _data=JSON.parse(downbtn.getAttribute("data-content"));
+        var id=_data.userid;
+        var isuploaded=_data.hasuploaded;
+        if(isuploaded==1){
+            window.location.href="/download"+id;
+        }
+        
     })
     downbtngroup.appendChild(downbtn);
     downloadbtnroot.appendChild(downbtngroup);
@@ -310,7 +310,7 @@ function MakeUpInGroup(gid,uid,type){
 var Group_Render=document.getElementById("Group_Render");
 function RefreshInGoup(grouparr){
     ClearRenderer(Group_Render);
-    for(var i=0;i<grouparr;i++){
+    for(var i=0;i<grouparr.length;i++){
         var data=grouparr[i];
         Group_Render.appendChild(MakeUpInGroup(data.groupid,data.userid,data.identity))
     }
