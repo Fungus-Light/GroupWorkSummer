@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class graduate {
+public class Graduate {
     @Id
     private String studentid;
     private String studentname;
