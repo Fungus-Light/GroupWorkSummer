@@ -247,7 +247,7 @@ function MakeUpTopicStu(_name, _userid, _topic, _guidelist,_hasuploaded) {
     passbtn.setAttribute("data-content", JSON.stringify({
         userid: _userid
     }))
-    addguidebtn.setAttribute("data-am-modal", "{target: '#passpaper',closeViaDimmer: 0, width: 600, height: 460}");
+    passbtn.setAttribute("data-am-modal", "{target: '#passpaper',closeViaDimmer: 0, width: 600, height: 460}");
     passbtn.addEventListener('click', () => {
         SetPassPaperID(JSON.parse(passbtn.getAttribute("data-content")).userid);
 })
