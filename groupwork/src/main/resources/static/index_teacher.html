@@ -251,6 +251,12 @@
                             </a>
                         </li>
 
+                        <li class="sidebar-nav-link nvl" call="judgearticle">
+                            <a href="javascript:;">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 评阅学生论文
+                            </a>
+                        </li>
+
                         <li class="sidebar-nav-link nvl">
                             <a href="javascript:;">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 交叉评阅名单
@@ -645,6 +651,55 @@
                 </div>
             </div>
 
+            <div class="row-content am-cf rbd" style="display: none;" callid="judgearticle">
+                <div class="row">
+                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                        <div class="widget am-cf">
+                            <div class="widget-head am-cf">
+                                <div class="widget-title  am-cf">论文打分</div>
+                            </div>
+                            <div class="widget-body  am-fr">
+
+                                <div class="am-u-sm-12">
+                                    <table width="100%"
+                                           class="am-table am-table-compact am-table-striped tpl-table-black "
+                                           id="example-r">
+                                        <thead>
+                                        <tr>
+                                            <th>学生姓名</th>
+                                            <th>学生ID</th>
+                                            <th>选题名称</th>
+                                            <th>评阅成绩</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="Article_List_Render">
+                                        <tr class="gradeX">
+                                            <td>李二狗</id>
+                                            <td>2015424275589</id>
+                                            <td>大型购物商城</td>
+
+                                            <td>
+                                                <div class="tpl-table-black-operation">
+                                                    <a href="javascript:;" data-am-modal="{target: '#judge',closeViaDimmer: 0, width: 600, height: 460}"
+                                                        <i class="am-icon-pencil"></i> 论文打分
+                                                    </a>
+
+
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                        <!-- more data -->
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
 
@@ -751,6 +806,24 @@
         </div>
     </div>
 
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="judge">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">论文打分
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <form class="am-form">
+                <fieldset>
+                    <div class="am-form-group">
+                        <label for="guide-content">老师打分</label>
+                        <textarea rows="14" cols="40" id="judge-content" placeholder="请输入评阅分数："></textarea>
+                    </div>
+
+                    <button class="am-btn am-btn-secondary" type="" onclick="addJudge()">提交</button>
+                </fieldset>
+            </form>
+
+        </div>
+    </div>
 
 
     <!--查看公告-->
@@ -776,7 +849,9 @@
         </div>
     </div>
 
-  
+
+
+
     <!--------------------------------------------------------------------------------->
     <script src="assets/js/Util/amazeui.min.js"></script>
     <script src="assets/js/Util/amazeui.datatables.min.js"></script>
