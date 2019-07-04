@@ -71,23 +71,16 @@ function addGuide(){
 
 function passpaper(){
     var userid=$("#passpaper").attr("user-id");
-    axios.post('/passPaper'{
+    axios.post('/passPaper',{
         studentid:userid
     })
     .then(res=>{
         console.log(res)
     })
-
-}
-
-
-function  refusepaper() {
-    var userid=$("#add-guide").attr("user-id");
-    axios.post('/refusepaper'{
-        studentid:userid
-    })
-.then(res=>{
-        console.log(res)
+    .catch(err  =>{
+        console.error(err);
     })
 
 }
+
+
