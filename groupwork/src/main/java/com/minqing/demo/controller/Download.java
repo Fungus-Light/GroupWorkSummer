@@ -36,7 +36,7 @@ public class Download {
         paperstateService.refusePaperstate(studentid);
     }
 
-    
+
     @RequestMapping("/download/{userid}")
     public ResponseEntity<Object> downloadbyuser (@PathVariable("userid") String userid) throws IOException{
         File file = new File(SERVER_LOCATION + userid + EXTENSION);
