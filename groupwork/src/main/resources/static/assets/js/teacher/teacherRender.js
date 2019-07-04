@@ -243,13 +243,12 @@ function MakeUpTopicStu(_name, _userid, _topic, _guidelist,_hasuploaded) {
     viewbtn.setAttribute("data-content", JSON.stringify(_guidelist));
 
     var passbtn = MakeUpElement("a", "", "");
-    passbtn.setAttribute("data-am-modal", "{target: '#passpaper',closeViaDimmer: 0, width: 300, height: 200}");
     passbtn.innerHTML = '<i class="am-icon-pencil"></i> 通过';
     passbtn.setAttribute("data-content", JSON.stringify({
         userid: _userid
     }))
     passbtn.addEventListener('click', () => {
-        SetPassPaperID(JSON.parse(addguidebtn.getAttribute("data-content")).userid);
+        SetPassPaperID(JSON.parse(passbtn.getAttribute("data-content")).userid);
 })
 
     actionbtngroup.appendChild(addguidebtn);
