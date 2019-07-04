@@ -28,6 +28,8 @@ var TopicResult_List_Render = document.getElementById("TopicResult_List_Render")
 var Msg_List_Render=document.getElementById("Msg_List_Render");
 
 window.onload = function () {
+    //$("#alert-bar").hide();
+
     axios.post('/checkCookie').then(response => {
         if (response.data === 0) {
             window.location.href = 'login.html';
@@ -209,9 +211,9 @@ function MakeUpTopicStu(_name, _userid, _topic, _guidelist,_hasuploaded) {
         var isuploaded=_data.hasuploaded;
         if(isuploaded==1){
             window.location.href="/download/"+id;
-        }
-        else{
-            window.location.href = "404.html";
+        }else{
+            document.getElementById("alert-bar").innerText="此学生尚未上传文件";
+            $("#alert-bar").alert()  
         }
     })
     downbtngroup.appendChild(downbtn);
