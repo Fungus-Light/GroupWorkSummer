@@ -75,6 +75,7 @@ public class GroupController {
                 userid = cookie.getValue();
             }
         }
+       // String userid = "222222";
         String groupid=topicgroupService.findGropuidByUserid(userid);
         List<Topicgroup> topicgroups=topicgroupService.findTopicgroupByGroupid(groupid);
         return topicgroups;

@@ -1,8 +1,8 @@
-POST http://localhost:8080/setPeriod
+POST http://192.168.101.18:8080/download
 Content-Type: application/json
 
 {
-"segid":1
+"studentid": "222222"
 }
 
 #### For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection).
