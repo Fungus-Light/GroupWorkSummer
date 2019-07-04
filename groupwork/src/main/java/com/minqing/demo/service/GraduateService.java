@@ -24,4 +24,12 @@ public class GraduateService {
         graduate.setStudentname(studentname);
         graduateRepository.save(graduate);
     }
+    public int hasApplied(String studentid)
+    {
+        return graduateRepository.findById(studentid).isPresent()?1:0;
+    }
+    public int whoAgreed(String studentid)
+    {
+        return graduateRepository.findManagerpassById(studentid)&graduateRepository.findTeacherpassById(studentid);
+    }
 }
