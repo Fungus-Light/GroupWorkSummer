@@ -84,3 +84,16 @@ function passpaper(){
 }
 
 
+function refusepaper(){
+    var userid=$("#passpaper").attr("user-id");
+    axios.post('/refusePaper',{
+        studentid:userid
+    })
+        .then(res=>{
+        console.log(res)
+    })
+.catch(err  =>{
+        console.error(err);
+})
+
+}
