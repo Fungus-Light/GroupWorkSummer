@@ -32,7 +32,7 @@ public class Download {
         paperstateService.passPaperstate(studentid);
     }
 
-    @RequestMapping("refusePaper")
+    @RequestMapping("/refusePaper")
     public void refusePaper(@RequestBody Map<String, String> m) {
         String studentid = m.get("studentid");
         paperstateService.refusePaperstate(studentid);

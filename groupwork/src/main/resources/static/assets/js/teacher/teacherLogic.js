@@ -68,3 +68,26 @@ function addGuide(){
         console.error(err); 
     })
 }
+
+function passpaper(){
+    var userid=$("#add-guide").attr("user-id");
+    axios.post('/passpaper'{
+        studentid:userid
+    })
+    .then(res=>{
+        console.log(res)
+    })
+
+}
+
+
+function  refusepaper() {
+    var userid=$("#add-guide").attr("user-id");
+    axios.post('/refusepaper'{
+        studentid:userid
+    })
+.then(res=>{
+        console.log(res)
+    })
+
+}
