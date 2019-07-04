@@ -191,6 +191,10 @@ function SetAddGuideID(id) {
     document.getElementById("add-guide").setAttribute("user-id", id);
 }
 
+function SetPassPaperID(id) {
+    document.getElementById("passpaper").setAttribute("user-id", id);
+}
+
 function MakeUpTopicStu(_name, _userid, _topic, _guidelist,_hasuploaded) {
     var Root = MakeUpElement("tr", "", "gradeX");
     var inner = "<td>" + _name + "</id>"
@@ -244,6 +248,9 @@ function MakeUpTopicStu(_name, _userid, _topic, _guidelist,_hasuploaded) {
     passbtn.setAttribute("data-content", JSON.stringify({
         userid: _userid
     }))
+    passbtn.addEventListener('click', () => {
+        SetPassPaperID(JSON.parse(addguidebtn.getAttribute("data-content")).userid);
+})
 
     actionbtngroup.appendChild(addguidebtn);
     actionbtngroup.appendChild(viewbtn);
