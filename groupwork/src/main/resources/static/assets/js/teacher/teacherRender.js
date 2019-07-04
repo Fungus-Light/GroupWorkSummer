@@ -212,8 +212,7 @@ function MakeUpTopicStu(_name, _userid, _topic, _guidelist,_hasuploaded) {
         if(isuploaded==1){
             window.location.href="/download/"+id;
         }else{
-            document.getElementById("alert-bar").innerText="此学生尚未上传文件";
-            $("#alert-bar").alert()  
+            alert("该同学尚未上传")
         }
     })
     downbtngroup.appendChild(downbtn);
