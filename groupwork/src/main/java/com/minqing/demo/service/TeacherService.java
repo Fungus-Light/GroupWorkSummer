@@ -33,4 +33,6 @@ public class TeacherService {
         teacherRepository.save(teacher);
     }
     public List<String> findIdByAcademic(String academic){return teacherRepository.findIdByAcademic(academic);}
+
+    public String findTeacherNameByTeacherId(String teacherid){return teacherRepository.findNameByTeacherId(teacherid);}
 }

@@ -6,6 +6,8 @@ import com.minqing.demo.entity.GraduateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class GraduateService {
     @Autowired
@@ -31,5 +33,28 @@ public class GraduateService {
     public int whoAgreed(String studentid)
     {
         return graduateRepository.findManagerpassById(studentid)&graduateRepository.findTeacherpassById(studentid);
+    }
+
+    public Graduate findById(String studentid)
+    {
+        return graduateRepository.findById(studentid).get();
+    }
+
+    public void TeacherAgreed(String studentid)
+    {
+        graduateRepository.TeacherAgreed(studentid);
+    }
+
+    public void ManagerAgreed(String studentid)
+    {
+        graduateRepository.ManagerAgreed(studentid);
+    }
+    public List findStudentidsByTeacherName(String teachername ){
+        return graduateRepository.findStudentidsByTeacherName(teachername);
+    }
+
+    public List findStudentidsByManagerAcademic(String academic)
+    {
+        return findStudentidsByManagerAcademic(academic);
     }
 }
