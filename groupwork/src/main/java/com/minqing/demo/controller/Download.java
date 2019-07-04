@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -49,18 +50,14 @@ public class Download {
 
 
 
-    @RequestMapping("/hasuploaded")
-    public int hasuploaded(@RequestBody Map<String,String> m)
-    {
-        return paperstateService.hasUploaded(m.get("studentid"));
-    }
+
     @RequestMapping(path = "/download/{userid}")
     public Object download(@PathVariable("userid") String userid) throws IOException {
         if(paperstateService.hasUploaded(userid)==1) {
             File file = new File(SERVER_LOCATION + userid + EXTENSION);
 
             HttpHeaders header = new HttpHeaders();
-            header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + m.get("studentid") + ".doc");
+            header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + userid + ".doc");
             header.add("Cache-Control", "no-cache, no-store, must-revalidate");
             header.add("Pragma", "no-cache");
             header.add("Expires", "0");
@@ -75,12 +72,6 @@ public class Download {
                     .body(resource);
 
         }
-        else{
-                return ResponseEntity.
-                        status(HttpStatus.PERMANENT_REDIRECT)
-                        .header("location","192.168.101.18:8080")
-                        .contentType(MediaType.TEXT_HTML)
-                        .body(null);
-        }
+
     }
 }

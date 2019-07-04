@@ -1,8 +1,8 @@
-POST http://192.168.101.18:8080/download
+POST http://192.168.101.18:8080/download/123456
 Content-Type: application/json
 
 {
-"studentid": "222222"
+
 }
 
 #### For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection).
