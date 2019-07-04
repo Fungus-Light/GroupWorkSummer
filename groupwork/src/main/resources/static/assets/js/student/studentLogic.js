@@ -76,6 +76,18 @@ function IfHasFile(has) {
     }
 }
 
+function IfHasSub(has) {
+    if (has) {
+        $(".hassub").show();
+        $('.hasnosub').hide();
+    } else {
+        $(".hassub").hide();
+        $('.hasnosub').show();
+    }
+}
+
+
+
 $("#upload-article").click(function () {
     console.log("click me")
     var inputObj = document.createElement('input')
@@ -143,3 +155,24 @@ $("#update-article").click(function () {
 $("#dl-myself").click(function () {
     window.location.href("/download/"+userid);
 })
+
+//-----------------------
+function addSub(){
+    var finishtime=$("#finishtime").val();
+    var brief=$("#subbrief").val();
+    var studentid=userid;
+    axios.post('/sendApply',{
+        studentid:studentid,
+        studentname:username,
+        finishtime:finishtime,
+        topicname:topicname,
+        teachername:teachername,
+        func:brief
+    })
+    .then(res => {
+        console.log(res)
+    })
+    .catch(err => {
+        console.error(err); 
+    })
+}

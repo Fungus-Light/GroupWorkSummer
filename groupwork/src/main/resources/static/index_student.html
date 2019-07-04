@@ -261,7 +261,7 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-nav-link nvl">
+                        <li class="sidebar-nav-link nvl" call="sub-upload">
                             <a href="javascript:;">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 答辩申请相关
                             </a>
@@ -289,13 +289,6 @@
                         <i class="am-icon-key sidebar-nav-link-logo"></i> 切换用户
                     </a>
                 </li>
-
-
-                <!-- <li class="sidebar-nav-link">
-                    <a href="404.html">
-                        <i class="am-icon-tv sidebar-nav-link-logo"></i> 404错误
-                    </a>
-                </li> -->
 
             </ul>
         </div>
@@ -600,9 +593,9 @@
                                     <div class="widget-title  am-cf">文件提交</div>
                                 </div>
 
-                                
 
-                                
+
+
 
                                 <div class="am-u-sm-12">
                                     <div class="am-fl">
@@ -612,7 +605,7 @@
                                     </div>
                                 </div>
 
-                                <div >
+                                <div>
                                     <div class="am-u-sm-12">
                                         <table width="100%"
                                             class="am-table am-table-compact am-table-striped tpl-table-black "
@@ -636,11 +629,9 @@
                                                     <td>
                                                         <div class="am-btn-group am-btn-group-xs">
                                                             <button id="dl-myself"
-                                                                class="am-btn am-btn-default am-btn-secondary topic-more"
-                                                                ><span
+                                                                class="am-btn am-btn-default am-btn-secondary topic-more"><span
                                                                     class="am-icon-anchor"></span> 下载</button>
                                                             <button id="update-article"
-                                                                
                                                                 class="am-btn am-btn-default am-btn-success topic-add"><span
                                                                     class="am-icon-plus"></span> 更新</button>
 
@@ -686,19 +677,137 @@
                                             id="example-r">
                                             <thead>
                                                 <tr>
-                                                    
+
                                                     <th> </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    
+
                                                     <td>
                                                         <div class="am-btn-group am-btn-group-xs">
                                                             <button id="upload-article"
-                                                                
                                                                 class="am-btn am-btn-default am-btn-secondary topic-more"><span
                                                                     class="am-icon-anchor"></span> 上传论文</button>
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <!-- more data -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <!--答辩申请提交-->
+                <div class="row-content am-cf rbd" style="display: none;" callid="sub-upload">
+                    <div class="row">
+
+                        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 hassub">
+
+
+
+                            <div class="widget am-cf">
+                                <div class="widget-head am-cf">
+                                    <div class="widget-title  am-cf">答辩申请提交</div>
+                                </div>
+
+
+
+
+
+                                <div class="am-u-sm-12">
+                                    <div class="am-fl">
+                                        <div id="sub-status" class="widget-fluctuation-period-text">
+                                            当前答辩申请审核中
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+
+                                    <div class="am-u-sm-12">
+                                        <table width="100%"
+                                            class="am-table am-table-compact am-table-striped tpl-table-black "
+                                            id="example-r">
+                                            <thead>
+                                                <tr>
+
+                                                    <th> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+
+                                                    <td>
+                                                        <div class="am-btn-group am-btn-group-xs">
+                                                            <button id="upload-sub"
+                                                                data-am-modal="{target: '#add-sub',closeViaDimmer: 0, width: 800, height: 600}"
+                                                                class="am-btn am-btn-default am-btn-secondary topic-more"><span
+                                                                    class="am-icon-anchor"></span> 更新申请</button>
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <!-- more data -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+
+
+                        </div>
+
+
+
+                        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 hasnosub">
+                            <div class="widget am-cf">
+                                <div class="widget-head am-cf">
+                                    <div class="widget-title  am-cf">答辩申请提交</div>
+                                </div>
+
+                                <div class="am-u-sm-12">
+                                    <div class="am-fl">
+                                        <div class="widget-fluctuation-period-text">
+                                            你尚未提交答辩申请
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+
+                                    <div class="am-u-sm-12">
+                                        <table width="100%"
+                                            class="am-table am-table-compact am-table-striped tpl-table-black "
+                                            id="example-r">
+                                            <thead>
+                                                <tr>
+
+                                                    <th> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+
+                                                    <td>
+                                                        <div class="am-btn-group am-btn-group-xs">
+                                                            <button id="upload-sub"
+                                                                data-am-modal="{target: '#add-sub',closeViaDimmer: 0, width: 800, height: 600}"
+                                                                class="am-btn am-btn-default am-btn-secondary topic-more"><span
+                                                                    class="am-icon-anchor"></span> 提交申请</button>
 
                                                         </div>
                                                     </td>
@@ -932,6 +1041,31 @@
 
                         <textarea disabled rows="20" cols="40" id="msg-content" placeholder="请输入该选题简述："></textarea>
                     </div>
+                </fieldset>
+            </form>
+
+        </div>
+    </div>
+
+    <!--添加申请-->
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="add-sub">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">添加申请
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <form class="am-form">
+                <fieldset>
+                    <div class="am-form-group">
+                        <label for="finishtime">结束日期：</label>
+                        <input type="text" id="finishtime" minlength="3" maxlength="20" placeholder="输入日期" required />
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="subbrief">描述</label>
+                        <textarea rows="18" cols="40" id="subbrief" placeholder="请输入该选题简述："></textarea>
+                    </div>
+
+                    <button class="am-btn am-btn-secondary" type="" onclick="addSub()">提交</button>
                 </fieldset>
             </form>
 

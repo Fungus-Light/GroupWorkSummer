@@ -1,5 +1,8 @@
 var Topic_List_Render = document.getElementById('Topic_List_Render');
 var userid;
+var username;
+var topicname;
+var teachername;
 
 function SetPreUserInfo(data) {
     $("#user-id").val(data.userid);
@@ -21,6 +24,7 @@ window.onload = function () {
             document.getElementById("username-bar").innerHTML = '<i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>' + res.data.name + "同学";
             document.getElementById("username-head").innerText = res.data.name + "同学";
             userid=res.data.userid;
+            username=res.data.name;
             SetPreUserInfo(res.data);
         })
         .catch(err => {
@@ -36,6 +40,7 @@ window.onload = function () {
             } else {
                 var data = res.data[0];
                 $("#f-topic-name").text(data.topic);
+                topicname=data.topic;
                 $("#f-topic-id").text(data.topicid);
                 $("#f-topic-teacher").text(data.name);
                 SetTopicInfo(data.topic, data.topicid, data.academic, data.name, data.description);
@@ -90,8 +95,34 @@ window.onload = function () {
     })
     .catch(err => {
         console.error(err); 
-    })
+    });
     
+    axios.post('showHasApplied')
+    .then(res => {
+        if(res.data==1){
+            IfHasSub(true);
+            axios.post('showWhoAgreed')
+            .then(res => {
+                var status;
+                if(res.data==1){
+                    status="审核通过"
+                }else{
+                    status="审核中"
+                }
+                $("#sub-status").text(status);
+                //console.log(res)
+            })
+            .catch(err => {
+                console.error(err); 
+            })
+        }else{
+            IfHasSub(false);
+        }
+        
+    })
+    .catch(err => {
+        console.error(err); 
+    })
 
 }
 
@@ -113,6 +144,7 @@ function SetTopicInfo(name, id, school, teacher, content,status) {
     $('#topic-id').text(id);
     $('#topic-school').text(school);
     $('#topic-teach').text(teacher);
+    teachername=teacher;
 
     $('#topic-content').attr("topic_data", JSON.stringify({
         name: name,
