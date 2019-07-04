@@ -1,4 +1,5 @@
 var Topic_List_Render = document.getElementById('Topic_List_Render');
+var userid;
 
 function SetPreUserInfo(data) {
     $("#user-id").val(data.userid);
@@ -19,12 +20,13 @@ window.onload = function () {
         .then(res => {
             document.getElementById("username-bar").innerHTML = '<i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>' + res.data.name + "同学";
             document.getElementById("username-head").innerText = res.data.name + "同学";
+            userid=res.data.userid;
             SetPreUserInfo(res.data);
         })
         .catch(err => {
             console.error(err);
         });
-
+    
     axios.post('/showAcademicTopicStudent')
         .then(res => {
             if (res.data[0].status == 0) {
@@ -33,6 +35,9 @@ window.onload = function () {
 
             } else {
                 var data = res.data[0];
+                $("#f-topic-name").text(data.topic);
+                $("#f-topic-id").text(data.topicid);
+                $("#f-topic-teacher").text(data.name);
                 SetTopicInfo(data.topic, data.topicid, data.academic, data.name, data.description);
                 IfHasTopic(true);
             }
@@ -61,12 +66,32 @@ window.onload = function () {
     
     axios.post('/showStudentHasUploaded')
     .then(res => {
+
         IfHasFile(res.data);
+        if(res.data){
+            axios.post('paperState')
+            .then(res => {
+                var status;
+                if(res.data==1){
+                    status="审核通过";
+                }else if(res.data==2){
+                    status="被拒绝";
+                }else{
+                    status="审核中"
+                }
+                $("#f-topic-status").text(status);
+            })
+            .catch(err => {
+                console.error(err); 
+            })
+        }
+        
         console.log(res)
     })
     .catch(err => {
         console.error(err); 
     })
+    
 
 }
 
@@ -83,11 +108,12 @@ function SetShowTopicBar(data) {
     $('#s-topic-brief').val(data.content);
 }
 
-function SetTopicInfo(name, id, school, teacher, content) {
+function SetTopicInfo(name, id, school, teacher, content,status) {
     $('#topic-name').text(name);
     $('#topic-id').text(id);
     $('#topic-school').text(school);
     $('#topic-teach').text(teacher);
+
     $('#topic-content').attr("topic_data", JSON.stringify({
         name: name,
         content: content

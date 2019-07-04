@@ -107,3 +107,39 @@ $("#upload-article").click(function () {
     }
     inputObj.click();
 });
+
+$("#update-article").click(function () {
+    console.log("click me")
+    var inputObj = document.createElement('input')
+    inputObj.setAttribute('id', '_ef');
+    inputObj.setAttribute('type', 'file');
+    inputObj.setAttribute("style", 'visibility:hidden');
+    document.body.appendChild(inputObj);
+    inputObj.onchange = function (evt) {
+        console.log(inputObj.files);
+        var file = inputObj.files[0];
+        console.log(file);
+
+        let fm = new FormData();
+        fm.append('file', file);
+        let config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        };
+
+        axios.post('/uploadfile',fm,config)
+            .then(res => {
+                console.log("send success");
+                window.location.reload();
+            })
+            .catch(err => {
+                console.error(err);
+            })
+    }
+    inputObj.click();
+});
+
+$("#dl-myself").click(function () {
+    window.location.href("/download/"+userid);
+})
