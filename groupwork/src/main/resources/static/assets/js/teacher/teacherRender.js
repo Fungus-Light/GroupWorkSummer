@@ -181,7 +181,7 @@ function RefreshTopicStu(topicarray) {
     ClearRenderer(TopicResult_List_Render);
     for (var i = 0; i < topicarray.length; i++) {
         var temp = topicarray[i];
-        TopicResult_List_Render.appendChild(MakeUpTopicStu(temp.name, temp.studentid, temp.title, temp.record,temp.hasuploaded));
+        TopicResult_List_Render.appendChild(MakeUpTopicStu(temp.name, temp.studentid, temp.title, temp.record,temp.hasUploaded));
     }
 }
 
@@ -208,9 +208,11 @@ function MakeUpTopicStu(_name, _userid, _topic, _guidelist,_hasuploaded) {
         var id=_data.userid;
         var isuploaded=_data.hasuploaded;
         if(isuploaded==1){
-            window.location.href="/download"+id;
+            window.location.href="/download/"+id;
         }
-        
+        else{
+            window.location.href = "404.html";
+        }
     })
     downbtngroup.appendChild(downbtn);
     downloadbtnroot.appendChild(downbtngroup);
