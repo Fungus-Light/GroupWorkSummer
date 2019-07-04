@@ -220,6 +220,8 @@ function MakeUpTopicStu(_name, _userid, _topic, _guidelist,_hasuploaded) {
 
     var actionbtnroot = MakeUpElement("td", "", "");
     var actionbtngroup = MakeUpElement("div", "", "tpl-table-black-operation");
+
+
     var addguidebtn = MakeUpElement("a", "", "");
     addguidebtn.innerHTML = '<i class="am-icon-pencil"></i> 添加指导';
     addguidebtn.setAttribute("data-content", JSON.stringify({
@@ -229,12 +231,22 @@ function MakeUpTopicStu(_name, _userid, _topic, _guidelist,_hasuploaded) {
     addguidebtn.addEventListener('click', () => {
         SetAddGuideID(JSON.parse(addguidebtn.getAttribute("data-content")).userid);
     })
+
+
     var viewbtn = MakeUpElement("a", "", "");
     viewbtn.setAttribute("data-am-modal", "{target: '#his-guide',closeViaDimmer: 0, width: 600, height: 460}");
     viewbtn.innerHTML = '<i class="am-icon-pencil"></i> 指导记录';
     viewbtn.setAttribute("data-content", JSON.stringify(_guidelist));
+
+    var passbtn = MakeUpElement("a", "", "");
+    addguidebtn.innerHTML = '<i class="am-icon-pencil"></i> 通过';
+    addguidebtn.setAttribute("data-content", JSON.stringify({
+        userid: _userid
+    }))
+
     actionbtngroup.appendChild(addguidebtn);
     actionbtngroup.appendChild(viewbtn);
+    actionbtngroup.appendChild(passbtn);
     actionbtnroot.appendChild(actionbtngroup);
 
     Root.appendChild(downloadbtnroot);
