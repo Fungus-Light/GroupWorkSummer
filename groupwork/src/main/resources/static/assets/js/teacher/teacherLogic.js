@@ -71,7 +71,7 @@ function addGuide(){
 
 function passpaper(){
     var userid=$("#add-guide").attr("user-id");
-    axios.post('/passpaper'{
+    axios.post('/passPaper'{
         studentid:userid
     })
     .then(res=>{
