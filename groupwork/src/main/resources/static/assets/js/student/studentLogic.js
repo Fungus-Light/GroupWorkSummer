@@ -141,5 +141,5 @@ $("#update-article").click(function () {
 });
 
 $("#dl-myself").click(function () {
-    window.location.href("/download/"+userid);
+    window.location.href = "/download/"+userid;
 })
