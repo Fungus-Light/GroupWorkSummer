@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -31,7 +32,7 @@ public class Download {
         paperstateService.passPaperstate(studentid);
     }
 
-    @RequestMapping("refusePaper")
+    @RequestMapping("/refusePaper")
     public void refusePaper(@RequestBody Map<String, String> m) {
         String studentid = m.get("studentid");
         paperstateService.refusePaperstate(studentid);

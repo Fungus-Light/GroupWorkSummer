@@ -1,5 +1,5 @@
-GET http://localhost:8080//showAcademicTopicManager
-Accept: application/json
+GET http://localhost:8080/download/123456
+
 
 #### For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection).
 #
