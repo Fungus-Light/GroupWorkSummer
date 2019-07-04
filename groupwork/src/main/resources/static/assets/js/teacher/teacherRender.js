@@ -28,6 +28,8 @@ var TopicResult_List_Render = document.getElementById("TopicResult_List_Render")
 var Msg_List_Render=document.getElementById("Msg_List_Render");
 
 window.onload = function () {
+    //$("#alert-bar").hide();
+
     axios.post('/checkCookie').then(response => {
         if (response.data === 0) {
             window.location.href = 'login.html';
@@ -181,7 +183,7 @@ function RefreshTopicStu(topicarray) {
     ClearRenderer(TopicResult_List_Render);
     for (var i = 0; i < topicarray.length; i++) {
         var temp = topicarray[i];
-        TopicResult_List_Render.appendChild(MakeUpTopicStu(temp.name, temp.studentid, temp.title, temp.record,temp.hasuploaded));
+        TopicResult_List_Render.appendChild(MakeUpTopicStu(temp.name, temp.studentid, temp.title, temp.record,temp.hasUploaded));
     }
 }
 
@@ -208,9 +210,10 @@ function MakeUpTopicStu(_name, _userid, _topic, _guidelist,_hasuploaded) {
         var id=_data.userid;
         var isuploaded=_data.hasuploaded;
         if(isuploaded==1){
-            window.location.href="/download"+id;
+            window.location.href="/download/"+id;
+        }else{
+            alert("该同学尚未上传")
         }
-        
     })
     downbtngroup.appendChild(downbtn);
     downloadbtnroot.appendChild(downbtngroup);

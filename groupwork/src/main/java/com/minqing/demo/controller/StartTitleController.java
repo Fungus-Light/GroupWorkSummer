@@ -31,6 +31,8 @@ public class StartTitleController {
     private ManagerService managerService;
     @Autowired
     private RecordService recordService;
+    @Autowired
+    private PaperstateService paperstateService;
 
 
 //教师用来出题
@@ -275,6 +277,8 @@ public class StartTitleController {
             map.put("title",topic.getTopic());
             map.put("topicid",selectTopic.getTopicid());
             map.put("record",recordService.findRecord(selectTopic.getStudentid(),selectTopic.getTeacherid()));
+            int status = paperstateService.hasUploaded(selectTopic.getStudentid());
+            map.put("hasUploaded",status);
             newlist.add(map);
         }
         return newlist;
