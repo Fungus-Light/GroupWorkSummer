@@ -1,10 +1,13 @@
 package com.minqing.demo.controller;
 
 import com.minqing.demo.service.PaperstateService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +24,7 @@ import java.util.Map;
 public class Download {
     private static final String EXTENSION = ".doc";
     private static final String SERVER_LOCATION = "D:\\lunwen\\";
+    @Autowired
     private PaperstateService paperstateService;
 
     @RequestMapping("/passPaper")
@@ -44,10 +48,16 @@ public class Download {
 
 
 
-    @RequestMapping(path = "/download")
-    public Object download(@RequestBody Map<String,String> m) throws IOException {
-        if(paperstateService.hasUploaded(m.get("studentid"))==1) {
-            File file = new File(SERVER_LOCATION + m.get("studentid") + EXTENSION);
+
+    @RequestMapping("/hasuploaded")
+    public int hasuploaded(@RequestBody Map<String,String> m)
+    {
+        return paperstateService.hasUploaded(m.get("studentid"));
+    }
+    @RequestMapping(path = "/download/{userid}")
+    public Object download(@PathVariable("userid") String userid) throws IOException {
+        if(paperstateService.hasUploaded(userid)==1) {
+            File file = new File(SERVER_LOCATION + userid + EXTENSION);
 
             HttpHeaders header = new HttpHeaders();
             header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + m.get("studentid") + ".doc");
@@ -63,9 +73,14 @@ public class Download {
                     .contentLength(file.length())
                     .contentType(MediaType.parseMediaType("application/octet-stream"))
                     .body(resource);
+
         }
         else{
-                return 0;
+                return ResponseEntity.
+                        status(HttpStatus.PERMANENT_REDIRECT)
+                        .header("location","192.168.101.18:8080")
+                        .contentType(MediaType.TEXT_HTML)
+                        .body(null);
         }
     }
 }
