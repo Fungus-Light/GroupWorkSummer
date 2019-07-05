@@ -3,15 +3,15 @@
  * 
  */
 
-var teachIdArray={};
-var stuIdArray={};
-var groupedFinalLine={};
+var teachIdArray = {};
+var stuIdArray = {};
+var groupedFinalLine = {};
 
 var Admin_List_Render = document.getElementById("Admin_List_Render");
 var Teacher_List_Render = document.getElementById("Teacher_List_Render");
 var Student_List_Render = document.getElementById("Student_List_Render");
 var Topic_List_Render = document.getElementById("Topic_List_Render");
-var Msg_List_Render=document.getElementById("Msg_List_Render");
+var Msg_List_Render = document.getElementById("Msg_List_Render");
 
 function initPages() {
     //check the cookies
@@ -50,27 +50,35 @@ function initPages() {
         .catch(err => {
             console.error(err);
         })
-    
+
     //var stuarr,teacharr;
     axios.post('/groupshowAcademicStudent')
-    .then(res => {
-        teachIdArray=res.data[1];
-        stuIdArray=res.data[0];
-        RefreshUngroup(res.data[1],res.data[0]);
-    })
-    .catch(err => {
-        console.error(err); 
-    });
+        .then(res => {
+            teachIdArray = res.data[1];
+            stuIdArray = res.data[0];
+            RefreshUngroup(res.data[1], res.data[0]);
+        })
+        .catch(err => {
+            console.error(err);
+        });
 
     axios.post("/showMessage")
-    .then(res => {
-        var data=res.data;
-        data.reverse();
-        RefreshMsg(data)
-    })
-    .catch(err => {
-        console.error(err); 
-    })
+        .then(res => {
+            var data = res.data;
+            data.reverse();
+            RefreshMsg(data)
+        })
+        .catch(err => {
+            console.error(err);
+        })
+
+    axios.post('/showAppliedStudentsManager')
+        .then(res => {
+            RefreshSub(res.data);
+        })
+        .catch(err => {
+            console.error(err);
+        })
 
 }
 
@@ -385,14 +393,14 @@ function checkStateRender(currentstate) {
 
 //
 
-function RefreshUngroup(teacharray,studentarray){
+function RefreshUngroup(teacharray, studentarray) {
     ClearRenderer(document.getElementById("ungroup_teacher"));
     ClearRenderer(document.getElementById("ungroup_student"));
 
-    for(var i=0;i<teacharray.length;i++){
+    for (var i = 0; i < teacharray.length; i++) {
         document.getElementById("ungroup_teacher").appendChild(MakeUpUngroup(teacharray[i]));
     }
-    for(var i=0;i<studentarray.length;i++){
+    for (var i = 0; i < studentarray.length; i++) {
         document.getElementById("ungroup_student").appendChild(MakeUpUngroup(studentarray[i]));
     }
 }
@@ -418,42 +426,42 @@ function MakeUpUngroup(id) {
 function MakeUpGrouped(gid, id, type) {
     var temp = MakeUpElement("tr", "", "gradeX");
     var _type;
-    if(type==0){
-        _type="教师";
-    }else{
-        _type="学生";
+    if (type == 0) {
+        _type = "教师";
+    } else {
+        _type = "学生";
     }
     var inner = "<td>" + gid + "</td>"
         + "<td>" + id + "</td>"
         + "<td>" + _type + "</td>";
-    
+
     //temp.
-    temp.innerHTML=inner;
+    temp.innerHTML = inner;
     return temp;
 }
 
-function RefreshGrouped(grouparray){
+function RefreshGrouped(grouparray) {
     ClearRenderer(document.getElementById("grouped_list"));
-    for(var i=0;i<grouparray.length;i++){
-        document.getElementById("grouped_list").appendChild(MakeUpGrouped(grouparray[i].gid,grouparray[i].id,grouparray[i].type))
+    for (var i = 0; i < grouparray.length; i++) {
+        document.getElementById("grouped_list").appendChild(MakeUpGrouped(grouparray[i].gid, grouparray[i].id, grouparray[i].type))
     }
 }
 
-function GroupedItem(_gid,_id,_type){
-    this.gid=_gid;
-    this.id=_id;
-    this.type=_type;
+function GroupedItem(_gid, _id, _type) {
+    this.gid = _gid;
+    this.id = _id;
+    this.type = _type;
 }
 
-function ArrangeNGroup(arr,numpergroup,type){
-    var TempLine=new Array();
-    var currentGid=1;
-    var tempCount=0;
+function ArrangeNGroup(arr, numpergroup, type) {
+    var TempLine = new Array();
+    var currentGid = 1;
+    var tempCount = 0;
     for (var i = 0; i < arr.length; i++) {
         var temp = new GroupedItem(currentGid, arr[i], type);
         TempLine.push(temp);
         tempCount++;
-        if (tempCount > (numpergroup-1)) {
+        if (tempCount > (numpergroup - 1)) {
             currentGid++;
             tempCount = 0;
         }
@@ -461,22 +469,22 @@ function ArrangeNGroup(arr,numpergroup,type){
     return TempLine;
 }
 
-function ArrangeStudentTeach(teacharray,studarray){
-    
+function ArrangeStudentTeach(teacharray, studarray) {
+
     Shuffle(teacharray);
     Shuffle(studarray);
-    var teachSize=teacharray.length;
-    var stuSize=studarray.length;
+    var teachSize = teacharray.length;
+    var stuSize = studarray.length;
 
-    var groupnum=Math.ceil(teachSize/2);
-    var manpergroup=Math.ceil(stuSize/groupnum);
+    var groupnum = Math.ceil(teachSize / 2);
+    var manpergroup = Math.ceil(stuSize / groupnum);
 
-    var teachtempline=ArrangeNGroup(teacharray,2,0);
-    var studtempline=ArrangeNGroup(studarray,manpergroup,1);
+    var teachtempline = ArrangeNGroup(teacharray, 2, 0);
+    var studtempline = ArrangeNGroup(studarray, manpergroup, 1);
 
-    groupedFinalLine=teachtempline;
+    groupedFinalLine = teachtempline;
 
-    for(var i=0;i<studtempline.length;i++){
+    for (var i = 0; i < studtempline.length; i++) {
         groupedFinalLine.push(studtempline[i]);
     }
 
@@ -487,14 +495,14 @@ function ArrangeStudentTeach(teacharray,studarray){
 
 function Shuffle(arr) {
     var len = arr.length;
-    
-    for(var i=len-1;i>=0;i--){
-      
-      var randomIndex = Math.floor(Math.random() * (i+1));
-      
-      var itemIndex = arr[randomIndex];
-      arr[randomIndex] = arr[i];
-      arr[i] = itemIndex;
+
+    for (var i = len - 1; i >= 0; i--) {
+
+        var randomIndex = Math.floor(Math.random() * (i + 1));
+
+        var itemIndex = arr[randomIndex];
+        arr[randomIndex] = arr[i];
+        arr[i] = itemIndex;
     }
     return arr;
 }
@@ -519,35 +527,35 @@ function Shuffle(arr) {
 
 */
 
-function MakeUpMsg(mid,mtitle,mcontent,mtime){
-    var Root=MakeUpElement("tr","","gradeX");
-    var title=MakeUpElement("td",mtitle,"");
-    var time=MakeUpElement("td",mtime,"")
-    var btnroot=MakeUpElement("td","","");
-    var btngroup=MakeUpElement("div","","tpl-table-black-operation");
-    var showbtn=MakeUpElement("a","","");
-    showbtn.innerHTML='<i class="am-icon-pencil"></i> 阅读';
-    showbtn.setAttribute("data-am-modal","{target: '#show-msg',closeViaDimmer: 0, width: 600, height: 600}");
-    showbtn.setAttribute("data-content",JSON.stringify({
-        title:mtitle,
-        content:mcontent
+function MakeUpMsg(mid, mtitle, mcontent, mtime) {
+    var Root = MakeUpElement("tr", "", "gradeX");
+    var title = MakeUpElement("td", mtitle, "");
+    var time = MakeUpElement("td", mtime, "")
+    var btnroot = MakeUpElement("td", "", "");
+    var btngroup = MakeUpElement("div", "", "tpl-table-black-operation");
+    var showbtn = MakeUpElement("a", "", "");
+    showbtn.innerHTML = '<i class="am-icon-pencil"></i> 阅读';
+    showbtn.setAttribute("data-am-modal", "{target: '#show-msg',closeViaDimmer: 0, width: 600, height: 600}");
+    showbtn.setAttribute("data-content", JSON.stringify({
+        title: mtitle,
+        content: mcontent
     }));
-    showbtn.addEventListener('click',()=>{
+    showbtn.addEventListener('click', () => {
         //设置msg信息
-        var data=JSON.parse(showbtn.getAttribute("data-content"));
+        var data = JSON.parse(showbtn.getAttribute("data-content"));
         $("#msg-title").val(data.title);
         $("#msg-content").val(data.content);
     });
 
-    var delbtn=MakeUpElement("a","","tpl-table-black-operation-del");
-    delbtn.innerHTML='<i class="am-icon-trash"></i> 删除';
-    delbtn.setAttribute("data-am-modal","{target: '#del-msg',closeViaDimmer: 0, width: 400, height: 200}");
-    delbtn.setAttribute("mid",mid);
-    delbtn.addEventListener('click',()=>{
+    var delbtn = MakeUpElement("a", "", "tpl-table-black-operation-del");
+    delbtn.innerHTML = '<i class="am-icon-trash"></i> 删除';
+    delbtn.setAttribute("data-am-modal", "{target: '#del-msg',closeViaDimmer: 0, width: 400, height: 200}");
+    delbtn.setAttribute("mid", mid);
+    delbtn.addEventListener('click', () => {
         //设置隐含msg id
-        $("#del-msg").attr("mid",delbtn.getAttribute("mid"));
+        $("#del-msg").attr("mid", delbtn.getAttribute("mid"));
     })
-    
+
     btngroup.appendChild(showbtn);
     btngroup.appendChild(delbtn);
     btnroot.appendChild(btngroup);
@@ -557,10 +565,46 @@ function MakeUpMsg(mid,mtitle,mcontent,mtime){
     return Root;
 }
 
-function RefreshMsg(msgarr){
+function RefreshMsg(msgarr) {
     ClearRenderer(Msg_List_Render);
-    for(var i=0;i<msgarr.length;i++){
-        var temp=msgarr[i];
-        Msg_List_Render.appendChild(MakeUpMsg(temp.messageid,temp.title,temp.content,temp.time));
+    for (var i = 0; i < msgarr.length; i++) {
+        var temp = msgarr[i];
+        Msg_List_Render.appendChild(MakeUpMsg(temp.messageid, temp.title, temp.content, temp.time));
+    }
+}
+
+//==================================
+
+
+function MakeUpSub(name, id, topic, content) {
+    var Root = MakeUpElement("tr", "", "gradeX");
+    var inner = '<td>' + name + '</id>'
+        + '<td>' + id + '</id>'
+        + '<td>' + topic + '</td>';
+    Root.innerHTML = inner;
+    var BtnRoot = MakeUpElement("td", "", "");
+    var BtnGroup = MakeUpElement("div", "", "tpl-table-black-operation");
+    var judgebtn = MakeUpElement("a", "", "");
+    judgebtn.innerHTML = '<i class="am-icon-pencil"></i> 申请审批';
+    judgebtn.setAttribute("data-am-modal", "{target: '#sub-judge',closeViaDimmer: 0, width: 600, height: 460}");
+    judgebtn.setAttribute('content', content);
+    judgebtn.setAttribute('id', id);
+    judgebtn.addEventListener('click', function () {
+        var content = judgebtn.getAttribute('content');
+        $("#sub-content").val(content);
+        document.getElementById("sub-content").setAttribute("id", judgebtn.getAttribute("id"));
+    });
+    BtnGroup.appendChild(judgebtn);
+    BtnRoot.appendChild(BtnGroup);
+    Root.appendChild(BtnRoot);
+
+    return Root;
+}
+
+function RefreshSub(subarr) {
+    ClearRenderer(Sub_List_Render);
+    for (var i = 0; i < subarr.length; i++) {
+        var data = subarr[i];
+        Sub_List_Render.appendChild(MakeUpSub(data.studentname, data.studentid, data.topicname, data.func))
     }
 }
