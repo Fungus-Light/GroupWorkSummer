@@ -26,6 +26,7 @@
 var Topic_List_Render = $("#Topic_List_Render").get(0);
 var TopicResult_List_Render = document.getElementById("TopicResult_List_Render");
 var Msg_List_Render=document.getElementById("Msg_List_Render");
+var Sub_List_Render=document.getElementById("Sub_List_Render");
 
 window.onload = function () {
     //$("#alert-bar").hide();
@@ -70,6 +71,14 @@ window.onload = function () {
     .then(res => {
         console.log(res.data)
         RefreshInGoup(res.data);
+    })
+    .catch(err => {
+        console.error(err); 
+    });
+
+    axios.post('/showAppliedStudentsTeacher')
+    .then(res => {
+        RefreshSub(res.data);
     })
     .catch(err => {
         console.error(err); 
@@ -339,5 +348,57 @@ function RefreshInGoup(grouparr){
     for(var i=0;i<grouparr.length;i++){
         var data=grouparr[i];
         Group_Render.appendChild(MakeUpInGroup(data.groupid,data.userid,data.identity))
+    }
+}
+
+/**
+
+<tr class="gradeX">
+    <td>李二狗</id>
+    <td>2015424275589</id>
+    <td>大型购物商城</td>
+    <td>
+        <div class="tpl-table-black-operation">
+            <a href="javascript:;"
+                data-am-modal="{target: '#judge',closeViaDimmer: 0, width: 600, height: 460}">
+                <i class="am-icon-pencil"></i> 申请审批
+            </a>
+        </div>
+    </td>
+</tr>
+
+ */
+
+
+function MakeUpSub(name,id,topic,content){
+    var Root=MakeUpElement("tr","","gradeX");
+    var inner='<td>'+name+'</id>'
+        +'<td>'+id+'</id>'
+        +'<td>'+topic+'</td>';
+    Root.innerHTML=inner;
+    var BtnRoot=MakeUpElement("td","","");
+    var BtnGroup=MakeUpElement("div","","tpl-table-black-operation");
+    var judgebtn=MakeUpElement("a","","");
+    judgebtn.innerHTML='<i class="am-icon-pencil"></i> 申请审批';
+    judgebtn.setAttribute("data-am-modal","{target: '#sub-judge',closeViaDimmer: 0, width: 600, height: 460}");
+    judgebtn.setAttribute('content',content);
+    judgebtn.setAttribute('id',id);
+    judgebtn.addEventListener('click',function(){
+        var content= judgebtn.getAttribute('content');
+        $("#sub-content").val(content);
+        document.getElementById("sub-content").setAttribute("sid",judgebtn.getAttribute("id"));
+    }); 
+    BtnGroup.appendChild(judgebtn);
+    BtnRoot.appendChild(BtnGroup);
+    Root.appendChild(BtnRoot);
+
+    return Root;
+}
+
+function RefreshSub(subarr){
+    ClearRenderer(Sub_List_Render);
+    for(var i=0;i<subarr.length;i++){
+        var data=subarr[i];
+        Sub_List_Render.appendChild(MakeUpSub(data.studentname,data.studentid,data.topicname,data.func))
     }
 }

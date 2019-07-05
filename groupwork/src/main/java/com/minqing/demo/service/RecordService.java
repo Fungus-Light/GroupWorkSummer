@@ -30,4 +30,8 @@ public class RecordService {
         }
         return newlist;
     }
+
+    public List findRecordByStudent(String studentid){
+        return recordRepository.findRecordsByStudentid(studentid);
+    }
 }

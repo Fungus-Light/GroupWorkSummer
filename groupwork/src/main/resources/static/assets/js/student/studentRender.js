@@ -124,6 +124,14 @@ window.onload = function () {
         console.error(err); 
     })
 
+    axios.post('/showRecordStudent')
+    .then(res => {
+        RefreshGuideStu(res.data)
+    })
+    .catch(err => {
+        console.error(err); 
+    })
+
 }
 
 function Refresh(topicarray) {
@@ -285,5 +293,40 @@ function RefreshInGoup(grouparr) {
     for (var i = 0; i < grouparr.length; i++) {
         var data = grouparr[i];
         Group_Render.appendChild(MakeUpInGroup(data.groupid, data.userid, data.identity))
+    }
+}
+
+//==============================
+function MakeUpStuGuide(_guide){
+    
+    var brief=_guide.slice(0,6);
+    var Root=MakeUpElement("tr","","");
+    var guide=MakeUpElement("td",brief,"");
+    var BtnRoot=MakeUpElement("td","","");
+    var BtnGroup=MakeUpElement("div","","tpl-table-black-operation");
+    var ViewBtn=MakeUpElement("a","","");
+    ViewBtn.innerHTML='<i class="am-icon-pencil"></i> 详情查看';
+    ViewBtn.setAttribute("data-am-modal","{target: '#show-guide',closeViaDimmer: 0, width: 600, height: 460}");
+    ViewBtn.setAttribute("content",_guide);
+    console.log(_guide)
+    ViewBtn.addEventListener('click',function(){
+        console.log("click click");
+        console.log(ViewBtn.getAttribute("content"));
+        $("#guide-content").val(ViewBtn.getAttribute("content"))
+    })
+    BtnGroup.appendChild(ViewBtn);
+    BtnRoot.appendChild(BtnGroup);
+    Root.appendChild(guide);
+    Root.appendChild(BtnRoot);
+    return Root;
+}
+
+Guide_List_Render=document.getElementById("Guide_List_Render");
+
+function RefreshGuideStu(arr){
+    ClearRenderer(Guide_List_Render);
+    for(var i=0;i<arr.length;i++){
+        var data=arr[i];
+        Guide_List_Render.appendChild(MakeUpStuGuide(data.content))
     }
 }

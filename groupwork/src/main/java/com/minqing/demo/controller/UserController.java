@@ -5,10 +5,7 @@ import com.minqing.demo.entity.Manager;
 import com.minqing.demo.entity.Student;
 import com.minqing.demo.entity.Teacher;
 import com.minqing.demo.entity.User;
-import com.minqing.demo.service.ManagerService;
-import com.minqing.demo.service.StudentService;
-import com.minqing.demo.service.TeacherService;
-import com.minqing.demo.service.UserService;
+import com.minqing.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,6 +30,7 @@ public class UserController {
     private StudentService studentService;
     @Autowired
     private TeacherService teacherService;
+
 
     @RequestMapping("/login")
     public int login(@RequestBody Map<String,String> map, HttpServletResponse response){
@@ -60,6 +58,35 @@ public class UserController {
 //
 //        }
 //    }
+
+    @RequestMapping("/decideSendMessage")
+    public int decideSendMessage(@RequestBody Map<String,String> map){
+        String userid = map.get("userid");
+        String tel = map.get("tel");
+        String title = map.get("title");
+        if(title.equals("student")){
+            if(studentService.isUseridMatchTel(userid,tel)){
+                String code = "";
+                for(int i=0;i<6;i++){
+                    code = code + (int)(Math.random()*10);
+                }
+                AliService.sendMessage(tel,code);
+                return 1;
+            }
+            return 0;
+        }
+        else{
+            if(teacherService.isUseridMatchTel(userid,tel)){
+                String code = "";
+                for(int i=0;i<6;i++){
+                    code = code + (int)(Math.random()*10);
+                }
+                AliService.sendMessage(tel,code);
+                return 1;
+            }
+            return 0;
+        }
+    }
 
 
     //管理员的增删改查
