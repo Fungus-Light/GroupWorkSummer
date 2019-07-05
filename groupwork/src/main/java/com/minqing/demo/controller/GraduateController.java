@@ -1,6 +1,5 @@
 package com.minqing.demo.controller;
 
-import com.minqing.demo.entity.Graduate;
 import com.minqing.demo.service.GraduateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -47,4 +46,6 @@ public class GraduateController {
         }
         return graduateService.whoAgreed(userid);
     }
+
+
 }
