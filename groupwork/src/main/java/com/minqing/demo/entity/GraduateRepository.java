@@ -26,7 +26,7 @@ public interface GraduateRepository extends JpaRepository<Graduate,String> {
     @Query("select studentid from Graduate where teachername =?1")
     public List findStudentidsByTeacherName(String teachername);
 
-    @Query(value = "select Graduate.studentid from Graduate g,Manager m,Student s where s.userid=g.studentid and" +
+    @Query(value = "select studentid from Graduate g,Manager m,Student s where s.userid=g.studentid and" +
             " m.academic=s.academic and m.academic=?1 ",nativeQuery = true)
     public List findStudentidsByManagerAcademic(String academic);
 }

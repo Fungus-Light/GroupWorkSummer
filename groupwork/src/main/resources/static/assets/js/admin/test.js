@@ -97,7 +97,7 @@ var teach = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
 // // console.log(Math.ceil(teachl/2));
 // // console.log(Math.ceil(stul/groupNum))
 // // console.log("---------------------");
-
-for(var i=0;i<10;i++){
-    Sub_List_Render.appendChild(MakeUpSub("aaa","111","xxxx","sdsdsdsdsdsdsdsdsds"));
-}
+//
+// for(var i=0;i<10;i++){
+//     Sub_List_Render.appendChild(MakeUpSub("aaa","111","xxxx","sdsdsdsdsdsdsdsdsds"));
+// }
