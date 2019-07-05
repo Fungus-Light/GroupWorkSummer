@@ -13,4 +13,7 @@ import java.util.List;
 public interface TeacherRepository extends JpaRepository<Teacher,String> {
     @Query("select  userid from Teacher where  academic=?1")
     public List findIdByAcademic(String academic);
+
+    @Query("select name from Teacher where id=?1")
+    public String findNameByTeacherId(String teacherid);
 }
