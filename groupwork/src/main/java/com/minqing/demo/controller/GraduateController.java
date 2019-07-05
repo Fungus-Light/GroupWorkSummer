@@ -1,7 +1,6 @@
 package com.minqing.demo.controller;
 
 import com.minqing.demo.entity.Graduate;
-import com.minqing.demo.entity.Student;
 import com.minqing.demo.service.GraduateService;
 import com.minqing.demo.service.ManagerService;
 import com.minqing.demo.service.StudentService;
@@ -99,7 +98,6 @@ public class GraduateController {
             graduates.add(g);
         }
         return graduates;
-
     }
 
 
@@ -115,7 +113,7 @@ public class GraduateController {
             }
         }
         String academic=managerService.findAcademic(userid);
-        List<String>  studentids=graduateService.findStudentidsByTeacherName(academic);
+        List<String>  studentids=graduateService.findStudentidsByManagerAcademic(academic);
         List<Graduate> graduates=new ArrayList<>();
         int length=studentids.size();
         for(int i=0;i<length;i++)

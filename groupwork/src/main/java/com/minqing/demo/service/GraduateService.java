@@ -55,6 +55,6 @@ public class GraduateService {
 
     public List findStudentidsByManagerAcademic(String academic)
     {
-        return findStudentidsByManagerAcademic(academic);
+        return graduateRepository.findStudentidsByManagerAcademic(academic);
     }
 }
