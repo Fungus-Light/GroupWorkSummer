@@ -97,3 +97,20 @@ function refusepaper(){
 })
 
 }
+
+function SubPass(){
+    var stuid=document.getElementById("sub-content").getAttribute("id");
+    axios.post('agreedTeacher',{
+        studentid:stuid
+    })
+    .then(res => {
+        console.log(res)
+    })
+    .catch(err => {
+        console.error(err); 
+    })
+}
+
+function SubCut(){
+
+}
