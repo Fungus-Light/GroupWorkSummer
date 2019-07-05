@@ -359,3 +359,16 @@ function addMsg(){
         console.error(err); 
     })
 }
+
+function SubPass(){
+    var stuid=document.getElementById("sub-content").getAttribute("sid");
+    axios.post('agreedManager',{
+        studentid:stuid
+    })
+    .then(res => {
+        console.log(res)
+    })
+    .catch(err => {
+        console.error(err); 
+    })
+}
