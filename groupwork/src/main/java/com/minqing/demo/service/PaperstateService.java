@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 public class PaperstateService {
     @Autowired
     private PaperstateRepository paperstateRepository;
+    public int haspassed(String studentid)
+    {
+        return paperstateRepository.findById(studentid).get().getState()==1?1:0;
+    }
     public void initPaper(String studentid)
     {
         Paperstate paperstate=new Paperstate();
@@ -35,5 +39,9 @@ public class PaperstateService {
     public int hasUploaded(String studentid)
     {
         return  paperstateRepository.findById(studentid).isPresent()?1:0;
+    }
+
+    public int findStudentState(String userid){
+        return paperstateRepository.findById(userid).get().getState();
     }
 }

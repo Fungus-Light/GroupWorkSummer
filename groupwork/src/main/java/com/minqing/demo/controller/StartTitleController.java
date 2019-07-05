@@ -278,7 +278,9 @@ public class StartTitleController {
             map.put("topicid",selectTopic.getTopicid());
             map.put("record",recordService.findRecord(selectTopic.getStudentid(),selectTopic.getTeacherid()));
             int status = paperstateService.hasUploaded(selectTopic.getStudentid());
+
             map.put("hasUploaded",status);
+
             newlist.add(map);
         }
         return newlist;

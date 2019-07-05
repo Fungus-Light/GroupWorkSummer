@@ -247,8 +247,11 @@ function MakeUpTopicStu(_name, _userid, _topic, _guidelist,_hasuploaded) {
     passbtn.setAttribute("data-content", JSON.stringify({
         userid: _userid
     }))
-    passbtn.setAttribute("data-am-modal", "{target: '#passpaper',closeViaDimmer: 0, width: 600, height: 460}");
-    passbtn.addEventListener('click', () => {
+    passbtn.setAttribute("data-am-modal", "{target: '#passpaper',closeViaDimmer: 0, width: 400, height: 160}");
+    if(_hasuploaded==0){
+        passbtn.setAttribute("disabled","");
+    }
+    passbtn.addEventListener('click', function() {
         SetPassPaperID(JSON.parse(passbtn.getAttribute("data-content")).userid);
 })
 
