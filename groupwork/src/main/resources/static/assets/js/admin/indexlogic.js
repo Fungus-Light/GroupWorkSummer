@@ -361,7 +361,7 @@ function addMsg(){
 }
 
 function SubPass(){
-    var stuid=document.getElementById("sub-content").getAttribute("id");
+    var stuid=document.getElementById("sub-content").getAttribute("sid");
     axios.post('agreedManager',{
         studentid:stuid
     })

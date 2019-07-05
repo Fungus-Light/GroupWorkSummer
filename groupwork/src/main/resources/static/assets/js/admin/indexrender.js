@@ -592,7 +592,7 @@ function MakeUpSub(name, id, topic, content) {
     judgebtn.addEventListener('click', function () {
         var content = judgebtn.getAttribute('content');
         $("#sub-content").val(content);
-        document.getElementById("sub-content").setAttribute("id", judgebtn.getAttribute("id"));
+        document.getElementById("sub-content").setAttribute("sid", judgebtn.getAttribute("id"));
     });
     BtnGroup.appendChild(judgebtn);
     BtnRoot.appendChild(BtnGroup);
