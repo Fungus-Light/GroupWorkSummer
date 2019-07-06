@@ -14,9 +14,21 @@ function SetPreUserInfo(data) {
 
 window.onload = function () {
     axios.post('/checkCookie').then(response => {
-        if (response.data === 0) {
-            window.location.href = 'login.html';
-        }
+        if (response.data === 5) {
+        window.location.href = 'login.html';
+    }
+else if(response.data === 0){
+        window.location.href = 'index.html';
+    }
+    else if(response.data === 1){
+        window.location.href = 'index_academic.html';
+    }
+    else if(response.data === 2){
+        window.location.href = 'index_teacher.html';
+    }
+    else{
+
+    }
     });
 
     axios.post('/showSingleStudent')

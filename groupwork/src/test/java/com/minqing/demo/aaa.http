@@ -1,10 +1,9 @@
-POST http://localhost:8080/decideSendMessage
+POST http://localhost:8080/addTopic
 Content-Type: application/json
 
 {
-    "userid":"333333",
-    "tel":"15680917471",
-    "title":"student"
+    "topic":"aaaa",
+    "description":"aaaaaa"
 }
 
 #### For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection).

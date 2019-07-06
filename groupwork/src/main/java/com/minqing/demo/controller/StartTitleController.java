@@ -37,7 +37,7 @@ public class StartTitleController {
 
 //教师用来出题
     @RequestMapping("/addTopic")
-    public void addTopic(@RequestBody Map<String,String> map, HttpServletRequest request){
+    public void addTopic(@RequestBody Map<String,String> map,HttpServletRequest request){
         String topic = map.get("topic");
         Cookie[] cookies = request.getCookies();
         String userid = "";
@@ -46,7 +46,6 @@ public class StartTitleController {
                 userid = cookie.getValue();
             }
         }
-//        //String userid = map.get("userid");
         String description = map.get("description");
         topicService.addTopic(topic,userid,description);
     }
