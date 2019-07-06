@@ -14,7 +14,8 @@ function updateStuInfo() {
             name: name
         })
             .then(res => {
-                window.location.reload();
+                alert("修改成功")
+                window.location.href="login.html";
             })
             .catch(err => {
                 console.error(err);
