@@ -547,17 +547,17 @@ function MakeUpMsg(mid, mtitle, mcontent, mtime) {
         $("#msg-content").val(data.content);
     });
 
-    var delbtn = MakeUpElement("a", "", "tpl-table-black-operation-del");
-    delbtn.innerHTML = '<i class="am-icon-trash"></i> 删除';
-    delbtn.setAttribute("data-am-modal", "{target: '#del-msg',closeViaDimmer: 0, width: 400, height: 200}");
-    delbtn.setAttribute("mid", mid);
-    delbtn.addEventListener('click', () => {
-        //设置隐含msg id
-        $("#del-msg").attr("mid", delbtn.getAttribute("mid"));
-    })
+    // var delbtn = MakeUpElement("a", "", "tpl-table-black-operation-del");
+    // delbtn.innerHTML = '<i class="am-icon-trash"></i> 删除';
+    // delbtn.setAttribute("data-am-modal", "{target: '#del-msg',closeViaDimmer: 0, width: 400, height: 200}");
+    // delbtn.setAttribute("mid", mid);
+    // delbtn.addEventListener('click', () => {
+    //     //设置隐含msg id
+    //     $("#del-msg").attr("mid", delbtn.getAttribute("mid"));
+    // })
 
     btngroup.appendChild(showbtn);
-    btngroup.appendChild(delbtn);
+    //btngroup.appendChild(delbtn);
     btnroot.appendChild(btngroup);
     Root.appendChild(title);
     Root.appendChild(time);
