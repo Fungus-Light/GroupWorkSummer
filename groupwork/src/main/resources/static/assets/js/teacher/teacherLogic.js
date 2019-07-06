@@ -100,6 +100,8 @@ function refusepaper(){
 
 function SubPass(){
     var stuid=document.getElementById("sub-content").getAttribute("sid");
+
+    
     axios.post('agreedTeacher',{
         studentid:stuid
     })
