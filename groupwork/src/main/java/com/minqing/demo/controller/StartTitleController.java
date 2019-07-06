@@ -37,7 +37,7 @@ public class StartTitleController {
 
 //教师用来出题
     @RequestMapping("/addTopic")
-    public void addTopic(@RequestBody Map<String,String> map, HttpServletRequest request){
+    public void addTopic(@RequestBody Map<String,String> map,HttpServletRequest request){
         String topic = map.get("topic");
         Cookie[] cookies = request.getCookies();
         String userid = "";
@@ -46,7 +46,6 @@ public class StartTitleController {
                 userid = cookie.getValue();
             }
         }
-//        //String userid = map.get("userid");
         String description = map.get("description");
         topicService.addTopic(topic,userid,description);
     }
@@ -298,5 +297,30 @@ public class StartTitleController {
         String studentid = map.get("studentid");
         String content = map.get("content");
         recordService.addRecord(studentid,teacherid,content);
+    }
+
+    @RequestMapping("/showRecordStudent")
+    public List showRecordStudent(HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        String studentid = "";
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("userid")){
+                studentid = cookie.getValue();
+            }
+        }
+        return recordService.findRecordByStudent(studentid);
+    }
+
+    @RequestMapping("/showRecordTeacher")
+    public List showRecord(@RequestBody Map<String,String> map,HttpServletRequest request){
+        String studentid = map.get("studentid");
+        Cookie[] cookies = request.getCookies();
+        String teacherid = "";
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("userid")){
+                teacherid = cookie.getValue();
+            }
+        }
+        return recordService.findRecord(studentid,teacherid);
     }
 }

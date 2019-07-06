@@ -46,7 +46,8 @@ function updataInfo(){
             tel:tel,
             password:password
         }).then(response => {
-            window.reload();
+            alert("修改成功")
+            window.location.href="login.html";
         })
     }
 
@@ -100,16 +101,15 @@ function refusepaper(){
 
 function SubPass(){
     var stuid=document.getElementById("sub-content").getAttribute("sid");
-
-    
-    axios.post('agreedTeacher',{
+    console.log(stuid);
+    axios.post('/agreedTeacher',{
         studentid:stuid
     })
     .then(res => {
         console.log(res)
     })
     .catch(err => {
-        console.error(err); 
+        console.error(err);
     })
 }
 

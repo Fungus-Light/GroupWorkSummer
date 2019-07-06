@@ -20,6 +20,7 @@ public class TopicService {
         topic1.setState(0);
         topic1.setDescription(description);
         topicRepository.save(topic1);
+
     }
 
     public void decideTopic(int topicid,int state){

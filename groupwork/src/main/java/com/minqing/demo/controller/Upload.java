@@ -57,4 +57,16 @@ public class Upload {
             }
         }
     }
+
+    @RequestMapping("/paperState")
+    public int paperState(HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        String userid = "";
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("userid")){
+                userid = cookie.getValue();
+            }
+        }
+        return paperstateService.findStudentState(userid);
+    }
 }

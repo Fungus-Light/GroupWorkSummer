@@ -16,9 +16,21 @@ var Msg_List_Render = document.getElementById("Msg_List_Render");
 function initPages() {
     //check the cookies
     axios.post('/checkCookie').then(response => {
-        if (response.data === 0) {
-            window.location.href = 'login.html';
+        if (response.data === 5) {
+        window.location.href = 'login.html';
+    }
+else if(response.data === 0){
+
+    }
+    else if(response.data === 1){
+            window.location.href = 'index_academic.html';
         }
+    else if(response.data === 2){
+        window.location.href = 'index_teacher.html';
+    }
+    else{
+        window.location.href = 'index_student.html';
+    }
     });
     //init the manager page
     axios.post('/showManager').then(response => {

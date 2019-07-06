@@ -98,8 +98,11 @@
                 userid:userid,
                 password:password
             }).then( response => {
-                if(response.data === 3 || response.data === 4){
+                if(response.data === 3 ){
                 window.location.href = 'index.html';
+            }
+            else if(response.data === 4){
+                    window.location.href='index_academic.html';
             }
 
             else if(response.data === 5){

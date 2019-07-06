@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TeacherService {
@@ -33,4 +34,13 @@ public class TeacherService {
         teacherRepository.save(teacher);
     }
     public List<String> findIdByAcademic(String academic){return teacherRepository.findIdByAcademic(academic);}
+
+    public String findTeacherNameByTeacherId(String teacherid){return teacherRepository.findNameByTeacherId(teacherid);}
+
+    public boolean isUseridMatchTel(String userid,String tel){
+        Optional optional = teacherRepository.findById(userid);
+        if(!optional.isPresent())   return false;
+        Teacher teacher = (Teacher)optional.get();
+        return teacher.getTel().equals(tel);
+    }
 }

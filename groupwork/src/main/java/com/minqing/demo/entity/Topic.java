@@ -1,18 +1,21 @@
 package com.minqing.demo.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Topic {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer topicid;
     private String topic;
     private String userid;
     private int state;
     private String description;
 
-    public int getTopicid() {
+    public Integer getTopicid() {
         return topicid;
     }
 

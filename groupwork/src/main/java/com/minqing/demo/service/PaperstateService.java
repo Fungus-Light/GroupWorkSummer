@@ -40,4 +40,8 @@ public class PaperstateService {
     {
         return  paperstateRepository.findById(studentid).isPresent()?1:0;
     }
+
+    public int findStudentState(String userid){
+        return paperstateRepository.findById(userid).get().getState();
+    }
 }

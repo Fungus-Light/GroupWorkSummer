@@ -1,8 +1,9 @@
-POST http://localhost:8080/download/333333
+POST http://localhost:8080/addTopic
 Content-Type: application/json
 
 {
-
+    "topic":"aaaa",
+    "description":"aaaaaa"
 }
 
 #### For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection).
