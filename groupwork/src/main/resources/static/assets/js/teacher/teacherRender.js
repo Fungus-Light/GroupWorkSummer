@@ -265,16 +265,24 @@ function MakeUpTopicStu(_name, _userid, _topic, _guidelist,_hasuploaded) {
 
     var passbtn = MakeUpElement("a", "", "");
     passbtn.innerHTML = '<i class="am-icon-pencil"></i> 审批论文';
+
     passbtn.setAttribute("data-content", JSON.stringify({
         userid: _userid
     }))
-    passbtn.setAttribute("data-am-modal", "{target: '#passpaper',closeViaDimmer: 0, width: 400, height: 160}");
+
     if(_hasuploaded==0){
         passbtn.setAttribute("disabled","");
+        passbtn.addEventListener('click',function(){
+            alert("学生尚未上传论文，无法批阅")
+        })
+    }else{
+        passbtn.setAttribute("data-am-modal", "{target: '#passpaper',closeViaDimmer: 0, width: 400, height: 160}");
+
+        passbtn.addEventListener('click', function() {
+            SetPassPaperID(JSON.parse(passbtn.getAttribute("data-content")).userid);
+        })
     }
-    passbtn.addEventListener('click', function() {
-        SetPassPaperID(JSON.parse(passbtn.getAttribute("data-content")).userid);
-})
+
 
     actionbtngroup.appendChild(addguidebtn);
     actionbtngroup.appendChild(viewbtn);
